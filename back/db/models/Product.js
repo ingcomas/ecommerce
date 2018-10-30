@@ -1,7 +1,6 @@
 const Sequelize = require('sequelize');
-const db = require ('./db');
+const db = require ('../index');
 const Review = require('./Review');
-const User = require('./User')
 const Category = require('./Category')
 
 
@@ -35,4 +34,4 @@ Product.hasMany(Review, { as : 'reviewId'})
 Product.hasMany(Category, { as : 'categoryId'})
 
 
-module.exports={Product}
+module.exports=Product;

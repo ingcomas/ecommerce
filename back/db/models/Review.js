@@ -3,7 +3,7 @@
 // id
 // id_usuario 
 // Rating num max 10
-var db = require('./index');
+var db = require('../index');
 var Sequelize = require('sequelize')
 var User = require('./User')
 
@@ -20,11 +20,10 @@ var Review = db.define('review',{
     allowNull: false,    
     validate:{
       min: 0,
-      max: 10,
+      max: 5,
     }
   }
 });
 
-Review.belongsTo(User,{as :"id_User"})
-
-module.exports = {Review}
+Review.belongsTo(User,{as :"userId"})
+module.exports = Review;
