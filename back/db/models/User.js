@@ -1,12 +1,8 @@
 const Sequelize = require('sequelize');
 const db = require('../index');
+const Order = require('./Order');
 
 const User = db.define('user', {
-
-    id: {
-        type: Sequelize.NUMBER,
-        allowNull: false
-    },
 
     first_name: {
         type: Sequelize.STRING(20),
@@ -46,12 +42,10 @@ const User = db.define('user', {
         allowNull: false
     },
 
-    orders: {
-        type: Sequelize.ARRAY,
-    },
-
     access: Sequelize.STRING
 
 });
+
+User.hasMany(Order, {as:'ordersId'});
 
 module.exports = User;

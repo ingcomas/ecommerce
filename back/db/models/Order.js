@@ -5,7 +5,7 @@ const db = require ('../index');
 const Product = require ('./Product');
 const User = require ('./User');
 
-export default Order = db.define({
+export default Order = db.define('order',{
     state : {
         type : Sequelize.ENUM,
         values : ['created','processing','cancelled','completed']
