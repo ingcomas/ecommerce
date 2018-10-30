@@ -52,15 +52,32 @@ var db = require('./db/index')
 // // view engine setup
 // app.set('views', path.join(__dirname, 'views'));
 // app.set('view engine', 'ejs');
-db.sync({force :false})
+db.sync({force :true})
 // app.use(logger('dev'));
  app.use(express.json());
  app.use(express.urlencoded({ extended: false }));
 // app.use(cookieParser());
  app.use(express.static(path.join(__dirname, 'public')));
 // app.use('/', indexRouter);
-app.use('/', (req, res)=>{
+app.use('/busca',(req,res)=>{
     
+})
+app.use('/', (req, res)=>{
+    Product.create({
+        name : 'dasf',
+        stock:100,
+        description:'lalalalalalala',
+        price: 100,
+        images: ['1','2']
+    }).then(prod=>{
+        Category.create({
+            name:'droga',
+        }).then(cat=>{
+            cat.addProduct(prod)
+        })
+    })
+    
+    // Category.findAll({include:}).then(elem=>console.log('lkaflaskfnalsfknaslfn',elem))
 })
 // // app.use('/users', usersRouter);
 

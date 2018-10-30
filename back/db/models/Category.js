@@ -9,7 +9,7 @@ var Category= db.define('category', {
 	}
 });
 
-Category.belongsToMany(Product, {through:'ProductoCategoria', foreignKey: 'prodId'});
-Product.belongsToMany(Category, {through:'ProductoCategoria', foreignKey: 'catId'});
+Category.belongsToMany(Product, {through:'productoCategoria'});
+Product.belongsToMany(Category, {through:'productoCategoria'});
 
 module.exports = Category;
