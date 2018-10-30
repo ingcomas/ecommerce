@@ -1,11 +1,8 @@
-// id-idProducto-idComprador-estado-direccionEnvio-email-celular
 //requerimos sequelize y la base de datos
 const Sequelize = require ('sequelize');
 const db = require ('../index');
-const Product = require ('./Product');
-const User = require ('./User');
 
-export default Order = db.define('order',{
+const Order = db.define('order',{
     state : {
         type : Sequelize.ENUM,
         values : ['created','processing','cancelled','completed']
@@ -19,8 +16,11 @@ export default Order = db.define('order',{
         allowNull : false
     },
     cellphone : {
-        type : Sequelize.STRING
+        type : Sequelize.INTEGER
+    },
+    products : {
+        type: Sequelize.ARRAY(Sequelize.INTEGER)
     }
 })
-Order.hasMany(Product, { as : 'productId'})
-User.belongsTo(Order, { as : 'userId'})
+
+module.exports = Order
