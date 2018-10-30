@@ -1,75 +1,82 @@
-var createError = require('http-errors');
+// var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-var passport = require('passport');
-var session = require("express-session");
-var LocalStrategy = require('passport-local').Strategy;
-var {User} = require('./Modelos/db')
-//fofo por ahora no se la come
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-//cambio prueba branch sFernandez
-var app = express();
-app.use(session({ secret: "cats" }));
-app.use(passport.initialize());
-app.use(passport.session());
-passport.serializeUser(function(user, done) {
-  done(null, user.id);
-});
 
-passport.deserializeUser(function(id, done) {
-  User.findById(id, function(err, user) {
-    done(err, user);
-  });
-});
+// var cookieParser = require('cookie-parser');
+// var logger = require('morgan');
+// var passport = require('passport');
+// var session = require("express-session");
+// var LocalStrategy = require('passport-local').Strategy;
+// var {User} = require('./Modelos/db')
+// //fofo por ahora no se la come
+// var indexRouter = require('./routes/index');
+// var usersRouter = require('./routes/users');
+// //cambio prueba branch sFernandez
+ var app = express();
+// app.use(session({ secret: "cats" }));
+// app.use(passport.initialize());
+// app.use(passport.session());
+// passport.serializeUser(function(user, done) {
+//   done(null, user.id);
+// });
+var User = require('./db/models/User')
+var Order = require('./db/models/Order')
+var Category = require('./db/models/Category')
+var Product = require('./db/models/Product')
 
-passport.use(new LocalStrategy({
-  usernameField: 'email',
-  passwordField: 'password'
-},
-  function(username, password, done) {
-    User.findOne({where: { email: username }}).then(data => {
-      if (!data.validPassword(password)) {
-        console.log('incorrecto')
+
+// passport.deserializeUser(function(id, done) {
+//   User.findById(id, function(err, user) {
+//     done(err, user);
+//   });
+// });
+var db = require('./db/index')
+// passport.use(new LocalStrategy({
+//   usernameField: 'email',
+//   passwordField: 'password'
+// },
+//   function(username, password, done) {
+//     User.findOne({where: { email: username }}).then(data => {
+//       if (!data.validPassword(password)) {
+//         console.log('incorrecto')
         
-        return done(null, false, { message: 'Incorrect password.' });
-      }
-      console.log('coooorrrecto')
+//         return done(null, false, { message: 'Incorrect password.' });
+//       }
+//       console.log('coooorrrecto')
       
-      return done(null, data);
-    })
-  }
-));
+//       return done(null, data);
+//     })
+//   }
+// ));
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
+// // view engine setup
+// app.set('views', path.join(__dirname, 'views'));
+// app.set('view engine', 'ejs');
+db.sync({force :false})
+// app.use(logger('dev'));
+ app.use(express.json());
+ app.use(express.urlencoded({ extended: false }));
+// app.use(cookieParser());
+ app.use(express.static(path.join(__dirname, 'public')));
+// app.use('/', indexRouter);
+app.use('/', (req, res)=>{
+    
+})
+// // app.use('/users', usersRouter);
 
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
-app.use('/', indexRouter);
+// // catch 404 and forward to error handler
+// app.use(function(req, res, next) {
+//   next(createError(404));
+// });
 
-// app.use('/users', usersRouter);
+// // error handler
+// app.use(function(err, req, res, next) {
+//   // set locals, only providing error in development
+//   res.locals.message = err.message;
+//   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
-});
-
-// error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
-});
-
+//   // render the error page
+//   res.status(err.status || 500);
+//   res.render('error');
+// });
 module.exports = app;

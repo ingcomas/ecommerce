@@ -2,14 +2,14 @@ const Sequelize= require ('sequelize');
 const db= require ('../index');
 const Product = require ('./Product');
 
-const Category= db.define('category', {
+var Category= db.define('category', {
 	name : {
 		type : Sequelize.STRING,
 		allowNull : false
 	}
 });
 
-// Category.hasMany (Product, { as : 'productId' });
-Product.belongsToMany (Category, { as : 'categoryId' });
+Category.belongsToMany(Product, {through:'ProductoCategoria', foreignKey: 'prodId'});
+Product.belongsToMany(Category, {through:'ProductoCategoria', foreignKey: 'catId'});
 
-module.exports=Category
+module.exports = Category;
