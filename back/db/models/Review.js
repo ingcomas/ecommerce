@@ -26,3 +26,5 @@ var Review = db.define('review',{
 });
 
 Review.belongsTo(User,{as :"id_User"})
+
+module.exports = {Review}
