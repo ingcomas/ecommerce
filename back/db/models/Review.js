@@ -3,9 +3,9 @@
 // id
 // id_usuario 
 // Rating num max 10
-var db = require('./database');
+var db = require('./index');
 var Sequelize = require('sequelize')
-var User = require('./user')
+var User = require('./User')
 
 var Review = db.define('review',{
   title:{
