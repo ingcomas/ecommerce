@@ -1,3 +1,4 @@
+const Sequelize = require('sequelize');
 const db = require('../index');
 
 const User = db.define('user', {
