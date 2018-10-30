@@ -1,5 +1,5 @@
 {
-  "name": "e-commerce front",
+  "name": "e-commercefront",
   "version": "1.0.0",
   "description": "Compras On-Line",
   "main": "src/index.js",
@@ -13,7 +13,6 @@
   },
   "author": "PPT",
   "license": "ISC",
-  
   "homepage": "https://github.com/ingcomas/ecommerce#readme",
   "dependencies": {
     "axios": "^0.18.0",
