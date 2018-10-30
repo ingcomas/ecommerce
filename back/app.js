@@ -1,6 +1,3 @@
-// BRANCH NAHUEL
-// BRANCH NAHUEL
-// BRANCH NAHUEL
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -10,7 +7,7 @@ var passport = require('passport');
 var session = require("express-session");
 var LocalStrategy = require('passport-local').Strategy;
 var {User} = require('./Modelos/db')
-
+//fofo por ahora no se la come
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
