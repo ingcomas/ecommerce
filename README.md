@@ -1,38 +1,6 @@
-# OMDB
-
-## OMDB API
+# E-COMMERCE
 
 ### Obtener información.
-
-En este ejercicio vamos a crear una APP que utilice la API de [OMDB](http://www.omdbapi.com/). Un servicio RESTFULL de películas al estilo [IMDB](http://www.imdb.com/) pero open source!
-
-### APIKEY
-
-Para poder hacer requests vamos a necesitar identificarnos con una **APIKEY**, pueden usar la de P5
-
-> `apikey=20dac387`
-
-De todas formas volvieron a hacer la API gratis por lo que pueden sacar su propia [key](https://www.omdbapi.com/apikey.aspx?__EVENTTARGET=freeAcct&__EVENTARGUMENT=&__LASTFOCUS=&__VIEWSTATE=%2FwEPDwUKLTIwNDY4MTIzNQ9kFgYCAQ9kFgICBw8WAh4HVmlzaWJsZWhkAgIPFgIfAGhkAgMPFgIfAGhkGAEFHl9fQ29udHJvbHNSZXF1aXJlUG9zdEJhY2tLZXlfXxYDBQtwYXRyZW9uQWNjdAUIZnJlZUFjY3QFCGZyZWVBY2N0x0euvR%2FzVv1jLU3mGetH4R3kWtYKWACCaYcfoP1IY8g%3D&__VIEWSTATEGENERATOR=5E550F58&__EVENTVALIDATION=%2FwEdAAU5GG7XylwYou%2BzznFv7FbZmSzhXfnlWWVdWIamVouVTzfZJuQDpLVS6HZFWq5fYpioiDjxFjSdCQfbG0SWduXFd8BcWGH1ot0k0SO7CfuulN6vYN8IikxxqwtGWTciOwQ4e4xie4N992dlfbpyqd1D&at=freeAcct&Email=).
-
-### Uso
-
-La API usa la misma dirección de la pagina `https://www.omdbapi.com/` pero agrega un _query string_ para hacer una búsqueda en particular.
-
-> No se olviden de primero pasar la APIKEY!
-
-Este query esta definido en su documentación y tiene varias opciones, por ejemplo:
-
-  * `s`: sirve para hacer un **search** que devuelve un arreglo de películas que puedan matchear con el valor.
-
-    EJ: `https://www.omdbapi.com/?apikey=20dac387&s=batman`
-
-  * `t`: es para buscar por **title** que devuelve un objeto con la información puntual de una película.
-
-    EJ: `https://www.omdbapi.com/?apikey=20dac387&t=batman`
-
-> Fíjense que entre cada "propiedad" de la búsqueda se agrega un `&` para separar los comandos.
-
-##### No se queden con esas dos y prueben todo lo que te permite la API! 
 
 ## Setup
 
@@ -40,7 +8,7 @@ Este query esta definido en su documentación y tiene varias opciones, por ejemp
 
 #### Módulos
 
-Hagan un `fork` de [este repo](https://github.com/atralice/omdb) para trabajar.
+Hagan un `fork` de [este repo](https://github.com/ingcomas/ecommerce) para trabajar.
 
 Primero que nada este proyecto se divide en dos partes o módulos, el front y el back. Fíjense que ambas carpetas tienen `package.json` distintos, osea que cada uno corre aparte y por ende van a tener que interactuar vía **HTTP**.
 
@@ -107,26 +75,63 @@ Vamos a listar las funcionalidades básicas para que piensen cuantas vistas nece
 
 Con la App podremos:
 
-* Buscar películas y listarlas.
-* Poder ver todos los detalles de una película en particular.
-* Poder agregar las películas a tu lista de favoritos.
-* Poder sacar películas de tu lista de favoritos.
-* Crear Usuarios.
-* Logearse con un usuario.
-* Buscar Usuarios.
-* Ver el perfil de un usuario con sus películas favoritas.
+* Products
+    ├── ver la lista de productos
+    ├── filtrar productos por categoria
+    ├── buscar productos por nombre
+    └── ver los detalles de un producto individual, incluyendo descripciones, fotos y reviews)
+* Carrito
+    ├── Agregar items al carrito desde la lista de productos, o de la lista de detalles.
+    ├── sacar items del carrito
+    ├── editar la cantidad del productos que quiero en mi carrito.
+    ├── estos datos deberian persistir, de tal forma de no perder el carrito ( pueden usar ├── ├── sessionStorage, localStorage, cookies o JWT para esto).
+    └── Si me logeo en mi cuenta, deberia poder seguir editante el carrito que ya tenia.
+* Checkout
+    ├── comprar los productos en el carrito.
+    ├── especificar la direccion de entrega de los productos, y mi direccion de email.
+    recibir una confirmacion en un mail despues del checkout
+    ├── recibir una notificacion por email, cuando la orden sea despachada, y cuando sea entregada
+* Manejo de cuentas
+    ├── poder crear cuentas, para poder realizar ciertas actividades, como dejar un review.
+    └── podernos logear con Google o Facebook.
+### Usuarios autenticados
+* Manejo de cuentas
+    ├── ser capaz de desloggearme
+    ├── ver mi lista de ordenes anteriores
+    ├── ver los detalles de ordenes anteriore, incluyendo estatus de la orden
+    ├── items con cantidad y subtotal
+    ├── link a la página del producto original
+    └── dia en que fue creada
+* Reviews
+    └── ser capaz de dejar reviews a los productos (incluyendo 5-star rating)
+### Admin Users
+* Product Managment
+    ├── crear y editar productos con nombre, descripción, precio y y una o mas fotos
+    ├── crear categorias para items
+    ├── agregar/crear categorias para items
+    ├── los items deben tener multiples categorias
+    ├── Manejar la disponibilidad del producto
+        └── Si un productos no esta disponible, los usuarios no lo van a ver mientras buscan, pero si pueden ver la página de los detalles si lo ordenaron previamente, o tienen el link
+* Manejo de ordenes
+    ├── ver la lista de todas las ordenes
+    ├── filtrar por status (creado, procesando, cancelado, completado)
+    ├── ver mas detalles de una orden específica
+    └── Cambiar el status de la orden (creado, -> procesando, -> cancelado, -> completado)
+* Manejo de usuarios
+    ├── Promover otros usuarios para que sean admin
+    └── borrar usuarios
 
 ### Parte uno:
 
 Vayan de a pasos pero todo va a estar conectado, una gran habilidad es saber diferenciar react, react-router y redux!
 
-En la primera parte nos concentramos en el _front end_ solamente. Es decir, obviamos el hecho de que implementamos usuarios y usamos la API de OMDB para conseguir la data.
+En la primera parte nos concentramos en el _front end_ solamente.
 
 > Pueden usar todos los workshops anteriores como guía.
 
 ### Parte dos:
 
-La segunda parte es la api/servidor, necesitamos poder guardar los usuarios y sus favoritos. Recuerden que las rutas de la api no son las mismas que las que consume el front.
+La segunda parte es la api/servidor, necesitamos poder guardar los usuarios y sus favoritos. 
 
 Van a tener que decidir que base de datos utilizar y por ende que ORM vamos a usar.
 
