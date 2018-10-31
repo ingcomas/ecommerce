@@ -14,13 +14,12 @@ render(){
         <div id="main"  >
            
             <HeaderContainer />
-            <ProductsContainer/>
-            {/* <div>
+         
+            <div>
                 <switch>
-                    <Route path="/" render={()=><ProductsContainer />}/>
-
+                    <Route path="/" render={()=><ProductsContainer />}/> 
                 </switch>
-            </div> */}
+            </div>
 
         </div>
     )

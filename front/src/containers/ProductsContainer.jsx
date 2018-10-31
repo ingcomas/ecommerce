@@ -13,11 +13,11 @@ render(){
     
     return (
         <div>
-            <Products/>
-            {/* <switch>
+            
+            <switch>
                 <Route exact path="/"  render={()=>Products}/>
                 <Route  path="/${Productsid}"  render={()=>Products}/>
-            </switch> */}
+            </switch>
 
         </div>
     )
