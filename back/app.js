@@ -24,6 +24,7 @@ var Order = require('./db/models/Order')
 var Category = require('./db/models/Category')
 var Product = require('./db/models/Product')
 
+var routes= require ('./routes/newProduct');
 
 // passport.deserializeUser(function(id, done) {
 //   User.findById(id, function(err, user) {
@@ -59,25 +60,13 @@ db.sync({force :true})
 // app.use(cookieParser());
  app.use(express.static(path.join(__dirname, 'public')));
 // app.use('/', indexRouter);
-app.use('/busca',(req,res)=>{
-    
-})
-app.use('/', (req, res)=>{
-    Product.create({
-        name : 'dasf',
-        stock:100,
-        description:'lalalalalalala',
-        price: 100,
-        images: ['1','2']
-    }).then(prod=>{
-        Category.create({
-            name:'droga',
-        }).then(cat=>{
-            cat.addProduct(prod)
-        })
-    })
-    
-    // Category.findAll({include:}).then(elem=>console.log('lkaflaskfnalsfknaslfn',elem))
+
+app.use (express.static('../front/dist'));
+
+app.use('/api', routes)
+
+app.use('/*', (req,res) => {
+	res.sendFile (path.join(__dirname, '../front/index.html'))
 })
 // // app.use('/users', usersRouter);
 
