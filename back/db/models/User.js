@@ -44,6 +44,15 @@ const User = db.define('user', {
 
 });
 
-User.hasMany(Order);
-
+Order.belongsTo(User);
 module.exports = User;
+// User.create({
+//     first_name: 'Luis Sebastian',
+//     last_name:  'Comas',
+//     email:  'sebacomas@gmail.com',
+//     password:   'okasndlkas',
+//     address:    'Av.Cabildo 2040',
+//     dni: 32158358,
+//     cellphone: 5174183,
+//     access: 'admin'
+// })
