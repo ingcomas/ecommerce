@@ -1,7 +1,8 @@
 import React from 'react'
+
 import {Route,Switch,Redirect} from 'react-router-dom'
 import HeaderContainer from './HeaderContainer'
-
+import ProductsContainer from './ProductsContainer'
 class Main extends React.Component{
     constructor(props){
         super(props);
@@ -10,9 +11,16 @@ render(){
     
     
     return (
-        <div>
+        <div id="main"  >
+           
             <HeaderContainer />
-            <h1>Ecomjhgghmerce</h1>
+            <ProductsContainer/>
+            {/* <div>
+                <switch>
+                    <Route path="/" render={()=><ProductsContainer />}/>
+
+                </switch>
+            </div> */}
 
         </div>
     )
