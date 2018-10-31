@@ -1,33 +1,48 @@
-/*
-requerimos librerias
-*/
-const createError = require('http-errors');
-const express = require('express');
-const path = require('path');
-const app = express();
-/*
-requerimos nuestros modelos
-*/
+//REQUIREMENTS
+var createError = require('http-errors');
+var express = require('express');
+var path = require('path');
+var cookieParser = require('cookie-parser');
+var logger = require('morgan');
+var passport = require('passport');
+var session = require("express-session");
+var LocalStrategy = require('passport-local').Strategy;
+
+//MODELS & SYNC
 const User = require('./db/models/User');
 const Order = require('./db/models/Order');
 const Category = require('./db/models/Category');
 const Product = require('./db/models/Product');
 const db = require('./db/index');
-
 db.sync({force :false});
+
+//APP
+var app = express();
+app.use(session({ secret: "cats" }));
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/busca',(req,res)=>{
-    
-})
-app.use('/', (req, res)=>{
-    
-    // Category.findAll({include:}).then(elem=>console.log('lkaflaskfnalsfknaslfn',elem))
-})
+app.use(express.static('../front/dist'));
+
+app.use('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '../front/index.html'));
+});
+
+passport.serializeUser(function(user, done) {
+  done(null, user.id);
+});
 
 module.exports = app;
 
+// app.use('/busca',(req,res)=>{
+    
+// })
+// app.use('/', (req, res)=>{
+    
+//     // Category.findAll({include:}).then(elem=>console.log('lkaflaskfnalsfknaslfn',elem))
+// })
 
 // var cookieParser = require('cookie-parser');
 // var logger = require('morgan');
