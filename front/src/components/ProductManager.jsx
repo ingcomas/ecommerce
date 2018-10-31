@@ -26,9 +26,9 @@ export default ({ handleSubmit }) => (
 						</div>
 					</div>
 					<div className="form-group">
-						<label className="col-xs-2 control-label"> Imagenes </label>
+						<label className="col-xs-2 control-label"> Imagenes. Separado por comas.</label>
 						<div className="col-xs-10">
-							<input placeholder='...' className="form-control" type="text" name= 'image'/>
+							<input placeholder='...' className="form-control" type="text" name= 'images'/>
 						</div>
 					</div>
 					

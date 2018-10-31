@@ -10,7 +10,11 @@ export default ()=>(
       <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
     
       <Link to="/about" className="btn btn-primary">ver Producto</Link>
-
+			
+			{							/* Solo visible para ADMIN */
+							/* Pedir a DB por permisos de usuario */
+				<Link to='/edit' className= 'btn btn-primary'>Editar </Link>
+			}
     </div>
   </div>
 

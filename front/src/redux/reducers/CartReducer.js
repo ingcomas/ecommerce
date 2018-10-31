@@ -1,3 +1,5 @@
+import {CART_ADD, CART_REMOVE} from '../constants/CartConstans';
+
 const initialState = {
     product : {}
 };
