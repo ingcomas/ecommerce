@@ -8,15 +8,15 @@ import Login from '../components/Login';
 import Register from '../components/Register';
 import Cart from '../containers/CartContainer'
 import ProductsContainer from '../containers/ProductsContainer'
-
+import SingleProductsContainer from '../containers/SingleProductsContainer'
 
 export default () => (
   <div id="main" className="container-fluid">
     <HeaderContainer/>
     <div className="col-xs-10">
       <Switch>
-        <Route exact path="/products" component={ProductsContainer} />
-        
+        <Route  path="/products" component={ProductsContainer}/>
+        <Route path="/product/single" component={SingleProductsContainer} />
         <Redirect from="/" to="/products" />
       </Switch>
     </div>

@@ -6,7 +6,7 @@ class HeaderContainer extends React.Component{
         super(props);
     }
 render(){
-    console.log('2222');
+    
     return (
         <div>
         <Header />
