@@ -18,7 +18,7 @@ const db = require('./db/index');
 db.sync({force : false});
 
 //ROUTERS
-const apiRouter = require('./routes/apiRouter');
+const userRouter = require('./routes/userRouter');
 
 //APP
 var app = express();
@@ -31,7 +31,7 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static('../front/dist'));
 
-app.use('/api', apiRouter);
+app.use('/api/user', userRouter);
 
 app.use('/*', (req, res) => {
   res.sendFile(path.join(__dirname, '../front/index.html'));
