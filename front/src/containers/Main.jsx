@@ -1,29 +1,24 @@
-import React from 'react'
 
-import {Route,Switch,Redirect} from 'react-router-dom'
-import HeaderContainer from './HeaderContainer'
-import ProductsContainer from './ProductsContainer'
-class Main extends React.Component{
-    constructor(props){
-        super(props);
-    }
-render(){
-    
-    
-    return (
-        <div id="main"  >
-           
-            <HeaderContainer />
-         
-            <div>
-                <switch>
-                    <Route path="/" render={()=><ProductsContainer />}/> 
-                </switch>
-            </div>
+import React from 'react';
+import { Route, Switch, Redirect } from 'react-router-dom';
 
-        </div>
-    )
-}
+//CONTAINERS
+import HeaderContainer from './HeaderContainer';
+import Login from '../components/Login';
+import Register from '../components/Register';
+import Cart from '../containers/CartContainer'
+import ProductsContainer from '../containers/ProductsContainer'
 
-}
-export default Main;
+
+export default () => (
+  <div id="main" className="container-fluid">
+    <HeaderContainer/>
+    <div className="col-xs-10">
+      <Switch>
+        <Route exact path="/products" component={ProductsContainer} />
+        
+        <Redirect from="/" to="/products" />
+      </Switch>
+    </div>
+  </div>
+);
