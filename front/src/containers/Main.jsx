@@ -9,7 +9,7 @@ import Jumbotron from '../components/Jumbotron';
 import SidebarContainer from './SidebarContainer';
 import ProductsContainer from '../containers/ProductsContainer'
 import Cart from '../containers/CartContainer'
-
+import SingleProductsContainer from '../containers/SingleProductsContainer'
 export default class Main extends React.Component{
     constructor(props){
         super(props);
@@ -23,11 +23,12 @@ export default class Main extends React.Component{
                 <Switch>
                     <Route path="/register" component={RegisterContainer}/>
                     <Route path="/login" component={LoginContainer}/>
-                    <Route exact path="/" component={Jumbotron}/>
                     <Route exact path="/products" component={ProductsContainer} />
+                    <Route path="/product/single" component={SingleProductsContainer} />
                     <Route path="/cart" component={Cart} />
                     <Redirect from="/" to="/products" />
                 </Switch>
+                <Jumbotron/>
             </div>
         )
     }
