@@ -16,7 +16,7 @@ export default () => (
     <div className="col-xs-10">
       <Switch>
         <Route exact path="/products" component={ProductsContainer} />
-        
+        <Route path="/cart" component={Cart} />
         <Redirect from="/" to="/products" />
       </Switch>
     </div>
