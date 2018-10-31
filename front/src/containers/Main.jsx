@@ -12,7 +12,6 @@ export default class Main extends React.Component{
         super(props);
         this.logInfo = this.logInfo.bind(this);
     }
-
     logInfo(e){
         console.log(e.target.email.value);
         e.preventDefault();
@@ -27,4 +26,3 @@ export default class Main extends React.Component{
         )
     }
 }
-

@@ -7,7 +7,6 @@ export function addToCart(productId) {
         }
     }
 }
-
 export function removeFromCart(productId) {
     return {
         type: CART_REMOVE,
