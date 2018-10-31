@@ -8,7 +8,8 @@ export default class extends React.Component{
     }
 
     registerNewUser(e){
-        axios.post('/api/newUser', {
+        e.preventDefault();
+        axios.post('/api/user/newUser', {
             first_name: e.target.first_name.value,
             last_name: e.target.last_name.value,
             email: e.target.email.value,
@@ -17,7 +18,13 @@ export default class extends React.Component{
             dni: e.target.dni.value,
             cellphone: e.target.cellphone.value
         })
-        e.preventDefault();
+        .then(response => {
+            if(response.data.name == "SequelizeUniqueConstraintError"){
+                alert('CREA UN MAIL Q NO EXISTA');
+            }else{
+                console.log(response.data)
+            }
+        });
     }
 
     render(){

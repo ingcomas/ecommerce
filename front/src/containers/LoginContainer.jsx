@@ -1,5 +1,6 @@
 import React from 'react';
 import Login from '../components/Login';
+import axios from 'axios';
 
 export default class extends React.Component{
     constructor(){
@@ -8,7 +9,10 @@ export default class extends React.Component{
     }
 
     logInfo(e){
-        e.preventDefault();
+        axios.post('/api/loginUser', {
+            email: e.target.email.value,
+            password: e.target.password.value
+        })
     }
 
     render(){

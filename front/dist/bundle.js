@@ -25292,6 +25292,14 @@ var _LoginContainer = __webpack_require__(142);
 
 var _LoginContainer2 = _interopRequireDefault(_LoginContainer);
 
+var _Jumbotron = __webpack_require__(144);
+
+var _Jumbotron2 = _interopRequireDefault(_Jumbotron);
+
+var _SidebarContainer = __webpack_require__(145);
+
+var _SidebarContainer2 = _interopRequireDefault(_SidebarContainer);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -25318,9 +25326,15 @@ var Main = function (_React$Component) {
             return _react2.default.createElement(
                 'div',
                 null,
+                _react2.default.createElement(_SidebarContainer2.default, null),
                 _react2.default.createElement(_HeaderContainer2.default, null),
-                _react2.default.createElement(_RegisterContainer2.default, null),
-                _react2.default.createElement(_LoginContainer2.default, null)
+                _react2.default.createElement(
+                    _reactRouterDom.Switch,
+                    null,
+                    _react2.default.createElement(_reactRouterDom.Route, { path: '/register', component: _RegisterContainer2.default }),
+                    _react2.default.createElement(_reactRouterDom.Route, { path: '/login', component: _LoginContainer2.default }),
+                    _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _Jumbotron2.default })
+                )
             );
         }
     }]);
@@ -28045,11 +28059,26 @@ exports.default = function (props) {
         _react2.default.createElement(
             "form",
             { onSubmit: props.logInfo },
-            _react2.default.createElement("input", { type: "text", name: "email", placeholder: "E-mail" }),
-            _react2.default.createElement("br", null),
-            _react2.default.createElement("input", { type: "password", name: "password", placeholder: "Pasword" }),
-            _react2.default.createElement("br", null),
-            _react2.default.createElement("input", { type: "submit", value: "Login" })
+            _react2.default.createElement(
+                "div",
+                { "class": "form-group" },
+                _react2.default.createElement(
+                    "label",
+                    null,
+                    "E-mail"
+                ),
+                _react2.default.createElement("input", { type: "email", name: "email", "class": "form-control", placeholder: "E-mail" })
+            ),
+            _react2.default.createElement(
+                "div",
+                { "class": "form-group" },
+                _react2.default.createElement(
+                    "label",
+                    null,
+                    "Contrase\xF1a"
+                ),
+                _react2.default.createElement("input", { type: "password", name: "password", "class": "form-control", placeholder: "Contrase\xF1a" })
+            )
         )
     );
 };
@@ -29635,63 +29664,83 @@ exports.default = function (props) {
         "div",
         { className: "container" },
         _react2.default.createElement(
-            "label",
-            null,
-            "Registrate!"
-        ),
-        _react2.default.createElement(
             "form",
             { onSubmit: props.registerNewUser },
             _react2.default.createElement(
-                "label",
-                null,
-                "Nombre "
+                "div",
+                { "class": "form-group" },
+                _react2.default.createElement(
+                    "label",
+                    null,
+                    "Nombre"
+                ),
+                _react2.default.createElement("input", { type: "text", name: "first_name", "class": "form-control", "aria-describedby": "emailHelp", placeholder: "Nombre" })
             ),
-            _react2.default.createElement("input", { type: "text", name: "first_name" }),
-            _react2.default.createElement("br", null),
             _react2.default.createElement(
-                "label",
-                null,
-                "Apellido/s "
+                "div",
+                { "class": "form-group" },
+                _react2.default.createElement(
+                    "label",
+                    null,
+                    "Apellido/s"
+                ),
+                _react2.default.createElement("input", { type: "text", name: "last_name", "class": "form-control", "aria-describedby": "emailHelp", placeholder: "Apellido/s" })
             ),
-            _react2.default.createElement("input", { type: "text", name: "last_name" }),
-            _react2.default.createElement("br", null),
             _react2.default.createElement(
-                "label",
-                null,
-                "E-mail "
+                "div",
+                { "class": "form-group" },
+                _react2.default.createElement(
+                    "label",
+                    null,
+                    "E-mail"
+                ),
+                _react2.default.createElement("input", { type: "email", name: "email", "class": "form-control", "aria-describedby": "emailHelp", placeholder: "E-mail" })
             ),
-            _react2.default.createElement("input", { type: "email", name: "email" }),
-            _react2.default.createElement("br", null),
             _react2.default.createElement(
-                "label",
-                null,
-                "Contrase\xF1a"
+                "div",
+                { "class": "form-group" },
+                _react2.default.createElement(
+                    "label",
+                    null,
+                    "Contrase\xF1a"
+                ),
+                _react2.default.createElement("input", { type: "password", name: "password", "class": "form-control", "aria-describedby": "emailHelp", placeholder: "Contrase\xF1a" })
             ),
-            _react2.default.createElement("input", { type: "password", name: "password" }),
-            _react2.default.createElement("br", null),
             _react2.default.createElement(
-                "label",
-                null,
-                "Direcci\xF3n"
+                "div",
+                { "class": "form-group" },
+                _react2.default.createElement(
+                    "label",
+                    null,
+                    "Direcci\xF3n"
+                ),
+                _react2.default.createElement("input", { type: "text", name: "address", "class": "form-control", "aria-describedby": "emailHelp", placeholder: "Direcci\xF3n" })
             ),
-            _react2.default.createElement("input", { type: "text", name: "address" }),
-            _react2.default.createElement("br", null),
             _react2.default.createElement(
-                "label",
-                null,
-                "DNI "
+                "div",
+                { "class": "form-group" },
+                _react2.default.createElement(
+                    "label",
+                    null,
+                    "DNI"
+                ),
+                _react2.default.createElement("input", { type: "text", name: "dni", "class": "form-control", "aria-describedby": "emailHelp", placeholder: "DNI" })
             ),
-            _react2.default.createElement("input", { type: "text", name: "dni" }),
-            _react2.default.createElement("br", null),
             _react2.default.createElement(
-                "label",
-                null,
-                "Celular "
+                "div",
+                { "class": "form-group" },
+                _react2.default.createElement(
+                    "label",
+                    null,
+                    "Celular"
+                ),
+                _react2.default.createElement("input", { type: "text", name: "cellphone", "class": "form-control", "aria-describedby": "emailHelp", placeholder: "Celular" })
             ),
-            _react2.default.createElement("input", { type: "text", name: "cellphone" }),
-            _react2.default.createElement("br", null),
-            _react2.default.createElement("input", { type: "submit", value: "Registrarse" })
+            _react2.default.createElement(
+                "button",
+                { type: "submit", "class": "btn btn-primary" },
+                "Registrarse"
+            )
         )
     );
 };
@@ -31312,7 +31361,8 @@ var _class = function (_React$Component) {
     _createClass(_class, [{
         key: 'registerNewUser',
         value: function registerNewUser(e) {
-            _axios2.default.post('/api/newUser', {
+            e.preventDefault();
+            _axios2.default.post('/api/user/newUser', {
                 first_name: e.target.first_name.value,
                 last_name: e.target.last_name.value,
                 email: e.target.email.value,
@@ -31320,8 +31370,13 @@ var _class = function (_React$Component) {
                 address: e.target.address.value,
                 dni: e.target.dni.value,
                 cellphone: e.target.cellphone.value
+            }).then(function (response) {
+                if (response.data.name == "SequelizeUniqueConstraintError") {
+                    alert('CREA UN MAIL Q NO EXISTA');
+                } else {
+                    console.log(response.data);
+                }
             });
-            e.preventDefault();
         }
     }, {
         key: 'render',
@@ -31360,6 +31415,10 @@ var _Login = __webpack_require__(81);
 
 var _Login2 = _interopRequireDefault(_Login);
 
+var _axios = __webpack_require__(122);
+
+var _axios2 = _interopRequireDefault(_axios);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -31383,7 +31442,10 @@ var _class = function (_React$Component) {
     _createClass(_class, [{
         key: 'logInfo',
         value: function logInfo(e) {
-            e.preventDefault();
+            _axios2.default.post('/api/loginUser', {
+                email: e.target.email.value,
+                password: e.target.password.value
+            });
         }
     }, {
         key: 'render',
@@ -31396,6 +31458,153 @@ var _class = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = _class;
+
+/***/ }),
+/* 143 */,
+/* 144 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = function () {
+    return _react2.default.createElement(
+        "div",
+        { "class": "container jumbotron" },
+        _react2.default.createElement(
+            "h1",
+            { "class": "display-4" },
+            "Tuviejalibre"
+        ),
+        _react2.default.createElement(
+            "p",
+            { "class": "lead" },
+            "50 LUCAS O NADA"
+        ),
+        _react2.default.createElement("hr", { "class": "my-4" }),
+        _react2.default.createElement(
+            "p",
+            null,
+            "By Santi Fern\xE1ndez, Sebasti\xE1n Comas, Javier Cardozo, Santi Casanova y Ale Wilcke"
+        ),
+        _react2.default.createElement(
+            "p",
+            { "class": "lead" },
+            _react2.default.createElement(
+                "a",
+                { "class": "btn btn-primary btn-lg", href: "/register", role: "button" },
+                "Registrarse"
+            ),
+            _react2.default.createElement(
+                "a",
+                { "class": "btn btn-primary btn-lg", href: "/login", role: "button" },
+                "Ingresar"
+            )
+        )
+    );
+};
+
+/***/ }),
+/* 145 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _Sidebar = __webpack_require__(146);
+
+var _Sidebar2 = _interopRequireDefault(_Sidebar);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _class = function (_React$Component) {
+    _inherits(_class, _React$Component);
+
+    function _class() {
+        _classCallCheck(this, _class);
+
+        return _possibleConstructorReturn(this, (_class.__proto__ || Object.getPrototypeOf(_class)).call(this));
+    }
+
+    _createClass(_class, [{
+        key: 'render',
+        value: function render() {
+            return _react2.default.createElement(_Sidebar2.default, null);
+        }
+    }]);
+
+    return _class;
+}(_react2.default.Component);
+
+exports.default = _class;
+
+/***/ }),
+/* 146 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = function () {
+    return _react2.default.createElement(
+        "div",
+        { "class": "sidenav" },
+        _react2.default.createElement("a", { href: "#" }),
+        _react2.default.createElement("a", { href: "#" }),
+        _react2.default.createElement("a", { href: "#" }),
+        _react2.default.createElement(
+            "a",
+            { href: "/" },
+            "Home"
+        ),
+        _react2.default.createElement(
+            "a",
+            { href: "/login" },
+            "Login"
+        ),
+        _react2.default.createElement(
+            "a",
+            { href: "/register" },
+            "Registrarse"
+        )
+    );
+};
 
 /***/ })
 /******/ ]);
