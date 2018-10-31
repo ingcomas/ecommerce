@@ -13,6 +13,7 @@ const User = require('./db/models/User');
 const Order = require('./db/models/Order');
 const Category = require('./db/models/Category');
 const Product = require('./db/models/Product');
+const Review = require('./db/models/Review');
 const db = require('./db/index');
 db.sync({force :false});
 
@@ -26,23 +27,29 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static('../front/dist'));
 
-app.use('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '../front/index.html'));
-});
 
 passport.serializeUser(function(user, done) {
-  done(null, user.id);
+    done(null, user.id);
 });
 
 module.exports = app;
 
-// app.use('/busca',(req,res)=>{
+app.use('/busca',(req,res)=>{
+    Product.findOne({where:{id:1}})
+    .then(prod=>
+    Category.findOne({where:{id: 1}})
+    .then(cat=>
+        cat.addProduct(prod)
+    )
+    ).catch(e => console.log(e))
+
+   
+})
+            
+app.use('/', (req, res) => {    
+    res.sendFile(path.join(__dirname, '../front/index.html'));
+});
     
-// })
-// app.use('/', (req, res)=>{
-    
-//     // Category.findAll({include:}).then(elem=>console.log('lkaflaskfnalsfknaslfn',elem))
-// })
 
 // var cookieParser = require('cookie-parser');
 // var logger = require('morgan');
