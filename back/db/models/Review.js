@@ -1,13 +1,9 @@
-// REVIEWS
-// text
-// id
-// id_usuario 
-// Rating num max 10
-var db = require('../index');
-var Sequelize = require('sequelize')
-var User = require('./User')
 
-var Review = db.define('review',{
+const db = require('../index');
+const Sequelize = require('sequelize')
+const User = require('./User')
+
+const Review = db.define('review',{
   title:{
     type: Sequelize.STRING,
   },
@@ -24,5 +20,4 @@ var Review = db.define('review',{
     }
   }
 });
-
 module.exports = Review;
