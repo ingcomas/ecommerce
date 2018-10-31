@@ -13,3 +13,10 @@ Category.belongsToMany(Product, {through:'productoCategoria'});
 Product.belongsToMany(Category, {through:'productoCategoria'});
 
 module.exports = Category;
+// Product.findOne({where:{id:1}})
+// .then(prod=>
+// Category.findOne({where:{id: 1}})
+// .then(cat=>
+// 	cat.addProduct(prod)
+// )
+// ).catch(e => console.log(e))
