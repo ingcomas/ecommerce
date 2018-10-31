@@ -7,7 +7,7 @@
 var app = require('../app');
 var debug = require('debug')('workshop-passport:server');
 var http = require('http');
-const {User} =require('../Modelos/db')
+//const {User} =require('../Modelos/db')
 
 /**
  * Get port from environment and store in Express.
@@ -15,7 +15,7 @@ const {User} =require('../Modelos/db')
 
 var port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
-User.sync();
+//User.sync();
 
 /**
  * Create HTTP server.

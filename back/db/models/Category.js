@@ -9,7 +9,7 @@ const Category= db.define('category', {
 	}
 });
 
-// Category.hasMany (Product, { as : 'productId' });
-Product.belongsToMany (Category, { as : 'categoryId' });
+Category.belongsToMany(Product, {through:'productoCategoria'});
+Product.belongsToMany(Category, {through:'productoCategoria'});
 
-module.exports=Category
+module.exports = Category;

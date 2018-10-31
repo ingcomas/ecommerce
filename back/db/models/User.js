@@ -1,7 +1,6 @@
 const Sequelize = require('sequelize');
 const db = require('../index');
 const Order = require('./Order');
-
 const User = db.define('user', {
 
     first_name: {
@@ -33,19 +32,18 @@ const User = db.define('user', {
     },
 
     dni: {
-        type: Sequelize.NUMBER,
+        type: Sequelize.INTEGER,
         allowNull: false
     },
 
     cellphone: {
-        type: Sequelize.NUMBER,
+        type: Sequelize.INTEGER,
         allowNull: false
     },
-
     access: Sequelize.STRING
 
 });
 
-User.hasMany(Order, {as:'ordersId'});
+User.hasMany(Order);
 
 module.exports = User;
