@@ -7,6 +7,7 @@ var logger = require('morgan');
 var passport = require('passport');
 var session = require("express-session");
 var LocalStrategy = require('passport-local').Strategy;
+var bodyParser = require('body-parser');
 
 //MODELS & SYNC
 const User = require('./db/models/User');
@@ -14,19 +15,25 @@ const Order = require('./db/models/Order');
 const Category = require('./db/models/Category');
 const Product = require('./db/models/Product');
 const db = require('./db/index');
-db.sync({force :false});
+db.sync({force : false});
+
+//ROUTERS
+const apiRouter = require('./routes/apiRouter');
 
 //APP
 var app = express();
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(session({ secret: "cats" }));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+//app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static('../front/dist'));
 
-app.use('/', (req, res) => {
+app.use('/api', apiRouter);
+
+app.use('/*', (req, res) => {
   res.sendFile(path.join(__dirname, '../front/index.html'));
 });
 

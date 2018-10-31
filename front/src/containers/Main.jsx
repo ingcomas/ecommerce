@@ -3,25 +3,20 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 
 //CONTAINERS
 import HeaderContainer from './HeaderContainer';
-
-import Login from '../components/Login';
-import Register from '../components/Register';
+import RegisterContainer from '../containers/RegisterContainer';
+import LoginContainer from '../containers/LoginContainer';
 
 export default class Main extends React.Component{
     constructor(props){
         super(props);
-        this.logInfo = this.logInfo.bind(this);
     }
-    logInfo(e){
-        console.log(e.target.email.value);
-        e.preventDefault();
-    }
+
     render(){
         return (
             <div>
                 <HeaderContainer/>
-                <Login logInfo={this.logInfo}/><br/>
-                <Register/>
+                <RegisterContainer/>
+                <LoginContainer/>
             </div>
         )
     }
