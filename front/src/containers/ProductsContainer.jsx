@@ -12,7 +12,6 @@ class ProductsContainer extends React.Component{
         super(props);
     }
 render(){
-    
     return (
         <div>
              <Products /> 
