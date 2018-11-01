@@ -14,6 +14,7 @@ const User = require('./db/models/User');
 const Order = require('./db/models/Order');
 const Category = require('./db/models/Category');
 const Product = require('./db/models/Product');
+const Review = require('./db/models/Review');
 const db = require('./db/index');
 db.sync({force : false});
 
@@ -31,11 +32,11 @@ app.use(express.static('../front/dist'));
 
 //ROUTERS
 const userRouter = require('./routes/userRouter');
+const ProductRouter = require('./routes/productRouter')
 
 //ROUTES
 app.use('/api/user', userRouter);
-
-app.use('/login', userRouter);
+app.use('/api/product', ProductRouter);
 
 app.use('/*', (req, res) => {
   res.sendFile(path.join(__dirname, '../front/index.html'));
@@ -47,18 +48,17 @@ passport.use(new LocalStrategy({
   passwordField: 'password'
 },
 function(username, password, done) {
-  User.findOne({where: { email: username }})
-  .then(user => {console.log(user.passwordHash(password, user.salt))
-    if (!user) {
-      return done(null, false, { message: 'Incorrect username.' });
-    }
-    if (user.passwordHash(password, user.salt) != user.password) {
-      return done(null, false, { message: 'Incorrect password.' });
-    }
-    return done(null, user);
-  })
-  
-}
+    User.findOne({where: { email: username }})
+    .then(user => {console.log(user.passwordHash(password, user.salt))
+      if (!user) {
+        return done(null, false, { message: 'Incorrect username.' });
+      }
+      if (user.passwordHash(password, user.salt) != user.password) {
+        return done(null, false, { message: 'Incorrect password.' });
+      }
+      return done(null, user);
+    })
+  }
 ));
 
 passport.serializeUser(function(user, done) {
@@ -87,4 +87,3 @@ module.exports = app;
 //   // render the error page
 //   res.status(err.status || 500);
 //   res.render('error');
-// });

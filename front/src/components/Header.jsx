@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 export default ()=>(
     <nav className="navbar navbar-expand-sm navbar-dark bg-primary">
     <a className="navbar-brand" href="#">
@@ -12,6 +13,7 @@ export default ()=>(
         <ul className="navbar-nav mr-auto">
         <li className="nav-item active">
             <a className="nav-link" href="/">Home <span className="sr-only">(current)</span></a>
+            <Link to="/products" className="nav-link" >Home <span className="sr-only">(current)</span></Link>
         </li>
         <li className="nav-item">
             <a className="nav-link" href="/login">Login</a>
@@ -31,7 +33,7 @@ export default ()=>(
             </div>
         </li>
         <li className="nav-item">
-            <a className="nav-link disabled" href="#">Disabled</a>
+            <Link to='/user/admin' ><button className='btn btn-danger'>ADMIN</button></Link>
         </li>
         </ul>
         <form className="form-inline my-2 my-lg-0">
