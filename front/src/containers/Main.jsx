@@ -30,7 +30,6 @@ export default class Main extends React.Component{
             <div>
 
                 <HeaderContainer/>
-
                 <Switch>
 										<Route path='/products/newproduct' component= {CreateProductContainer} />
         						<Route path='/user/admin' component= {ProductManagerContainer} />

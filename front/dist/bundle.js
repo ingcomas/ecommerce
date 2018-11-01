@@ -31426,6 +31426,14 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRouterDom = __webpack_require__(5);
 
+var _SearchContainer = __webpack_require__(160);
+
+var _SearchContainer2 = _interopRequireDefault(_SearchContainer);
+
+var _CategoriesContainer = __webpack_require__(161);
+
+var _CategoriesContainer2 = _interopRequireDefault(_CategoriesContainer);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = function () {
@@ -31494,35 +31502,7 @@ exports.default = function () {
                         )
                     )
                 ),
-                _react2.default.createElement(
-                    'li',
-                    { className: 'nav-item dropdown' },
-                    _react2.default.createElement(
-                        'a',
-                        { className: 'nav-link dropdown-toggle', href: '#', id: 'navbarDropdown', role: 'button', 'data-toggle': 'dropdown', 'aria-haspopup': 'true', 'aria-expanded': 'false' },
-                        'Dropdown'
-                    ),
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'dropdown-menu', 'aria-labelledby': 'navbarDropdown' },
-                        _react2.default.createElement(
-                            'a',
-                            { className: 'dropdown-item', href: '#' },
-                            'Action'
-                        ),
-                        _react2.default.createElement(
-                            'a',
-                            { className: 'dropdown-item', href: '#' },
-                            'Another action'
-                        ),
-                        _react2.default.createElement('div', { className: 'dropdown-divider' }),
-                        _react2.default.createElement(
-                            'a',
-                            { className: 'dropdown-item', href: '#' },
-                            'Something else here'
-                        )
-                    )
-                ),
+                _react2.default.createElement(_CategoriesContainer2.default, null),
                 _react2.default.createElement(
                     'li',
                     { className: 'nav-item' },
@@ -31537,16 +31517,7 @@ exports.default = function () {
                     )
                 )
             ),
-            _react2.default.createElement(
-                'form',
-                { className: 'form-inline my-2 my-lg-0' },
-                _react2.default.createElement('input', { className: 'form-control mr-sm-2', type: 'search', placeholder: 'Search', 'aria-label': 'Search' }),
-                _react2.default.createElement(
-                    'button',
-                    { className: 'btn btn-outline-success my-2 my-sm-0', type: 'submit' },
-                    'Search'
-                )
-            )
+            _react2.default.createElement(_SearchContainer2.default, null)
         )
     );
 };
@@ -32868,6 +32839,168 @@ var CART_REMOVE = 'CART_REMOVE';
 
 exports.CART_ADD = CART_ADD;
 exports.CART_REMOVE = CART_REMOVE;
+
+/***/ }),
+/* 160 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouterDom = __webpack_require__(5);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Header = function (_React$Component) {
+    _inherits(Header, _React$Component);
+
+    function Header(props) {
+        _classCallCheck(this, Header);
+
+        var _this = _possibleConstructorReturn(this, (Header.__proto__ || Object.getPrototypeOf(Header)).call(this, props));
+
+        _this.state = {
+            search: ''
+        };
+        _this.handleChange = _this.handleChange.bind(_this);
+        return _this;
+    }
+
+    _createClass(Header, [{
+        key: 'handleChange',
+        value: function handleChange(e) {
+            var value = e.target.value;
+            this.setState({
+                search: value
+            });
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var _this2 = this;
+
+            return _react2.default.createElement(
+                'form',
+                { className: 'form-inline my-2 my-lg-0' },
+                _react2.default.createElement('input', { className: 'form-control mr-sm-2', type: 'search', placeholder: 'Search', onChange: function onChange(e) {
+                        return _this2.handleChange(e);
+                    }, 'aria-label': 'Search' }),
+                _react2.default.createElement(
+                    'button',
+                    { className: 'btn btn-outline-success my-2 my-sm-0', type: 'submit' },
+                    'Search'
+                )
+            );
+        }
+    }]);
+
+    return Header;
+}(_react2.default.Component);
+
+exports.default = Header;
+
+/***/ }),
+/* 161 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _axios = __webpack_require__(10);
+
+var _axios2 = _interopRequireDefault(_axios);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var CategoriesContainer = function (_Component) {
+    _inherits(CategoriesContainer, _Component);
+
+    function CategoriesContainer(props) {
+        _classCallCheck(this, CategoriesContainer);
+
+        var _this = _possibleConstructorReturn(this, (CategoriesContainer.__proto__ || Object.getPrototypeOf(CategoriesContainer)).call(this, props));
+
+        _this.state = {
+            categories: []
+        };
+        return _this;
+    }
+
+    _createClass(CategoriesContainer, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            var _this2 = this;
+
+            _axios2.default.get('/api/categories').then(function (res) {
+                return _this2.setState({
+                    categories: res.data
+                });
+            });
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var categories = this.state.categories;
+
+            return _react2.default.createElement(
+                'li',
+                { className: 'nav-item dropdown' },
+                _react2.default.createElement(
+                    'a',
+                    { className: 'nav-link dropdown-toggle', href: '#', id: 'navbarDropdown', role: 'button', 'data-toggle': 'dropdown', 'aria-haspopup': 'true', 'aria-expanded': 'false' },
+                    'Dropdown'
+                ),
+                _react2.default.createElement(
+                    'div',
+                    { className: 'dropdown-menu', 'aria-labelledby': 'navbarDropdown' },
+                    categories && categories.map(function (elem) {
+                        return _react2.default.createElement(
+                            'a',
+                            { className: 'dropdown-item', key: elem.id, href: '#' },
+                            elem.name
+                        );
+                    })
+                )
+            );
+        }
+    }]);
+
+    return CategoriesContainer;
+}(_react.Component);
+
+exports.default = CategoriesContainer;
 
 /***/ })
 /******/ ]);
