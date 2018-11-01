@@ -10,8 +10,19 @@ router.get ('/', (req,res) => {
 		res.send(response)
 	})
 })
-
-router.post ('/newproduct', (req,res) => {
-	res.send (req.body)
-
+router.get ('/:id', (req,res) => {
+	const id = req.params.id;
+	Product.findOne({where:{id}})
+	.then(prod=>res.send(prod))
+	.catch(err=>res.send(err))
+})
+router.post ('/newproduct', (req, res) => {
+	Product.create({
+		name : req.body.name,
+		stock : req.body.stock,
+		description : req.body.description,
+		price : req.body.price,
+		images : req.body.images
+	})
+	.then(response=>res.send(response))
 })

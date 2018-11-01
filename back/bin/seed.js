@@ -18,7 +18,7 @@ const createCategories = (n) => {
   return Promise.all(categoriesPromises);
 };
 const createProduct = () => Product.create({
-  name: 'akdjals',
+  name: faker.commerce.productName(),
   description: faker.lorem.paragraph(),
   stock: Math.round(Math.random()*25),
   price: faker.commerce.price(),
