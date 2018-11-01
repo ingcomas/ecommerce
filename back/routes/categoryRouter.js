@@ -1,9 +1,6 @@
 const express= require ('express');
 const router= express();
 const Category = require('../db/models/Category')
-
-module.exports= router;
-
 router.get ('/', (req,res) => {
 	Category.findAll({})
 	.then(response=>{
@@ -22,3 +19,4 @@ router.post ('/newcategory', (req, res) => {
 	})
 	.then(response=>res.send(response))
 })
+module.exports= router;

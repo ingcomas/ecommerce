@@ -23,7 +23,6 @@ export default class Main extends React.Component{
             <div>
 
                 <HeaderContainer/>
-
                 <Switch>
                     <Route exact path="/" component={Jumbotron}/>
                     <Route exact path="/products" component={ProductsContainer} />
