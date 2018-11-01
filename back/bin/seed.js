@@ -50,8 +50,6 @@ const createUsers = (n) => {
   }
   return Promise.all(UsersPromises);
 };
-
-
 const generateShop = (nCat, nProd, nUser) =>
   db.sync({ force: true })
     .then(() => createCategories(nCat))

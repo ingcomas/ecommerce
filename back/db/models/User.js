@@ -30,7 +30,7 @@ const User = db.define('user', {
         validate:{
             notEmpty: false,
             len: {
-                args: [8, 12]
+                args: [1, 50]
             }
         }
     },
