@@ -18,10 +18,6 @@ const Review = require('./db/models/Review');
 const db = require('./db/index');
 db.sync({force : false});
 
-//ROUTERS
-const userRouter = require('./routes/userRouter');
-const productsRouter= require ('./routes/productsRouter');
-
 //APP
 var app = express();
 app.use(bodyParser.urlencoded({extended: true}));

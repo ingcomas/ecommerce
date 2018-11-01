@@ -4,7 +4,6 @@ import axios from 'axios';
 
 //CONTAINERS
 import Cart from '../containers/CartContainer'
-import Jumbotron from '../components/Jumbotron';
 import HeaderContainer from './HeaderContainer';
 import CreateProduct from '../components/CreateProduct';
 import LoginContainer from '../containers/LoginContainer';
