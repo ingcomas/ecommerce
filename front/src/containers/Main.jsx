@@ -9,20 +9,19 @@ import HeaderContainer from './HeaderContainer';
 import LoginContainer from '../containers/LoginContainer';
 import ProductsContainer from '../containers/ProductsContainer'
 import SingleProductsContainer from '../containers/SingleProductsContainer'
-import ReviewsContainer from './ReviewsContainer'
 import ProductManagerContainer from './ProductManagerContainer';
 import RegisterContainer from '../containers/RegisterContainer';
-
-import SingleProductsContainer from '../containers/SingleProductsContainer'
+import CategoriesContainer from './CategoriesContainer';
 import ReviewsContainer from './ReviewsContainer'
 import CreateProductContainer from './CreateProductContainer';
 
-//COMPONENTS
-import Login from '../components/Login';
-import Register from '../components/Register';
-import Jumbotron from '../components/Jumbotron';
-import CategoriesContainer from './CategoriesContainer';
 
+
+
+
+//COMPONENTS
+import CreateProduct from '../components/CreateProduct';
+import Jumbotron from '../components/Jumbotron';
 
 
 
@@ -48,8 +47,12 @@ export default class Main extends React.Component{3
                     <Route exact path="/products" component={ProductsContainer} />
                     <Route path="/login" component={LoginContainer}/>
                     <Route path="/products/:id" component={SingleProductsContainer} />
-					          <Route path='/products/newproduct' component= {CreateProduct} />
-        		      	<Route path='/user/admin' component= {ProductManagerContainer} />
+
+					<Route path='/products/newproduct' component= {CreateProduct} />
+        			<Route path='/user/admin' component= {ProductManagerContainer} />
+                    <Route path="/products/single" component={SingleProductsContainer} />
+					<Route path='/products/newproduct' component= {CreateProduct} />
+        			<Route path='/user/admin' component= {ProductManagerContainer} />
 
                     <Route path="/register" component={RegisterContainer}/>
                     <Route path="/cart" component={Cart} />
