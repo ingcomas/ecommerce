@@ -1,7 +1,7 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import SearchContainer from '../containers/SearchContainer'
-import CategoriesContainer from '../containers/CategoriesContainer'
+import CategoriesContainer from '../containers/HeaderCategoriesContainer'
 export default ()=>(
     <nav className="navbar navbar-expand-sm navbar-dark bg-primary">
     <a className="navbar-brand" href="#">
