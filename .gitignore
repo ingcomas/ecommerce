@@ -35,7 +35,6 @@ build/Release
 # Dependency directories
 node_modules/
 jspm_packages/
-
 #Ignore bundle files
 bundle.js
 bundle.js.map

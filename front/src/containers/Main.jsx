@@ -3,6 +3,7 @@ import { Link, Route, Switch, Redirect } from 'react-router-dom';
 import axios from 'axios';
 
 //CONTAINERS
+import OrderContainer from './OrderContainer';
 import Cart from '../containers/CartContainer'
 import HeaderContainer from './HeaderContainer';
 import LoginContainer from '../containers/LoginContainer';
@@ -28,13 +29,15 @@ export default class Main extends React.Component{3
     }
 
     render(){
+        
         return (
             <div className="container-fluid">
                
                 <HeaderContainer/>
                 <Switch>
-										<Route path='/products/newproduct' component= {CreateProductContainer} />
-        						<Route path='/user/admin' component= {ProductManagerContainer} />
+					<Route path='/products/newproduct' component= {CreateProductContainer} />
+                    <Route exact path='/user/admin/orders' component={OrderContainer}/>
+        			<Route path='/user/admin' component= {ProductManagerContainer} />
                     <Route path="/register" component={RegisterContainer}/>
                     <Route path="/login" component={LoginContainer}/>
                     <Route path='/categories' component={CategoriesContainer} />
@@ -44,7 +47,9 @@ export default class Main extends React.Component{3
                     <Route path="/products/:id" component={SingleProductsContainer} />
 					<Route path='/products/newproduct' component= {CreateProduct} />
         			<Route path='/user/admin' component= {ProductManagerContainer} />
-
+                    <Route path="/products/single" component={SingleProductsContainer} />
+					<Route path='/products/newproduct' component= {CreateProduct} />
+        			<Route path='/user/admin' component= {ProductManagerContainer} />
                     <Route path="/register" component={RegisterContainer}/>
                     <Route path="/cart" component={Cart} />
                     <Redirect from="/" to="/products" />
