@@ -13,8 +13,6 @@ import SingleProductsContainer from '../containers/SingleProductsContainer'
 
 import Login from '../components/Login';
 import Register from '../components/Register';
-import Cart from '../containers/CartContainer'
-import ProductsContainer from '../containers/ProductsContainer'
 import ReviewsContainer from './ReviewsContainer'
 import Jumbotron from '../components/Jumbotron';
 
@@ -26,8 +24,10 @@ export default class Main extends React.Component{
     render(){
         return (
             <div>
+                
                 <SidebarContainer/>
                 <HeaderContainer/>
+
                 <Switch>
         						<Route path='/products/edit' component= {ProductManagerContainer} />
                     <Route path="/register" component={RegisterContainer}/>
