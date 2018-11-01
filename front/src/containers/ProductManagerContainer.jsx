@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import ProductManager from '../components/ProductManager';
 import axios from 'axios';
+
+import ProductManager from '../components/ProductManager';
+import CreateProduct from '../components/CreateProduct';
 
 class ProductManagerContainer extends Component {
 	constructor (){
 		super()
 
-		this.handleSubmit= this.handleSubmit.bind(this);
-		this.handleClick= this.handleClick.bind(this);
+		// this.handleSubmit= this.handleSubmit.bind(this);
+		// this.handleClick= this.handleClick.bind(this);
 	}
 
 	handleSubmit(e){
@@ -26,16 +28,18 @@ class ProductManagerContainer extends Component {
 
 	// Definir metodo para traer el userId de la DB.
 	// Si es admin, habilito los botones Create y Edit que van a estar en el sidebar.
-	handleClick (){
-		axios.get (`/api/users/${userId}`)
-			.then (data => data.data)// ==> Es admin?
-	}
+	// handleClick (){
+	// 	axios.get (`/api/users/${userId}`)
+	// 		.then (data => data.data)// ==> Es admin?
+	// }
 
 
 	render (){
 		return 	(
 			<div>
-				<ProductManager handleSubmit= {this.handleSubmit}/>
+				{/* <CreateProduct handleSubmit= {this.handleSubmit}/> */}
+				{/* <CreateCategory /> */}
+				<ProductManager />
 			</div>
 		)
 	}

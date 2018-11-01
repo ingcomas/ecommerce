@@ -29,7 +29,7 @@ export default ()=>(
             </div>
         </li>
         <li className="nav-item">
-            <a className="nav-link disabled" href="#">Disabled</a>
+            <Link to='/user/admin' ><button className='btn btn-danger'>ADMIN</button></Link>
         </li>
         </ul>
         <form className="form-inline my-2 my-lg-0">
