@@ -13,11 +13,11 @@ export default (props) => {
                     <input type="text" name="last_name" className="form-control" aria-describedby="emailHelp" placeholder="Apellido/s"/>
                 </div>
                 <div className="form-group">
-                    <label>E-mail</label>
+                    <label>E-mail {props.wrongMail}</label>
                     <input type="email" name="email" className="form-control" aria-describedby="emailHelp" placeholder="E-mail"/>
                 </div>
                 <div className="form-group">
-                    <label>Contraseña</label>
+                    <label>Contraseña {props.wrongPassword}</label>
                     <input type="password" name="password" className="form-control" aria-describedby="emailHelp" placeholder="Contraseña"/>
                 </div>
                 <div className="form-group">
