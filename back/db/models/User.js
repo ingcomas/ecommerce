@@ -16,6 +16,7 @@ const User = db.define('user', {
     email:{
         type: Sequelize.STRING,
         allowNull: false,
+        unique: true,
         validate: {
             isEmail: true
         }
@@ -44,8 +45,26 @@ const User = db.define('user', {
 
 });
 
-Order.belongsTo(User);
+User.hasMany(Order);
+
+// User.passwordSalt = () => {
+//     return crypto.randomBytes(20).toString('hex')
+// }
+
+// User.prototype.passwordHash = (password, salt) => {
+//     return crypto.createHmac('sha1', salt).update(password).digest('hex')
+// }
+
+// User.hook('beforeCreate', (user)=>{
+//     user.salt = User.passwordSalt();
+//     let { password, salt } = user
+//     user.password = user.passwordHash(password,salt)
+// })
+
 module.exports = User;
+
+// Order.belongsTo(User);
+// module.exports = User;
 // User.create({
 //     first_name: 'Luis Sebastian',
 //     last_name:  'Comas',
