@@ -18,11 +18,11 @@ const createCategories = (n) => {
   return Promise.all(categoriesPromises);
 };
 const createProduct = () => Product.create({
-  name: 'akdjals',
+  name: faker.commerce.productName(),
   description: faker.lorem.paragraph(),
   stock: Math.round(Math.random()*25),
   price: faker.commerce.price(),
-  images : ['ofakfoskaf','jfanoaknfas']
+  images : [faker.image.abstract(),faker.image.abstract()]
 });
 const createCatalogue = (n) => {
   const productPromises = [];

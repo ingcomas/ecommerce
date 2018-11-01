@@ -2,7 +2,7 @@ import React from 'react';
 
 export default () => {
     return(
-        <div class="sidenav">
+        <div className="sidenav position-fixed"  >
             <a href="#" />
             <a href="#" />
             <a href="#" />
