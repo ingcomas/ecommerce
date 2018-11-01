@@ -54,7 +54,7 @@ module.exports = app;
 //     ).catch(e => console.log(e))
 
    
-})
+// })
             
 app.use('/', (req, res) => {    
     res.sendFile(path.join(__dirname, '../front/index.html'));
