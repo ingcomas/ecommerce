@@ -2,7 +2,8 @@ import React from 'react';
 
 export default (props) => {
     return(
-        <div className="container">
+        <div className="container w-50" style={{marginTop: '9%'}}>
+            <h1>Sign up</h1>
             <form onSubmit={props.registerNewUser}>
                 <div className="form-group">
                     <label>Nombre</label>
@@ -13,11 +14,11 @@ export default (props) => {
                     <input type="text" name="last_name" className="form-control" aria-describedby="emailHelp" placeholder="Apellido/s"/>
                 </div>
                 <div className="form-group">
-                    <label>E-mail</label>
+                    <label>E-mail {props.wrongMail}</label>
                     <input type="email" name="email" className="form-control" aria-describedby="emailHelp" placeholder="E-mail"/>
                 </div>
                 <div className="form-group">
-                    <label>Contraseña</label>
+                    <label>Contraseña {props.wrongPassword}</label>
                     <input type="password" name="password" className="form-control" aria-describedby="emailHelp" placeholder="Contraseña"/>
                 </div>
                 <div className="form-group">

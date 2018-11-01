@@ -18,11 +18,11 @@ const createCategories = (n) => {
   return Promise.all(categoriesPromises);
 };
 const createProduct = () => Product.create({
-  name: 'akdjals',
+  name: faker.commerce.productName(),
   description: faker.lorem.paragraph(),
   stock: Math.round(Math.random()*25),
   price: faker.commerce.price(),
-  images : ['ofakfoskaf','jfanoaknfas']
+  images : [faker.image.business(),faker.image.business()]
 });
 const createCatalogue = (n) => {
   const productPromises = [];
@@ -48,8 +48,6 @@ const createUsers = (n) => {
   }
   return Promise.all(UsersPromises);
 };
-
-
 const generateShop = (nCat, nProd, nUser) =>
   db.sync({ force: true })
     .then(() => createCategories(nCat))

@@ -1,6 +1,8 @@
-const Sequelize = require('sequelize');
 const db = require('../index');
 const Order = require('./Order');
+const crypto = require('crypto');
+const Sequelize = require('sequelize');
+
 const User = db.define('user', {
 
     first_name: {
@@ -24,7 +26,17 @@ const User = db.define('user', {
 
     password: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true,
+        validate:{
+            notEmpty: false,
+            len: {
+                args: [1, 50]
+            }
+        }
+    },
+
+    salt : {
+        type : Sequelize.STRING
     },
 
     address: {
@@ -41,37 +53,25 @@ const User = db.define('user', {
         type: Sequelize.INTEGER,
         allowNull: false
     },
+
     access: Sequelize.STRING
 
 });
 
 User.hasMany(Order);
 
-// User.passwordSalt = () => {
-//     return crypto.randomBytes(20).toString('hex')
-// }
+User.passwordSalt = () => {
+    return crypto.randomBytes(20).toString('hex');
+}
 
-// User.prototype.passwordHash = (password, salt) => {
-//     return crypto.createHmac('sha1', salt).update(password).digest('hex')
-// }
+User.prototype.passwordHash = (password, salt) => {
+    return crypto.createHmac('sha1', salt).update(password).digest('hex');
+}
 
-// User.hook('beforeCreate', (user)=>{
-//     user.salt = User.passwordSalt();
-//     let { password, salt } = user
-//     user.password = user.passwordHash(password,salt)
-// })
+User.hook('beforeCreate', user => {
+    user.salt = User.passwordSalt();
+    let { password, salt } = user;
+    user.password = user.passwordHash(password,salt);
+})
 
 module.exports = User;
-
-// Order.belongsTo(User);
-// module.exports = User;
-// User.create({
-//     first_name: 'Luis Sebastian',
-//     last_name:  'Comas',
-//     email:  'sebacomas@gmail.com',
-//     password:   'okasndlkas',
-//     address:    'Av.Cabildo 2040',
-//     dni: 32158358,
-//     cellphone: 5174183,
-//     access: 'admin'
-// })
