@@ -30427,16 +30427,6 @@ exports.default = function () {
                             { className: 'sr-only' },
                             '(current)'
                         )
-                    ),
-                    _react2.default.createElement(
-                        _reactRouterDom.Link,
-                        { to: '/products', className: 'nav-link' },
-                        'Home ',
-                        _react2.default.createElement(
-                            'span',
-                            { className: 'sr-only' },
-                            '(current)'
-                        )
                     )
                 ),
                 _react2.default.createElement(
@@ -30455,6 +30445,20 @@ exports.default = function () {
                         'a',
                         { className: 'nav-link', href: '/register' },
                         'Registrarse'
+                    )
+                ),
+                _react2.default.createElement(
+                    'li',
+                    { className: 'nav-item active' },
+                    _react2.default.createElement(
+                        'a',
+                        { className: 'nav-link', href: '/products' },
+                        'Products ',
+                        _react2.default.createElement(
+                            'span',
+                            { className: 'sr-only' },
+                            '(current)'
+                        )
                     )
                 ),
                 _react2.default.createElement(
