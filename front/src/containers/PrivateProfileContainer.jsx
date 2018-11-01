@@ -1,5 +1,4 @@
 import React from 'react';
-import Sidebar from '../components/Sidebar';
 
 export default class extends React.Component{
     constructor(){
@@ -7,7 +6,9 @@ export default class extends React.Component{
     }
     render(){
         return(
-            <Sidebar/>
+            <div>
+                <h1>Bienvenido!</h1>
+            </div>
         )
     }
 }

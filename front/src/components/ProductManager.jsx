@@ -1,44 +1,44 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
-export default ({ handleSubmit }) => (
-	<div className= 'container-fluid'>
-		<div className="well">
-			<form className="form-horizontal" onSubmit= {handleSubmit}>
-				<fieldset>
-					<legend>New Product</legend>
-					
-					<div className="form-group">
-						<label className="col-xs-2 control-label"> Nombre </label>
-						<div className="col-xs-10">
-							<input placeholder='...' className="form-control" type="text" name= 'name'/>
-						</div>
+export default () => (
+	<div className='container'>
+		<div className='row'>
+			<div className='col-sm-4'>
+				<div className="card" style={{width: '13rem'}}>
+					<img className="card-img-top" src="https://cdn3.iconfinder.com/data/icons/line/36/add-512.png" alt="Card image cap" />
+					<div className="card-body">
+						<h5 className="card-title">New Product</h5>
+						<p className="card-text">Creacion de nuevo producto.</p>
+						<Link to='/products/newproduct' className="btn btn-primary">Go somewhere</Link>
 					</div>
-					<div className="form-group">
-						<label className="col-xs-2 control-label"> Descripción </label>
-						<div className="col-xs-10">
-							<input placeholder='...' className="form-control" type="text" name= 'description'/>
-						</div>
+				</div>
+			</div>
+			<div className='col-sm-4'>
+				<div className="card" style={{width: '13rem'}}>
+					<img className="card-img-top" src="https://cdn3.iconfinder.com/data/icons/line/36/add-512.png" alt="Card image cap" />
+					<div className="card-body">
+						<h5 className="card-title">Edit Product</h5>
+						<p className="card-text">Editar producto existente.</p>
+						<Link to='/products' className="btn btn-primary">Go somewhere</Link>
 					</div>
-					<div className="form-group">
-						<label className="col-xs-2 control-label"> Precio </label>
-						<div className="col-xs-10">
-							<input placeholder='...' className="form-control" type="text" name= 'price'/>
-						</div>
+				</div>
+			</div>
+			<div className='col-sm-4'>
+				<div className="card" style={{width: '13rem'}}>
+					<img className="card-img-top" src="https://cdn3.iconfinder.com/data/icons/line/36/add-512.png" alt="Card image cap" />
+					<div className="card-body">
+						<h5 className="card-title">New Category</h5>
+						<p className="card-text">Creacion de nueva categoria.</p>
+						<Link to='/categories/newcategory' className="btn btn-primary">Go somewhere</Link>
 					</div>
-					<div className="form-group">
-						<label className="col-xs-2 control-label"> Imagenes. Separado por comas.</label>
-						<div className="col-xs-10">
-							<input placeholder='...' className="form-control" type="text" name= 'images'/>
-						</div>
-					</div>
-					
-					<div className="form-group">
-						<div className="col-xs-10 col-xs-offset-2">
-							<button type="submit" className="btn btn-success"> Create </button>
-						</div>
-					</div>
-				</fieldset>
-			</form>
+				</div>
+			</div>
 		</div>
 	</div>
 )
+
+
+
+
+
