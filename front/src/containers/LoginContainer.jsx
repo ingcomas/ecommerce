@@ -8,7 +8,14 @@ export default class extends React.Component{
     constructor(){
         super();
         this.state = {
-            logged: false
+            first_name: '',
+            last_name: '',
+            email: '',
+            address: '',
+            dni: '',
+            cellphone: '',
+
+            wrongPassword: ''
         }
         this.logInfo = this.logInfo.bind(this);
     }
@@ -19,19 +26,38 @@ export default class extends React.Component{
             email: e.target.email.value,
             password: e.target.password.value
         })
-        .then(response => {
+        .then(r => this.setState({
+            first_name: r.data.first_name,
+            last_name: r.data.last_name,
+            email: r.data.email,
+            address: r.data.address,
+            dni: r.data.dni,
+            cellphone: r.data.cellphone
+        }))
+        .catch(e => {
             this.setState({
-                logged: response.data
+                wrongPassword: 'Contraseña incorrecta'
             })
-        });
+        })
     }
 
     render(){
         return(
             <div>
-                {this.state.logged ? <PrivateProfileContainer/>
+                {this.state.first_name ? 
+                    <PrivateProfileContainer
+                        first_name={this.state.first_name}
+                        last_name={this.state.last_name}
+                        email={this.state.email}
+                        address={this.state.address}
+                        dni={this.state.dni}
+                        cellphone={this.state.cellphone}
+                    />
                 :
-                    <Login logInfo={this.logInfo}/>
+                    <Login
+                        logInfo={this.logInfo}
+                        wrongPassword={this.state.wrongPassword}
+                    />
             }
             </div>
         )

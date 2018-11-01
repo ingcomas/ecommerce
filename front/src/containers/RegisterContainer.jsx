@@ -13,7 +13,7 @@ export default class extends React.Component{
         this.state = {
             wrongMail: '',
             wrongPassword: '',
-            userCreated: '',
+            userCreated: false,
         }
         this.registerNewUser = this.registerNewUser.bind(this);
     }

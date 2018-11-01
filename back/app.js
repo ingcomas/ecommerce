@@ -63,12 +63,10 @@ function(username, password, done) {
   }
 ));
 passport.serializeUser(function(user, done) {
-  console.log('serialize')
   done(null, user);
 });
 
 passport.deserializeUser(function(user, done) {
-  console.log('deserialize')
   done(null, user);
 });
 
