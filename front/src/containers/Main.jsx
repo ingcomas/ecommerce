@@ -12,6 +12,7 @@ import ProductManagerContainer from './ProductManagerContainer';
 import RegisterContainer from '../containers/RegisterContainer';
 import SingleProductsContainer from '../containers/SingleProductsContainer'
 
+
 export default class Main extends React.Component{
     constructor(props){
         super(props);
@@ -20,7 +21,9 @@ export default class Main extends React.Component{
     render(){
         return (
             <div>
+
                 <HeaderContainer/>
+
                 <Switch>
                     <Route exact path="/" component={Jumbotron}/>
                     <Route exact path="/products" component={ProductsContainer} />
