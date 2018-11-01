@@ -1,22 +1,22 @@
 const express= require ('express');
 const router= express();
-const Product = require('../db/models/Product')
-
-module.exports= router;
-
+const Category = require('../db/models/Category')
 router.get ('/', (req,res) => {
-	Product.findAll({})
+	Category.findAll({})
 	.then(response=>{
 		res.send(response)
 	})
 })
 router.get ('/:id', (req,res) => {
 	const id = req.params.id;
-	Product.findOne({where:{id}})
+	Category.findOne({where:{id}})
 	.then(prod=>res.send(prod))
 	.catch(err=>res.send(err))
 })
-router.post ('/newproduct', (req,res) => {
-	Product.create (req.body)
-		.then (producto => res.send(producto))
+router.post ('/newcategory', (req, res) => {
+	Category.create({
+		name : req.body.name
+	})
+	.then(response=>res.send(response))
 })
+module.exports= router;
