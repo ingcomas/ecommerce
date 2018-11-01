@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, Route, Switch, Redirect } from 'react-router-dom';
+import axios from 'axios';
 
 //CONTAINERS
 import HeaderContainer from './HeaderContainer';
@@ -11,8 +12,9 @@ import ProductsContainer from '../containers/ProductsContainer'
 import Cart from '../containers/CartContainer'
 import SingleProductsContainer from '../containers/SingleProductsContainer'
 import ReviewsContainer from './ReviewsContainer'
+import CreateProductContainer from './CreateProductContainer';
 
-import CreateProduct from '../components/CreateProduct';
+//COMPONENTS
 import Login from '../components/Login';
 import Register from '../components/Register';
 import Jumbotron from '../components/Jumbotron';
@@ -28,7 +30,7 @@ export default class Main extends React.Component{
                 <SidebarContainer/>
                 <HeaderContainer/>
                 <Switch>
-										<Route path='/products/newproduct' component= {CreateProduct} />
+										<Route path='/products/newproduct' component= {CreateProductContainer} />
         						<Route path='/user/admin' component= {ProductManagerContainer} />
                     <Route path="/register" component={RegisterContainer}/>
                     <Route path="/login" component={LoginContainer}/>
