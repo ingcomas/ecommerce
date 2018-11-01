@@ -22,11 +22,9 @@ const createProduct = () => Product.create({
   description: faker.lorem.paragraph(),
   stock: Math.round(Math.random()*25),
   price: faker.commerce.price(),
-<<<<<<< HEAD
   images : [faker.image.abstract(),faker.image.abstract()]
-=======
-  images : [faker.image.business(),faker.image.business()]
->>>>>>> bfb89215731bc796102fb03fe8e629686ee40859
+
+
 });
 const createCatalogue = (n) => {
   const productPromises = [];

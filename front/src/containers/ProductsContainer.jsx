@@ -18,7 +18,7 @@ export default class extends React.Component{
      
     }
     render(){
-        
+        console.log(this.state.productList)
         return(
             <div >
                 <Products productList={this.state.productList}/>
