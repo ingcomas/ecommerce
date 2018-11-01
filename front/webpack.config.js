@@ -1,6 +1,13 @@
+const path = require('path')
+
 module.exports = {
-  devtool: 'source-map',
+  // context: __dirname,
   entry: ['./src/index.js'],
+  output: {
+    filename: "bundle.js",
+    path: path.join(__dirname, '/dist'),
+  },
+  devtool: 'source-map',
   resolve: {
     extensions: ['.js', '.jsx']
   },
@@ -13,9 +20,5 @@ module.exports = {
         query: { presets: ['env', 'stage-0', 'react'] }
       }
     ]
-  },
-  output: {
-    filename: "bundle.js",
-    path: __dirname + '/./dist'
   }
 }
