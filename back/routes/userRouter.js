@@ -1,16 +1,9 @@
 const express = require('express');
 const router = express.Router();
+var passport = require('passport');
 
 //MODELS
 var User = require('../db/models/User');
-
-router.get('/findUser', (req, res) => {
-    
-});
-
-router.get('/allUsers', (req, res) => {
-    
-});
 
 router.post('/newUser', (req, res) => {
     User.create({
@@ -25,8 +18,18 @@ router.post('/newUser', (req, res) => {
     .catch(e => res.send(e));
 });
 
-router.post('/loginUser', (req, res) => {
-    
+router.get('/accepted', (req, res) => {
+    res.send(true);
 });
+
+router.get('/rejected', (req, res) => {
+    res.send(false);
+});
+
+
+router.post('/logged', passport.authenticate(
+    'local', 
+    {successRedirect: '/api/user/accepted',
+     failureRedirect: '/api/user/rejected'}));
 
 module.exports = router;
