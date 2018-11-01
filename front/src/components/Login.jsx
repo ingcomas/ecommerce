@@ -12,6 +12,7 @@ export default (props) => {
                     <label>Contraseña</label>
                     <input type="password" name="password" className="form-control" placeholder="Contraseña"/>
                 </div>
+                <input type="submit" value="Login"/>
             </form>
         </div>
     )
