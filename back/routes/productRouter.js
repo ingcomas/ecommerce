@@ -16,13 +16,7 @@ router.get ('/:id', (req,res) => {
 	.then(prod=>res.send(prod))
 	.catch(err=>res.send(err))
 })
-router.post ('/newproduct', (req, res) => {
-	Product.create({
-		name : req.body.name,
-		stock : req.body.stock,
-		description : req.body.description,
-		price : req.body.price,
-		images : req.body.images
-	})
-	.then(response=>res.send(response))
+router.post ('/newproduct', (req,res) => {
+	Product.create (req.body)
+		.then (producto => res.send(producto))
 })

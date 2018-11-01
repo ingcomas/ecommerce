@@ -33,10 +33,12 @@ app.use(express.static('../front/dist'));
 //ROUTERS
 const userRouter = require('./routes/userRouter');
 const ProductRouter = require('./routes/productRouter')
+const categoryRouter = require('./routes/categoryRouter')
 
 //ROUTES
 app.use('/api/user', userRouter);
 app.use('/api/product', ProductRouter);
+app.use('/api/categories', categoryRouter)
 
 app.use('/*', (req, res) => {
   res.sendFile(path.join(__dirname, '../front/index.html'));
@@ -60,14 +62,11 @@ function(username, password, done) {
     })
   }
 ));
-
 passport.serializeUser(function(user, done) {
-  console.log('serialize')
   done(null, user);
 });
 
 passport.deserializeUser(function(user, done) {
-  console.log('deserialize')
   done(null, user);
 });
 
