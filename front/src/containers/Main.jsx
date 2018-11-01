@@ -11,6 +11,7 @@ import ProductsContainer from '../containers/ProductsContainer'
 import ProductManagerContainer from './ProductManagerContainer';
 import RegisterContainer from '../containers/RegisterContainer';
 import SingleProductsContainer from '../containers/SingleProductsContainer'
+import CategoriesContainer from './CategoriesContainer';
 
 
 export default class Main extends React.Component{
@@ -24,6 +25,7 @@ export default class Main extends React.Component{
 
                 <HeaderContainer/>
                 <Switch>
+                    <Route path='/categories' component={CategoriesContainer} />
                     <Route exact path="/" component={Jumbotron}/>
                     <Route exact path="/products" component={ProductsContainer} />
                     <Route path="/login" component={LoginContainer}/>
