@@ -6,11 +6,13 @@ import axios from 'axios';
 import OrderContainer from './OrderContainer';
 import Cart from '../containers/CartContainer'
 import HeaderContainer from './HeaderContainer';
-import CreateProduct from '../components/CreateProduct';
 import LoginContainer from '../containers/LoginContainer';
 import ProductsContainer from '../containers/ProductsContainer'
+import SingleProductsContainer from '../containers/SingleProductsContainer'
+import ReviewsContainer from './ReviewsContainer'
 import ProductManagerContainer from './ProductManagerContainer';
 import RegisterContainer from '../containers/RegisterContainer';
+
 import SingleProductsContainer from '../containers/SingleProductsContainer'
 import ReviewsContainer from './ReviewsContainer'
 import CreateProductContainer from './CreateProductContainer';
@@ -22,7 +24,9 @@ import Jumbotron from '../components/Jumbotron';
 import CategoriesContainer from './CategoriesContainer';
 
 
-export default class Main extends React.Component{
+
+
+export default class Main extends React.Component{3
     constructor(props){
         super(props);
     }
@@ -30,8 +34,8 @@ export default class Main extends React.Component{
     render(){
         
         return (
-            <div>
-
+            <div className="container-fluid">
+               
                 <HeaderContainer/>
                 <Switch>
 					<Route path='/products/newproduct' component= {CreateProductContainer} />
@@ -43,9 +47,10 @@ export default class Main extends React.Component{
                     <Route exact path="/" component={Jumbotron}/>
                     <Route exact path="/products" component={ProductsContainer} />
                     <Route path="/login" component={LoginContainer}/>
-                    <Route path="/products/single" component={SingleProductsContainer} />
-					<Route path='/products/newproduct' component= {CreateProduct} />
-        			<Route path='/user/admin' component= {ProductManagerContainer} />
+                    <Route path="/products/:id" component={SingleProductsContainer} />
+					          <Route path='/products/newproduct' component= {CreateProduct} />
+        		      	<Route path='/user/admin' component= {ProductManagerContainer} />
+
                     <Route path="/register" component={RegisterContainer}/>
                     <Route path="/cart" component={Cart} />
                     <Redirect from="/" to="/products" />
