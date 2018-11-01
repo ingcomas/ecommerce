@@ -10,12 +10,11 @@ import SidebarContainer from './SidebarContainer';
 import ProductsContainer from '../containers/ProductsContainer'
 import Cart from '../containers/CartContainer'
 import SingleProductsContainer from '../containers/SingleProductsContainer'
+import ReviewsContainer from './ReviewsContainer'
 
+import CreateProduct from '../components/CreateProduct';
 import Login from '../components/Login';
 import Register from '../components/Register';
-import Cart from '../containers/CartContainer'
-import ProductsContainer from '../containers/ProductsContainer'
-import ReviewsContainer from './ReviewsContainer'
 import Jumbotron from '../components/Jumbotron';
 
 export default class Main extends React.Component{
@@ -29,7 +28,8 @@ export default class Main extends React.Component{
                 <SidebarContainer/>
                 <HeaderContainer/>
                 <Switch>
-        						<Route path='/products/edit' component= {ProductManagerContainer} />
+										<Route path='/products/newproduct' component= {CreateProduct} />
+        						<Route path='/user/admin' component= {ProductManagerContainer} />
                     <Route path="/register" component={RegisterContainer}/>
                     <Route path="/login" component={LoginContainer}/>
                     <Route exact path="/products" component={ProductsContainer} />
@@ -37,7 +37,7 @@ export default class Main extends React.Component{
                     <Route path="/cart" component={Cart} />
                     <Redirect from="/" to="/products" />
                 </Switch>
-                <Jumbotron/>
+                {/* <Jumbotron/> */}
             </div>
         )
     }
