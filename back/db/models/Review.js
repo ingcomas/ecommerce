@@ -14,11 +14,11 @@ const Review = db.define('review',{
   },
   rating:{
     type: Sequelize.INTEGER,
-    allowNull: false,    
-    validate:{
-      min: 0,
-      max: 5,
-    }
+    // allowNull: false,    
+    // validate:{
+    //   min: 0,
+    //   max: 5,
+    // }
   }
 });
 Review.belongsTo(Product);

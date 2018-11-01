@@ -21,6 +21,7 @@ db.sync({force : false});
 //ROUTERS
 const userRouter = require('./routes/userRouter');
 const ProductRouter = require('./routes/productRouter')
+const reviewRouter = require('./routes/reviewRouter')
 
 //APP
 var app = express();
@@ -32,9 +33,9 @@ app.use(express.json());
 //app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static('../front/dist'));
-
 app.use('/api/user', userRouter);
 app.use('/api/product', ProductRouter);
+app.use('/api/review', reviewRouter)
 
 app.use('/*', (req, res) => {
   res.sendFile(path.join(__dirname, '../front/index.html'));
