@@ -1,10 +1,21 @@
-import React from 'react';
-import Register from '../components/Register';
+//REQUIREMENTS
 import axios from 'axios';
+import React from 'react';
+
+//COMPONENTS
+import Register from '../components/Register';
+import UserCreated from '../components/UserCreated';
+
 
 export default class extends React.Component{
     constructor(){
         super();
+        this.state = {
+            wrongMail: '',
+            wrongPassword: '',
+            userCreated: '',
+        }
+        this.registerNewUser = this.registerNewUser.bind(this);
     }
 
     registerNewUser(e){
@@ -19,10 +30,18 @@ export default class extends React.Component{
             cellphone: e.target.cellphone.value
         })
         .then(response => {
-            if(response.data.name == "SequelizeUniqueConstraintError"){
-                alert('CREA UN MAIL Q NO EXISTA');
-            }else{
-                console.log(response.data)
+            switch(response.data.name){
+
+                case 'SequelizeValidationError':
+                    this.setState({ wrongPassword: '**************** La contraseña debe tener entre 8 y 12 caracteres.' });
+                break;
+
+                case 'SequelizeUniqueConstraintError':
+                    this.setState({ wrongMail: '**************** El e-mail solicitado ya está en uso.' });
+                break;
+
+                default:
+                    this.setState({ userCreated: true });
             }
         });
     }
@@ -30,7 +49,14 @@ export default class extends React.Component{
     render(){
         return(
             <div className="container">
-                <Register registerNewUser={this.registerNewUser}/>
+                { this.state.userCreated == true ? <UserCreated/>
+                :
+                    <Register 
+                        registerNewUser={this.registerNewUser}
+                        wrongMail={this.state.wrongMail}
+                        wrongPassword={this.state.wrongPassword}
+                    />
+                }
             </div>
         )
     }
