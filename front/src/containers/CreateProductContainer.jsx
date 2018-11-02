@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {createProduct} from '../redux/actions/products-actions'
 
 import CreateProduct from '../components/CreateProduct';
+import {axiosCategories} from '../redux/actions/categoriesActions'
 
 
 class CreateProductContainer extends Component {
@@ -10,16 +11,18 @@ class CreateProductContainer extends Component {
 		super(props);
 		this.handleSubmit= this.handleSubmit.bind(this);
 	}
+	componentDidMount(){
+		this.props.axiosCategories()
+	}
 	
 	handleSubmit(e){
 		e.preventDefault();
 		this.props.createProduct(e.target)
 	}
-	// Renderear el createProduct o productSingle cuando ya se cree uno nuevo.
 	render (){
 		return 	(
 			<div>
-				<CreateProduct handleSubmit= {this.handleSubmit} />
+				<CreateProduct categories={this.props.categories} handleSubmit= {this.handleSubmit} />
 			</div>
 		)
 	}
@@ -27,7 +30,8 @@ class CreateProductContainer extends Component {
 
 function mapStateToProps(state){
     return { 
-			valores: state.product.newProduct,
+		valores: state.product.newProduct,
+		categories : state.categories.categories
     }
 }
 function mapDispatchToProps(dispatch){
@@ -35,7 +39,9 @@ function mapDispatchToProps(dispatch){
 		createProduct: function(producto){
 			dispatch(createProduct(producto))
 		},
-
+		axiosCategories : function(){
+			dispatch(axiosCategories())
+		}
   }
 }
 
