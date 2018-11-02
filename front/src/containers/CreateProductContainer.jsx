@@ -31,11 +31,11 @@ function mapStateToProps(state){
     }
 }
 function mapDispatchToProps(dispatch){
-    return {
-        createProduct: function(producto){
+	return {
+		createProduct: function(producto){
 			dispatch(createProduct(producto))
 		}
-    }
+  }
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(CreateProductContainer);
