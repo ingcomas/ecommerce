@@ -30,9 +30,6 @@ app.use(passport.session());
 //app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static('../front/dist'));
-app.use('/api/user', userRouter);
-app.use('/api/product', ProductRouter);
-app.use('/api/review', reviewRouter)
 
 //ROUTERS
 const userRouter = require('./routes/userRouter');
@@ -42,6 +39,7 @@ const reviewRouter = require('./routes/reviewRouter')
 
 //ROUTES
 app.use('/api/user', userRouter);
+app.use('/api/review', reviewRouter)
 app.use('/api/product', ProductRouter);
 app.use('/api/categories', categoryRouter)
 

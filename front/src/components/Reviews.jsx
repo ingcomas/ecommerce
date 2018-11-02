@@ -1,10 +1,10 @@
 import React from 'react'
+import Stars from './Stars'
 import { FaStar } from 'react-icons/fa'
 
-export default function Reviews ({newReview,reviews,ratingPromedio,stars}){
+export default function Reviews ({newReview,reviews,ratingPromedio,stars,handleClick}){
   return (
     <div className="container">
-        {/* <div className="container"> */}
           <div className="row">
             <div className="col-md-5">
               <form onSubmit={newReview}>
@@ -13,7 +13,9 @@ export default function Reviews ({newReview,reviews,ratingPromedio,stars}){
                     <span class="input-group-text" id="inputGroup-sizing-sm">Title</span>
                     </div>
                     <input type="text" name="title" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"/>
-                    <input type="text" name="rating"/>
+
+                    <Stars handleClick={handleClick}/>
+                    
                     </div>
                 <textarea className="col-md-5" id="new_message" name="content"
                 placeholder="Type in your message" rows="5"></textarea>
@@ -22,10 +24,9 @@ export default function Reviews ({newReview,reviews,ratingPromedio,stars}){
               </form>
             </div>
           </div>
-        {/* </div> */}
-      {/* {(ratingPromedio)?
-      <h3>Product valuation: {ratingPromedio}</h3>:null} */}
-        <h2>Product {stars(ratingPromedio).map((star,i)=> <FaStar key={i} color="#f1d10b" /> )} </h2>
+        {(ratingPromedio)?<h2>Product valuation {stars(ratingPromedio).map((star,i)=> <FaStar key={i} color="#f1d10b"/> )} </h2>
+        :null
+      }
 
         {reviews.map((review)=> {
           return(

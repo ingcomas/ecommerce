@@ -17,10 +17,6 @@ import CreateProductContainer from './CreateProductContainer';
 //COMPONENTS
 import Login from '../components/Login';
 import Register from '../components/Register';
-<<<<<<< HEAD
-import ReviewsContainer from './ReviewsContainer'
-=======
->>>>>>> 2b186c737096d58b2345d5a49f315b08b6e28736
 import Jumbotron from '../components/Jumbotron';
 import CategoriesContainer from './CategoriesContainer';
 

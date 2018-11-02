@@ -10,9 +10,18 @@ export default class ReviewsContainer extends Component{
     this.state={
       reviews:[],
       ratingProm:0,
-      rating:[]
+      rating:[],
+      stars:0
     }
     this.createStars=this.createStars.bind(this)
+    this.handleClick=this.handleClick.bind(this)
+    this.newReview=this.newReview.bind(this)
+  }
+  handleClick (stars){
+    console.log(stars)
+    this.setState({
+      stars
+    });
   }
   
   newReview(e) {
@@ -20,7 +29,7 @@ export default class ReviewsContainer extends Component{
     axios.post('api/review/newReview', {
       title: (e.target.title.value) ? e.target.title.value : "Anonymous" ,
       content: e.target.content.value,
-      rating: parseInt( e.target.rating.value)
+      rating: this.state.stars
     })
   }
   createStars = (num)=>{
@@ -30,7 +39,6 @@ export default class ReviewsContainer extends Component{
     }
     return stars
   }
-
   componentDidMount(){   
     axios.get('api/review')
     .then(response => {
@@ -49,16 +57,16 @@ export default class ReviewsContainer extends Component{
   
   
   render(){
-
+    console.log(this.state.stars," Estrellas Puto")
     return (
       <div>
-   {   console.log(this.state.ratingProm)}
       {/* <RatingWidget /> */}
       {/* <Stars/> */}
       <Reviews newReview={this.newReview} 
       reviews={this.state.reviews}
       ratingPromedio={this.state.ratingProm}
       stars={this.createStars}
+      handleClick={this.handleClick}
       />
       </div>
     )
