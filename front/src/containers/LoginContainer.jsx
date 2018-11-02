@@ -4,7 +4,7 @@ import axios from 'axios';
 
 import PrivateProfileContainer from './PrivateProfileContainer';
 
-export default class extends React.Component{
+export default class  extends React.Component{
     constructor(){
         super();
         this.state = {
@@ -26,14 +26,17 @@ export default class extends React.Component{
             email: e.target.email.value,
             password: e.target.password.value
         })
-        .then(r => this.setState({
-            first_name: r.data.first_name,
-            last_name: r.data.last_name,
-            email: r.data.email,
-            address: r.data.address,
-            dni: r.data.dni,
-            cellphone: r.data.cellphone
-        }))
+        .then(r => {
+            // this.props.history.push('/private')
+            this.setState({
+                first_name: r.data.first_name,
+                last_name: r.data.last_name,
+                email: r.data.email,
+                address: r.data.address,
+                dni: r.data.dni,
+                cellphone: r.data.cellphone
+            })}
+        )
         .catch(e => {
             this.setState({
                 wrongPassword: 'Contraseña incorrecta'

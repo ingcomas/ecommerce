@@ -11,6 +11,7 @@ import ProductsContainer from '../containers/ProductsContainer'
 import ProductManagerContainer from './ProductManagerContainer';
 import RegisterContainer from '../containers/RegisterContainer';
 import SingleProductsContainer from '../containers/SingleProductsContainer'
+import PrivateProfileContainer from './PrivateProfileContainer';
 
 export default class Main extends React.Component{
     constructor(props){
@@ -24,12 +25,15 @@ export default class Main extends React.Component{
                 <Switch>
                     <Route exact path="/" component={Jumbotron}/>
                     <Route exact path="/products" component={ProductsContainer} />
-                    <Route path="/login" component={LoginContainer}/>
-                    <Route path="/products/single" component={SingleProductsContainer} />
-					<Route path='/products/newproduct' component= {CreateProduct} />
-        			<Route path='/user/admin' component= {ProductManagerContainer} />
-                    <Route path="/register" component={RegisterContainer}/>
+
                     <Route path="/cart" component={Cart} />
+                    <Route path="/login" component={LoginContainer}/>
+                    <Route path="/register" component={RegisterContainer}/>
+                    <Route path="/profile" component={PrivateProfileContainer}/>
+        			<Route path='/user/admin' component= {ProductManagerContainer} />
+                    <Route path='/products/newproduct' component= {CreateProduct} />
+                    <Route path="/products/single" component={SingleProductsContainer} />
+
                     <Redirect from="/" to="/products" />
                 </Switch>
             </div>

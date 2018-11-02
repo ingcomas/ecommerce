@@ -20,7 +20,7 @@ router.post('/newUser', (req, res) => {
 });
 
 router.post('/logged', passport.authenticate('local'), (req, res) =>{
-        let authenticated = req.isAuthenticated();
+        const authenticated = req.isAuthenticated();
         if(authenticated){
             res.send({
                 first_name: req.user.first_name,
