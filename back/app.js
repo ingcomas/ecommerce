@@ -28,16 +28,20 @@ app.use(cookieParser());
 app.use(passport.initialize());
 app.use(passport.session());
 //app.use(express.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.static('../front/dist'));
+app.use(express.static(path.join(__dirname, '../front/dist')));
+console.log(path.join(__dirname, '../front/dist'))
+// app.use(express.static('../front/dist'));
+// app.use(express.static(path.resolve(__dirname,'/../front/dist')));
 
 //ROUTERS
 const userRouter = require('./routes/userRouter');
 const ProductRouter = require('./routes/productRouter')
+const ordersRouter = require('./routes/ordersRouter')
 const categoryRouter = require('./routes/categoryRouter')
 const reviewRouter = require('./routes/reviewRouter')
 
 //ROUTES
+app.use('/api/user/admin',ordersRouter);
 app.use('/api/user', userRouter);
 app.use('/api/review', reviewRouter)
 app.use('/api/product', ProductRouter);

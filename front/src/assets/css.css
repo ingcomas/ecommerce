@@ -126,3 +126,7 @@ Rating Star Widget Style
   display: block;
   opacity: 1;
 }
+/* card products*/
+.card-local { 
+  margin-top: 15px 
+}
