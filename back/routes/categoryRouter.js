@@ -4,6 +4,7 @@ const Category = require('../db/models/Category')
 router.get ('/', (req,res) => {
 	Category.findAll({})
 	.then(response=>{
+		console.log (response, ' <=====')
 		res.send(response)
 	})
 })

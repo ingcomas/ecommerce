@@ -21,7 +21,6 @@ class CreateProductContainer extends Component {
 		e.preventDefault();
 		const value= e.target;
 		const images= value.images && value.images.value.split(',');
-		console.log (value.stock.value, ' <====');
 		axios.post ('/api/products/newproduct', {
 			name : value.name.value,
 			description : value.description.value,
