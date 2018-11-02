@@ -1,20 +1,28 @@
-import React from 'react'
-import { Route, Switch} from 'react-router-dom';
+import React from 'react';
+import Products from '../components/Products';
+import axios from 'axios';
 
-import Products from '../components/Products'
-
-class ProductsContainer extends React.Component{
-    constructor(props){
-        super(props);
+export default class extends React.Component{
+    constructor(){
+        super();
+        this.state = {
+            productList: []
+        }
+        
     }
-render(){
-    return (
-        <div>
-
-             <Products /> 
-        </div>
-            
-    )
+    componentDidMount(){
+        axios.get("/api/product")
+        .then(res=> res.data)
+        .then(products=> this.setState({productList:products}) )
+        
+     
+    }
+    render(){
+        console.log(this.state.productList)
+        return(
+            <div >
+                <Products productList={this.state.productList}/>
+            </div>
+        )
+    }
 }
-}
-export default ProductsContainer;
