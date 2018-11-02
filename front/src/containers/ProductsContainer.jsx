@@ -7,18 +7,14 @@ export default class extends React.Component{
         super();
         this.state = {
             productList: []
-        }
-        
+        }        
     }
     componentDidMount(){
         axios.get("/api/product")
         .then(res=> res.data)
-        .then(products=> this.setState({productList:products}) )
-        
-     
+        .then(products=> this.setState({productList:products}) )     
     }
     render(){
-        console.log(this.state.productList)
         return(
             <div >
                 <Products productList={this.state.productList}/>

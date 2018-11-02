@@ -11,24 +11,28 @@ const buscarProducto = (prods) => ({
 
 export const createProduct = (producto) => (dispatch) => {
     const images= producto.images && producto.images.value.split(',');
-    // console.log (images, ' <====');
+    const categories= [];
+
+		for (var i=0; i<producto.categorias.length; i++){
+			producto.categorias[i].checked == true ? categories.push (producto.categorias[i].value) : null
+		}
     axios.post ('/api/product/newproduct', {
-        name : producto.name.value,
-        description : producto.description.value,
-        price : producto.price.value,
-        stock : producto.stock.value,
-        images : images
+			name : producto.name.value,
+			description : producto.description.value,
+			price : producto.price.value,
+			stock : producto.stock.value,
+			images : images,
+			categories : categories
     })
-        .then (res => {
-            console.log (res.data, ' <====');
-            return res.data})
-        .then(data => {
-            // console.log (data, ' <====');
-            return dispatch(productoCreado(data))})
-        .catch(e=>console.log('error',e))
+			.then (res => {
+				return res.data
+			})
+			.then(data => {
+				return dispatch(productoCreado(data))
+			})
+			.catch(e=>console.log('error',e))
 }
 export const searchProduct = (value) => (dispatch) => {
-    console.log(value)
     axios.get(`/api/product/`)
     .then(prodsArr=>dispatch(buscarProducto(prodsArr)))
     

@@ -1,6 +1,7 @@
 const express= require ('express');
 const router= express();
 const Product = require('../db/models/Product')
+const Category= require('../db/models/Category');
 
 module.exports= router;
 
@@ -24,5 +25,11 @@ router.get ('/:name', (req,res) => {
 })
 router.post ('/newproduct', (req,res) => {
 	Product.create (req.body)
-		.then (producto => res.send(producto))
+	.then (producto => {
+		req.body.categories.map(catId => {
+			Category.findOne({ where : { id : catId } })
+				.then (cat => cat.addProduct(producto))
+		})	
+		res.send(producto)
+	})
 })
