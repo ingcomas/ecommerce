@@ -27,7 +27,6 @@ export default class  extends React.Component{
             password: e.target.password.value
         })
         .then(r => {
-            // this.props.history.push('/private')
             this.setState({
                 first_name: r.data.first_name,
                 last_name: r.data.last_name,
