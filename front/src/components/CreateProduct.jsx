@@ -1,8 +1,9 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-export default ({handleSubmit}) => (
+export default ({handleSubmit, categories}) => (
 	<div className= 'container-fluid'>
+	{console.log(categories)}
 		<div className='row'>
 			<div className='col-sm-2'></div>
 			<div className='col-sm-8'>
