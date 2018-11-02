@@ -20,21 +20,22 @@ class CreateProductContainer extends Component {
 		return 	(
 			<div>
 				<CreateProduct handleSubmit= {this.handleSubmit} />
-				
 			</div>
 		)
 	}
 }
 
 function mapStateToProps(state){
-    return { valores: state.product.newProduct,
+    return { 
+			valores: state.product.newProduct,
     }
 }
 function mapDispatchToProps(dispatch){
 	return {
 		createProduct: function(producto){
 			dispatch(createProduct(producto))
-		}
+		},
+
   }
 }
 
