@@ -13,7 +13,7 @@ class CreateProductContainer extends Component {
 	
 	handleSubmit(e){
 		e.preventDefault();
-		this.createProduct(e.target)
+		this.props.createProduct(e.target)
 	}
 	// Renderear el createProduct o productSingle cuando ya se cree uno nuevo.
 	render (){

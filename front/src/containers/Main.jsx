@@ -13,7 +13,6 @@ import RegisterContainer from './RegisterContainer';
 import CategoriesContainer from './CategoriesContainer';
 import ReviewsContainer from './ReviewsContainer'
 import CreateProductContainer from './CreateProductContainer';
-import CategoriesContainer from './CategoriesContainer';
 
 export default class Main extends React.Component{
     constructor(props){
