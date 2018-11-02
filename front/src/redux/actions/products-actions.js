@@ -4,6 +4,10 @@ const productoCreado = (newProduct) => ({
     type: 'NEW_PRODUCT',
     newProduct
 })
+const buscarProducto = (prods) => ({
+    type : 'SEARCH',
+    search : prods
+})
 
 export const createProduct = (producto) => (dispatch) => {
     const images= producto.images && producto.images.value.split(',');
@@ -22,4 +26,10 @@ export const createProduct = (producto) => (dispatch) => {
             // console.log (data, ' <====');
             return dispatch(productoCreado(data))})
         .catch(e=>console.log('error',e))
+}
+export const searchProduct = (value) => (dispatch) => {
+    console.log(value)
+    axios.get(`/api/product/`)
+    .then(prodsArr=>dispatch(buscarProducto(prodsArr)))
+    
 }
