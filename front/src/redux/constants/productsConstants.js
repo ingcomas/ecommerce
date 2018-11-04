@@ -1,0 +1,8 @@
+const NEW_PRODUCT = 'NEW_PRODUCT';
+const LIST_PRODUCTS = 'LIST_PRODUCTS';
+
+export {NEW_PRODUCT, LIST_PRODUCTS};
+
+
+
+            

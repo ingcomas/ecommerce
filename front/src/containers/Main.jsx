@@ -47,16 +47,8 @@ export default class Main extends React.Component{3
                     <Route exact path="/products" component={ProductsContainer} />
                     <Route path="/login" component={LoginContainer}/>
                     <Route path="/products/:id" component={SingleProductsContainer} />
-
-					<Route path='/products/newproduct' component= {CreateProduct} />
-        			<Route path='/user/admin' component= {ProductManagerContainer} />
-                    <Route path="/products/single" component={SingleProductsContainer} />
-					<Route path='/products/newproduct' component= {CreateProduct} />
-        			<Route path='/user/admin' component= {ProductManagerContainer} />
-
-                    <Route path="/register" component={RegisterContainer}/>
                     <Route path="/cart" component={Cart} />
-                    <Redirect from="/" to="/products" />
+                   
                 </Switch>
             </div>
         )
