@@ -1,28 +1,47 @@
 import React from 'react'
-import axios from 'axios';
-import SingleProduct from '../components/SingleProduct'
+import{connect} from 'react-redux'
+import axios from 'axios'
 
+import SingleProduct from '../components/SingleProduct'
+import {singleProduct} from '../redux/actions/products-actions'
 
 class SingleProductContainer extends React.Component{
     constructor(props){
         super(props);
-        this.state={
-            product:{}
-        }
+       
     }
-    componentDidMount(){
-        axios.get("/api/product/3")
-        .then(res=> res.data)
-        .then(product=> this.setState({product}) )}
-render(){
+
+
+
+ 
+
+    render(){
     
-    console.log(this.state.product)
+      console.log(this.props)
+    // console.log(this.state, "hola")
     return (
         <div>
-             <SingleProduct product={this.state.product}/> 
+             <SingleProduct 
+             product={this.state.oneProduct}
+             /> 
         </div>
             
     )
 }
 }
-export default SingleProductContainer;
+
+function mapStateToProps(state){
+    console.log(state , " state.product")
+    return({
+    oneProduct: state.product.oneProduct
+    })
+}
+function mapDispatchToProps(dispatch){
+    return({
+        singleProduct:function(){
+            dispatch(singleProduct(2)
+            )
+        }
+    })
+}
+export default connect(mapStateToProps,mapDispatchToProps)(SingleProductContainer)

@@ -7,9 +7,7 @@ export default class HeaderContainer extends React.Component{
     }
     render(){
         return (
-            <div>
                 <Header/>
-            </div>
         )
     }
 }

@@ -1,12 +1,28 @@
 import axios from 'axios'
+import {NEW_PRODUCT, LIST_PRODUCTS} from '../constants/productsConstants'
 
-const productoCreado = (newProduct) => ({
-    type: 'NEW_PRODUCT',
+ const productoCreado = (newProduct) => ({
+    type: NEW_PRODUCT,
     newProduct
 })
+// const listaproductos = (productos)=>({
+    
+// })
+const listaproductos = function(allproducts){
+    return{
+        type: LIST_PRODUCTS,
+        products : allproducts
+    }
+}
+
 const buscarProducto = (prods) => ({
     type : 'SEARCH',
     search : prods
+})
+const seleccionaProducto =(oneprod)=>({
+    type :"SINGLE_PRODUCT",
+      oneprod      
+
 })
 
 export const createProduct = (producto) => (dispatch) => {
@@ -24,16 +40,27 @@ export const createProduct = (producto) => (dispatch) => {
 			images : images,
 			categories : categories
     })
-			.then (res => {
-				return res.data
-			})
-			.then(data => {
-				return dispatch(productoCreado(data))
-			})
-			.catch(e=>console.log('error',e))
+    .then (res => {
+        return res.data
+    })
+    .then(data => {
+        return dispatch(productoCreado(data))
+    })
+    .catch(e=>console.log('error',e))
 }
+
+export const listProducts = (value)=>(dispatch)=>{
+    axios.get('/api/product')
+        .then(res=>  dispatch(listaproductos(res.data)))
+        .catch(e=>console.log('error',e))
+}
+
 export const searchProduct = (value) => (dispatch) => {
     axios.get(`/api/product/`)
     .then(prodsArr=>dispatch(buscarProducto(prodsArr)))
     
+}
+export const singleProduct=(productId)=>(dispatch)=>{
+    axios.get(`/api/product/${productId}`)
+   .then(res=>dispatch(seleccionaProducto(res.data)))
 }
