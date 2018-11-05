@@ -42,7 +42,8 @@ const categoryRouter = require('./routes/categoryRouter')
 app.use('/api/user/admin',ordersRouter);
 app.use('/api/user', userRouter);
 app.use('/api/product', ProductRouter);
-app.use('/api/categories', categoryRouter)
+app.use('/api/categories', categoryRouter);
+app.use('api/checkout',ordersRouter);
 
 app.use('/*', (req, res) => {
   res.sendFile(path.join(__dirname, '../front/index.html'));

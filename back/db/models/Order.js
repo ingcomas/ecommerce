@@ -6,11 +6,29 @@ const User = require('./User')
 const Order = db.define('order',{
     state : {
         type : Sequelize.ENUM,
-        values : ['created','processing','cancelled','completed']
+        values : ['created','processing','cancelled','completed'],
+        defaultValue: 'created',
+    },
+    first_name: {
+        type: Sequelize.STRING(20),
+        allowNull: false
+    },
+
+    last_name: {
+        type: Sequelize.STRING(30),
+        allowNull: false
     },
     address : {
         type : Sequelize.STRING,
-        allowNull : false
+        allowNull : false,
+    },
+    city: {
+        type: Sequelize.STRING,
+        allowNull: false,
+    },
+    province: {
+        type: Sequelize.STRING,
+        allowNull: false,
     },
     email : {
         type : Sequelize.STRING,
