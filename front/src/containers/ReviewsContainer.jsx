@@ -85,6 +85,7 @@ class ReviewsContainer extends Component{
       stars={this.createStars}
       handleClick={this.handleClick}
       />
+
       </div>
     )
   }
