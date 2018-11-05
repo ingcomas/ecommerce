@@ -1,4 +1,4 @@
-import {LIST_PRODUCTS} from '../constants/productsConstants'
+import {LIST_PRODUCTS, SINGLE_PRODUCT} from '../constants/productsConstants'
 
 const initialSate =[];
 
@@ -13,7 +13,7 @@ export default (state = initialSate, action)=>{
             return Object.assign({},state,{newProduct:action.newProduct})        
         case 'SEARCH':
             return Object.assign({}, state, {search : action.search})
-        case 'SINGLE_PRODUCT':
+        case SINGLE_PRODUCT:
         return Object.assign({}, state, {oneProduct : action.oneProduct})
             default:
             return state;

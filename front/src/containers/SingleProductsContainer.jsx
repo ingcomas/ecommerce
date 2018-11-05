@@ -7,22 +7,18 @@ import {singleProduct} from '../redux/actions/products-actions'
 
 class SingleProductContainer extends React.Component{
     constructor(props){
-        super(props);
-       
+        super(props);     
     }
-
-
-
- 
-
+    componentDidMount(){
+         
+       this.props.singleProduct(this.props.match.params.id)
+    }
     render(){
     
-      console.log(this.props)
-    // console.log(this.state, "hola")
     return (
         <div>
              <SingleProduct 
-             product={this.state.oneProduct}
+             product={this.props.oneProduct}
              /> 
         </div>
             
@@ -31,15 +27,15 @@ class SingleProductContainer extends React.Component{
 }
 
 function mapStateToProps(state){
-    console.log(state , " state.product")
+    // console.log(state , " state.product")
     return({
     oneProduct: state.product.oneProduct
     })
 }
 function mapDispatchToProps(dispatch){
     return({
-        singleProduct:function(){
-            dispatch(singleProduct(2)
+        singleProduct:function(id){
+            dispatch(singleProduct(id)
             )
         }
     })
