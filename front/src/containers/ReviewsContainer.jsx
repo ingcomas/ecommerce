@@ -10,7 +10,7 @@ export default class ReviewsContainer extends Component{
   render(){
     return (
       <div>
-      {/* <RatingWidget /> */}
+       <RatingWidget /> 
       <Reviews />
       </div>
     )
