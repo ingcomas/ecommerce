@@ -4,6 +4,7 @@ import axios from 'axios'
 
 import SingleProduct from '../components/SingleProduct'
 import {singleProduct} from '../redux/actions/products-actions'
+import {addToCart} from '../redux/actions/CartActions'
 
 class SingleProductContainer extends React.Component{
     constructor(props){
@@ -19,6 +20,7 @@ class SingleProductContainer extends React.Component{
         <div>
              <SingleProduct 
              product={this.props.oneProduct}
+             addToCart={this.props.addCart}
              /> 
         </div>
             
@@ -37,6 +39,9 @@ function mapDispatchToProps(dispatch){
         singleProduct:function(id){
             dispatch(singleProduct(id)
             )
+        },
+        addCart : function(product){
+            dispatch(addToCart(product))
         }
     })
 }

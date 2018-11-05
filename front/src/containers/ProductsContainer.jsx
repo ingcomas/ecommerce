@@ -11,10 +11,7 @@ import CartContainer from './CartContainer'
 
          }
 
-            // componentDidMount(){
-            //     axios.get("/api/product")
-            //     .then(res=> console.log(res.data)) [{…}, {…}, {…}, {…}, {…}]
-            // }
+        
 
             
     componentDidMount(){
