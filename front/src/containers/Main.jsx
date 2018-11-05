@@ -13,6 +13,8 @@ import RegisterContainer from './RegisterContainer';
 import CreateCategoryContainer from './CreateCategoryContainer';
 import ReviewsContainer from './ReviewsContainer'
 import CreateProductContainer from './CreateProductContainer';
+import CheckoutContainer from './CheckoutContainer';
+import CartContainer from './CartContainer'
 
 export default class Main extends React.Component{
 	constructor(props){
@@ -39,6 +41,7 @@ export default class Main extends React.Component{
 			</div>
 		)
 	}
+
 }
 
 
