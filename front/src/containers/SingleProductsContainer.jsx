@@ -1,30 +1,51 @@
 import React from 'react'
-import axios from 'axios';
-import SingleProduct from '../components/SingleProduct'
+
+import {connect} from 'react-redux'
 import Reviews from '../components/Reviews'
 
+import SingleProduct from '../components/SingleProduct'
+import {singleProduct} from '../redux/actions/products-actions'
+import {addToCart} from '../redux/actions/CartActions'
 
 class SingleProductContainer extends React.Component{
     constructor(props){
-        super(props);
-        this.state={
-            product:{}
-        }
+        super(props);     
     }
     componentDidMount(){
-        axios.get("/api/product/3")
-        .then(res=> res.data)
-        .then(product=> this.setState({product}) )}
-render(){
+         
+       this.props.singleProduct(this.props.match.params.id)
+    }
+    render(){
     
-    console.log(this.state.product)
     return (
         <div>
-             <SingleProduct product={this.state.product}/> 
-            <Reviews />
+
+            <Reviews /> 
+            <SingleProduct 
+             product={this.props.oneProduct}
+             addToCart={this.props.addCart}
+            /> 
         </div>
             
     )
 }
 }
-export default SingleProductContainer;
+
+function mapStateToProps(state){
+    // console.log(state , " state.product")
+    return({
+    oneProduct: state.product.oneProduct
+    })
+}
+function mapDispatchToProps(dispatch){
+    return({
+        singleProduct:function(id){
+            dispatch(singleProduct(id)
+            )
+        },
+        addCart : function(product){
+            dispatch(addToCart(product))
+        }
+    })
+}
+export default connect(mapStateToProps,mapDispatchToProps)(SingleProductContainer)

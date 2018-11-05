@@ -1,28 +1,46 @@
 import React from 'react';
+import {connect} from 'react-redux'
 import Products from '../components/Products';
-import axios from 'axios';
+import {listProducts} from '../redux/actions/products-actions'
+import {addToCart} from '../redux/actions/CartActions'
 
-export default class extends React.Component{
-    constructor(){
-        super();
-        this.state = {
-            productList: []
-        }
-        
-    }
+
+ class ProductsContainer extends React.Component{
+    constructor(props){
+        super(props);
+
+         }
+
     componentDidMount(){
-        axios.get("/api/product")
-        .then(res=> res.data)
-        .then(products=> this.setState({productList:products}) )
-        
-     
-    }
+        this.props.listProducts()
+    };
     render(){
-        console.log(this.state.productList)
         return(
-            <div >
-                <Products productList={this.state.productList}/>
-            </div>
+                    <Products 
+                    productList={this.props.products}
+                    addToCart={this.props.addCart}
+                    /> 
         )
     }
 }
+
+
+function mapStateToProps(state){
+    //    console.log(state)
+    return{
+            products: state.product.allProducts        
+    }
+};
+function mapDispatchToProps(dispatch){
+    return{
+        listProducts: function(){
+            dispatch(listProducts())
+        },
+        addCart : function(product){
+            dispatch(addToCart(product))
+        }
+
+    }
+};
+export default connect(mapStateToProps,mapDispatchToProps)(ProductsContainer)
+

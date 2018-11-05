@@ -1,16 +1,34 @@
 //requerimos sequelize y la base de datos
 const Sequelize = require ('sequelize');
 const db = require ('../index');
-const User = require('./User')
+const Product = require('./Product')
 
 const Order = db.define('order',{
     state : {
         type : Sequelize.ENUM,
-        values : ['created','processing','cancelled','completed']
+        values : ['created','processing','cancelled','completed'],
+        defaultValue: 'created',
+    },
+    first_name: {
+        type: Sequelize.STRING(20),
+        allowNull: false
+    },
+
+    last_name: {
+        type: Sequelize.STRING(30),
+        allowNull: false
     },
     address : {
         type : Sequelize.STRING,
-        allowNull : false
+        allowNull : false,
+    },
+    city: {
+        type: Sequelize.STRING,
+        allowNull: false,
+    },
+    province: {
+        type: Sequelize.STRING,
+        allowNull: false,
     },
     email : {
         type : Sequelize.STRING,
@@ -23,7 +41,6 @@ const Order = db.define('order',{
         type: Sequelize.ARRAY(Sequelize.INTEGER)
     }
 })
-
 
 
 module.exports = Order

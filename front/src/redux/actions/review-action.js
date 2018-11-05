@@ -15,17 +15,18 @@ const loadReviews = (allReviews)=>({
 // })
 
 export const newReview = (param,stars)=>(dispatch)=>{
-  axios.post('api/review/newReview', {
+  axios.post('/api/review/newReview', {
     title: (param.title.value),
     content: param.content.value,
     rating: stars
   })
   .then(review=>
-    dispatch(createdReview(review.data))).then(response => dispatch(fetchReviews()))
+    dispatch(createdReview(review.data)))
+    .then(response => dispatch(fetchReviews()))
 }
 
 export const fetchReviews = () => (dispatch) => {
-  axios.get('api/review')
+  axios.get('/api/review')
     .then(response => dispatch(loadReviews(response.data)))
 }
 
