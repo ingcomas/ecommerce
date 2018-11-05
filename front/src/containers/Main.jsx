@@ -27,7 +27,8 @@ export default class Main extends React.Component{
             <div className="container-fluid" >
                
                 <HeaderContainer/>
-                <div className="row">
+
+                <div className="row row-view" >
                 <CartContainer />
                 <div className="col-sm-9">
                     <Switch>
@@ -41,7 +42,6 @@ export default class Main extends React.Component{
                         <Route path="/login" component={LoginContainer}/>
                         <Route path='/cart/checkout' component={CheckoutContainer} />
                         <Route path="/products/:id" component={SingleProductsContainer} />
-                        <Route path="/cart" component={Cart} />
                     </Switch>
                 </div>
                 </div>
