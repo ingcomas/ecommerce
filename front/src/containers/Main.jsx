@@ -32,7 +32,8 @@ render(){
                 <div className="col-sm-9">
                     <Switch>
                         <Route path='/products/newproduct' component= {CreateProductContainer} />
-                        <Route exact path='/user/admin/orders' component={OrderContainer}/>
+                        {/* <Route path='/user/allusers' component= {  } /> */}
+												<Route exact path='/user/admin/orders' component={OrderContainer}/>
                         <Route path='/user/admin' component= {ProductManagerContainer} />
                         <Route path="/register" component={RegisterContainer}/>
                         <Route path="/login" component={LoginContainer}/>
