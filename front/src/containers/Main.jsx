@@ -42,6 +42,34 @@ export default class Main extends React.Component{
 		)
 	}
 
+
+    render(){
+        
+        return (
+            <div className="container-fluid" >
+               
+                <HeaderContainer/>
+                <div className="row picante">
+                <CartContainer />
+                <div className="col-sm-9">
+                    <Switch>
+                        <Route path='/products/newproduct' component= {CreateProductContainer} />
+                        <Route exact path='/user/admin/orders' component={OrderContainer}/>
+                        <Route path='/user/admin' component= {ProductManagerContainer} />
+                        <Route path="/register" component={RegisterContainer}/>
+                        <Route path="/login" component={LoginContainer}/>
+                        <Route path='/categories' component={CategoriesContainer} />
+                        <Route exact path="/products" component={ProductsContainer} />
+                        <Route path="/login" component={LoginContainer}/>
+                        <Route path="/products/:id" component={SingleProductsContainer} />
+                        <Route path="/cart" component={Cart} />
+                    </Switch>
+                </div>
+                </div>
+            </div>
+        )
+    }
+
 }
 
 
