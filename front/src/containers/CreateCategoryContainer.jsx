@@ -2,21 +2,20 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 
 import CreateCategory from '../components/CreateCategory';
-import { postCategory, axiosCategories } from '../redux/actions/categoriesActions';
-import store from '../redux/store';
+import { postCategory, axiosCategories, deleteCategory } from '../redux/actions/categoriesActions';
 
 class CreateCategoryContainer extends Component {
 	constructor(props){
 		super(props);
-		this.state= store.getState();
 		this.handleSubmit= this.handleSubmit.bind(this);
+		this.handleClick= this.handleClick.bind(this);
 	}
 	handleClick(e){
-		// Definir funcion para borrar la categoria de la DB.
+		this.props.deleteCategory(e.target.id);
 	}
 	handleSubmit(e){
 		e.preventDefault();
-		this.props.createCategory(e.target.name.value);
+		this.props.createCategory(e.target.nombre.value);
 	}
 	componentDidMount(){
 		this.props.getCategories();
@@ -25,7 +24,11 @@ class CreateCategoryContainer extends Component {
 	render(){
 		return (
 			<div>
-				<CreateCategory categories= { this.props.categories } handleSubmit= { this.handleSubmit } />
+				<CreateCategory 
+					categories= { this.props.categories } 
+					handleSubmit= { this.handleSubmit } 
+					handleClick= { this.handleClick } 
+				/>
 			</div>
 		)
 	}
@@ -33,7 +36,7 @@ class CreateCategoryContainer extends Component {
 
 const mapStateToProps= (state) => {
 	return {
-		categories : state.categories.categories
+		categories : state.categories.categories,	
 	}
 }
 
@@ -44,6 +47,9 @@ const mapDispatchToProps= (dispatch) => {
 		},
 		getCategories : function (){
 			dispatch(axiosCategories());
+		},
+		deleteCategory : function(catId){
+			dispatch(deleteCategory(catId))
 		}
 	}
 }
