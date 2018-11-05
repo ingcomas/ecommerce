@@ -41,7 +41,7 @@ export default class Main extends React.Component{
 
                 <div className="row picante ">
                 <CartContainer />
-                <div className="col-sm-9">
+                <div className="col-sm-12 col-xs-12 col-md-12 col-lg-9">
                     <Switch>
                         <Route path='/products/newproduct' component= {CreateProductContainer} />
                         <Route exact path='/user/admin/orders' component={OrderContainer}/>
