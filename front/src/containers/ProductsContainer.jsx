@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import Products from '../components/Products';
 import {listProducts} from '../redux/actions/products-actions'
 import {addToCart} from '../redux/actions/CartActions'
+import CartContainer from './CartContainer'
 
  class ProductsContainer extends React.Component{
     constructor(props){
@@ -19,12 +20,10 @@ import {addToCart} from '../redux/actions/CartActions'
     };
     render(){
         return(
-            <div >
-                <Products 
-                productList={this.props.products}
-                addToCart={this.props.addCart}
-                />  
-            </div>
+                    <Products 
+                    productList={this.props.products}
+                    addToCart={this.props.addCart}
+                    /> 
         )
     }
 }
