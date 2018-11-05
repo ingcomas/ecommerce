@@ -1,8 +1,11 @@
 .tarjeta{
-    height: 700px;
+  margin-top: 5%;
+    height: auto
+
   }
   .cartWhite{
     color:white
+
   }
   .picante{
     margin-top: 250px;
@@ -13,4 +16,25 @@
   .delete-button{
     color: red;
     margin: 0 5px
+
+
+  }
+  .row-view{
+    margin-top: 5%
+  }
+  .single-product{
+  
+  }
+  .cont-img-single-product{
+   
+    
+  }
+  .cont-props-single-product{
+    background-color: gray;
+    opacity: 0.5;
+  }
+  .img-single-product{
+    width: 100%;
+    height: 100%;
+
   }

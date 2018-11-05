@@ -3,6 +3,7 @@ importamos librerias
 */
 import React,{ Component } from 'react';
 import { connect } from 'react-redux';
+import {Link} from 'react-router-dom'
 /*
 importamos archivos nuestros
 */
@@ -19,8 +20,9 @@ class CartContainer extends Component {
     }
     render(){
             // {this.props.cart.cart[0] && console.log(this.props.cart.cart)}
-        
+            console.log(this.props.cart)
         return(
+
             <table className='table col-sm-3 cartWhite'>
             <thead>
               <tr>
@@ -40,6 +42,7 @@ class CartContainer extends Component {
             </tbody>
             <tr> <button className="btn btn-success">Para ir al checkout</button></tr>
           </table>
+
         )
     }
 }

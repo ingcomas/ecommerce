@@ -8,12 +8,14 @@ import CartContainer from './CartContainer'
  class ProductsContainer extends React.Component{
     constructor(props){
         super(props);
-     
-        }
+
+         }
+
             // componentDidMount(){
             //     axios.get("/api/product")
             //     .then(res=> console.log(res.data)) [{…}, {…}, {…}, {…}, {…}]
             // }
+
             
     componentDidMount(){
         this.props.listProducts()
