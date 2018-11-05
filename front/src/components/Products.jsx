@@ -2,13 +2,15 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 
 
+
 export default ({productList})=>(
+  <div className='container'>
   <div className='row'>
   
       { productList.map((product)=>(
  
-<div key={product.id} className='col-sm-3' >
-<div className="card border-top"   style={{width: "18rem"}} >
+<div key={product.id} className='col-sm-6 col-md-3 col-lg- 4' >
+<div className="card border-top"   style={{width: "1"}} >
   <img className="card-img-top" src="" />
   <div className="card-body">
     <h5 className="card-title">{product.name}</h5>
@@ -22,10 +24,12 @@ export default ({productList})=>(
 
     </div>
     
-  </div>
+   </div>
 </div>
 </div>
+
 ))}
+</div>
 </div>)
 
 

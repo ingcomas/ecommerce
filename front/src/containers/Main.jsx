@@ -13,6 +13,7 @@ import RegisterContainer from './RegisterContainer';
 import CategoriesContainer from './CategoriesContainer';
 import ReviewsContainer from './ReviewsContainer'
 import CreateProductContainer from './CreateProductContainer';
+import CartContainer from './CartContainer'
 
 export default class Main extends React.Component{
     constructor(props){
@@ -22,11 +23,12 @@ export default class Main extends React.Component{
     render(){
         
         return (
-            <div className="container-fluid">
+            <div className="container-fluid" >
                
                 <HeaderContainer/>
+                    <div className="col-sm-9">
                 <Switch>
-										<Route path='/products/newproduct' component= {CreateProductContainer} />
+					<Route path='/products/newproduct' component= {CreateProductContainer} />
                     <Route exact path='/user/admin/orders' component={OrderContainer}/>
         						<Route path='/user/admin' component= {ProductManagerContainer} />
                     <Route path="/register" component={RegisterContainer}/>
@@ -37,6 +39,8 @@ export default class Main extends React.Component{
                     <Route path="/cart" component={Cart} />
                     <Redirect from="/" to="/products" />
                 </Switch>
+                <CartContainer />
+                    </div>
             </div>
         )
     }

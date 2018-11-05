@@ -5,14 +5,10 @@ const initialState = {
 };
 export default function cart(state = initialState, action) {
     switch (action.type) {
-        case CART_ADD:
+        case 'CART_ADD':
             return Object.assign({},state,{
-                product : action.productId
+                cart : [...state, action.product]
             });
-        case CART_REMOVE:
-            return Object.assign({},state,{
-                product : action.productId
-            });;
         default:
             return state;
     }
