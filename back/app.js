@@ -27,16 +27,22 @@ app.use(cookieParser());
 app.use(passport.initialize());
 app.use(passport.session());
 //app.use(express.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.static('../front/dist'));
+app.use(express.static(path.join(__dirname, '../front/dist')));
+console.log(path.join(__dirname, '../front/dist'))
+// app.use(express.static('../front/dist'));
+// app.use(express.static(path.resolve(__dirname,'/../front/dist')));
 
 //ROUTERS
 const userRouter = require('./routes/userRouter');
 const ProductRouter = require('./routes/productRouter')
+const ordersRouter = require('./routes/ordersRouter')
+const categoryRouter = require('./routes/categoryRouter')
 
 //ROUTES
+app.use('/api/user/admin',ordersRouter);
 app.use('/api/user', userRouter);
 app.use('/api/product', ProductRouter);
+app.use('/api/categories', categoryRouter)
 
 app.use('/*', (req, res) => {
   res.sendFile(path.join(__dirname, '../front/index.html'));
@@ -60,7 +66,6 @@ function(username, password, done) {
     })
   }
 ));
-
 passport.serializeUser(function(user, done) {
   done(null, user);
 });

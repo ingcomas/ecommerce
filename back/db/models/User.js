@@ -54,7 +54,10 @@ const User = db.define('user', {
         allowNull: false
     },
 
-    access: Sequelize.STRING
+    access: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false
+    }
 
 });
 

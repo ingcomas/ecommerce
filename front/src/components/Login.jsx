@@ -15,6 +15,7 @@ export default (props) => {
                     {props.wrongPassword ? <div className="alert alert-danger">{props.wrongPassword}</div> : null}
                 </div>
                 <button type="submit" className="btn btn-primary">Login</button>
+                <button onClick={props.assignAdmin}>Assign admin</button>
             </form>
         </div>
     )

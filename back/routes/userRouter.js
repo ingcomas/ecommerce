@@ -21,18 +21,43 @@ router.post('/newUser', (req, res) => {
 
 router.post('/logged', passport.authenticate('local'), (req, res) =>{
         const authenticated = req.isAuthenticated();
-        if(authenticated){console.log(req.session.passport)
+        if(authenticated){
             res.send({
                 first_name: req.user.first_name,
                 last_name: req.user.last_name,
                 email: req.user.email,
                 address: req.user.address,
                 dni: req.user.dni,
-                cellphone: req.user.cellphone
+                cellphone: req.user.cellphone,
+                access: req.user.access
             }) 
         }
     }
 );
+
+router.post('/createAdmin', (req, res) => {
+    User.findOne({
+        where: {
+            email: req.body.email
+        }
+    })
+    .then(user => {
+        user.access = true;
+        user.save();
+    })
+});
+
+//GETS
+
+router.get('/allUsers', (req, res) => {
+    User.findAll({})
+    .then(users => res.send(users));
+});
+
+router.get('/logout', (req, res) => {
+    req.logout();
+    res.send('Usuario deslogeado');
+});
     //req.user
     //req.isAuthenticated());
     //req.logout

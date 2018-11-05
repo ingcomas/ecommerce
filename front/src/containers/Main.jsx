@@ -2,16 +2,19 @@ import React from 'react';
 import { Link, Route, Switch, Redirect } from 'react-router-dom';
 
 //CONTAINERS
-import Cart from '../containers/CartContainer'
-import Jumbotron from '../components/Jumbotron';
+import OrderContainer from './OrderContainer';
+import Cart from './CartContainer'
 import HeaderContainer from './HeaderContainer';
-import CreateProduct from '../components/CreateProduct';
-import LoginContainer from '../containers/LoginContainer';
-import ProductsContainer from '../containers/ProductsContainer'
+import LoginContainer from './LoginContainer';
+import ProductsContainer from './ProductsContainer'
+import SingleProductsContainer from './SingleProductsContainer'
 import ProductManagerContainer from './ProductManagerContainer';
-import RegisterContainer from '../containers/RegisterContainer';
-import SingleProductsContainer from '../containers/SingleProductsContainer'
-import PrivateProfileContainer from './PrivateProfileContainer';
+import RegisterContainer from './RegisterContainer';
+import CategoriesContainer from './CategoriesContainer';
+import CreateProductContainer from './CreateProductContainer';
+
+import PrivateProfile from '../components/PrivateProfile';
+import Jumbotron from '../components/Jumbotron';
 
 export default class Main extends React.Component{
     constructor(props){
@@ -19,21 +22,23 @@ export default class Main extends React.Component{
     }
 
     render(){
+        
         return (
-            <div>
+            <div className="container-fluid">
                 <HeaderContainer/>
                 <Switch>
                     <Route exact path="/" component={Jumbotron}/>
                     <Route exact path="/products" component={ProductsContainer} />
+                    <Route exact path='/user/admin/orders' component={OrderContainer}/>
 
                     <Route path="/cart" component={Cart} />
                     <Route path="/login" component={LoginContainer}/>
                     <Route path="/register" component={RegisterContainer}/>
-                    <Route path="/profile" component={PrivateProfileContainer}/>
+                    <Route path="/profile" component={PrivateProfile}/>
         			<Route path='/user/admin' component= {ProductManagerContainer} />
-                    <Route path='/products/newproduct' component= {CreateProduct} />
-                    <Route path="/products/single" component={SingleProductsContainer} />
-
+                    <Route path='/categories' component={CategoriesContainer} />
+                    <Route path='/products/newproduct' component= {CreateProductContainer} />
+                    <Route path="/products/:id" component={SingleProductsContainer} />							
                     <Redirect from="/" to="/products" />
                 </Switch>
             </div>
