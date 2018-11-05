@@ -14,6 +14,7 @@ import CreateCategoryContainer from './CreateCategoryContainer';
 import ReviewsContainer from './ReviewsContainer'
 import CreateProductContainer from './CreateProductContainer';
 import CheckoutContainer from './CheckoutContainer';
+
 import CartContainer from './CartContainer'
 
 export default class Main extends React.Component{
@@ -21,30 +22,7 @@ export default class Main extends React.Component{
 			super(props);
 	}
 
-	render(){
-			
-		return (
-			<div className="container-fluid">
-				<HeaderContainer/>
-					<Switch>
-						<Route path='/user/admin' component= {ProductManagerContainer} />
-						<Route path="/register" component={RegisterContainer}/>
-						<Route path="/login" component={LoginContainer}/>
-						<Route path='/categories/newcategory' component={CreateCategoryContainer} />
-						<Route path='/products/newproduct' component= {CreateProductContainer} />
-						<Route path="/products/:id" component={SingleProductsContainer} />							
-						<Route exact path="/products" component={ProductsContainer} />
-						<Route exact path='/user/admin/orders' component={OrderContainer}/>
-						<Route path="/cart" component={Cart} />
-						<Redirect from="/" to="/products" />
-				</Switch>
-			</div>
-		)
-	}
-
-
-    render(){
-        
+render(){        
         return (
             <div className="container-fluid" >
                
@@ -58,10 +36,11 @@ export default class Main extends React.Component{
                         <Route path='/user/admin' component= {ProductManagerContainer} />
                         <Route path="/register" component={RegisterContainer}/>
                         <Route path="/login" component={LoginContainer}/>
-                        <Route path='/categories' component={CategoriesContainer} />
+                        <Route path='/categories/newcategory' component={CreateCategoryContainer} />
                         <Route exact path="/products" component={ProductsContainer} />
                         <Route path="/login" component={LoginContainer}/>
                         <Route path="/products/:id" component={SingleProductsContainer} />
+                        <Route path='/cart/checkout' component={CheckoutContainer} />
                         <Route path="/cart" component={Cart} />
                     </Switch>
                 </div>

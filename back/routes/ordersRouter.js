@@ -15,6 +15,8 @@ if(req.query.state  == ''){
   }
 });
 router.post('/',(req,res)=>{
+    console.log(req.body);
+    
     Orders.create({
         first_name: req.body.firstName,
         last_name: req.body.lastName,

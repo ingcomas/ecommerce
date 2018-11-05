@@ -13,7 +13,7 @@ handleSubmit(e){
     this.props.createOrder(e.target,this.props.items);
 }
 render (){
-    console.log(this.props.compraProductos);
+    
     return (
         <div>
             <Checkout
