@@ -17,17 +17,29 @@ import CheckoutContainer from './CheckoutContainer';
 
 import CartContainer from './CartContainer'
 
-export default class Main extends React.Component{
-	constructor(props){
-			super(props);
-	}
 
-render(){        
+
+
+//COMPONENTS
+import CreateProduct from '../components/CreateProduct';
+import Jumbotron from '../components/Jumbotron';
+
+
+
+export default class Main extends React.Component{
+    constructor(props){
+        super(props);
+    }
+
+    render(){
+        
+
         return (
             <div className="container-fluid" >
                
                 <HeaderContainer/>
-                <div className="row picante">
+
+                <div className="row picante ">
                 <CartContainer />
                 <div className="col-sm-12 col-xs-12 col-md-12 col-lg-9">
                     <Switch>
