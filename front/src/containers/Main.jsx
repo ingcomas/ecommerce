@@ -13,6 +13,7 @@ import RegisterContainer from './RegisterContainer';
 import CategoriesContainer from './CategoriesContainer';
 import ReviewsContainer from './ReviewsContainer'
 import CreateProductContainer from './CreateProductContainer';
+import CheckoutContainer from './CheckoutContainer';
 import CartContainer from './CartContainer'
 
 export default class Main extends React.Component{
@@ -38,6 +39,7 @@ export default class Main extends React.Component{
                         <Route path='/categories' component={CategoriesContainer} />
                         <Route exact path="/products" component={ProductsContainer} />
                         <Route path="/login" component={LoginContainer}/>
+                        <Route path='/cart/checkout' component={CheckoutContainer} />
                         <Route path="/products/:id" component={SingleProductsContainer} />
                         <Route path="/cart" component={Cart} />
                     </Switch>
