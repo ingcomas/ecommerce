@@ -5,6 +5,7 @@ import axios from 'axios'
 import SingleProduct from '../components/SingleProduct'
 import {singleProduct} from '../redux/actions/products-actions'
 import {addToCart} from '../redux/actions/CartActions'
+import RewiesContainer from './ReviewsContainer'
 
 class SingleProductContainer extends React.Component{
     constructor(props){
@@ -22,6 +23,7 @@ class SingleProductContainer extends React.Component{
              product={this.props.oneProduct}
              addToCart={this.props.addCart}
              /> 
+             <RewiesContainer/>
         </div>
             
     )
