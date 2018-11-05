@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios';
 import SingleProduct from '../components/SingleProduct'
+import Reviews from '../components/Reviews'
 
 
 class SingleProductContainer extends React.Component{
@@ -20,6 +21,7 @@ render(){
     return (
         <div>
              <SingleProduct product={this.state.product}/> 
+            <Reviews />
         </div>
             
     )

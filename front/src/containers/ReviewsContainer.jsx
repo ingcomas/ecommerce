@@ -1,37 +1,51 @@
 import React,{Component} from 'react'
-import {Route,Link} from 'react-router-dom'
 import Reviews from '../components/Reviews.jsx'
-import {RatingWidget,Rating,Star} from '../components/Stars'
+import {connect} from 'react-redux'
 import axios from 'axios'
+import {newReview,fetchReviews,ratingPromedio} from '../redux/actions/review-action'
 
-export default class ReviewsContainer extends Component{
-  constructor(){
-    super()
+
+function mapStateToProps(state){
+  return { comentarios: state.review}
+}
+
+function mapDispatchToProps(dispatch){
+  return { 
+    newReview: function(param,stars){
+      dispatch(newReview(param,stars))
+    },
+    fetchReviews: function (){
+      dispatch(fetchReviews())
+    }
+  }
+}
+
+
+class ReviewsContainer extends Component{
+  constructor(props){
+    super(props)
     this.state={
       reviews:[],
       ratingProm:0,
       rating:[],
-      stars:0
+      stars:0,
     }
     this.createStars=this.createStars.bind(this)
     this.handleClick=this.handleClick.bind(this)
-    this.newReview=this.newReview.bind(this)
+    this.handleSubmit=this.handleSubmit.bind(this)
   }
+
   handleClick (stars){
-    console.log(stars)
     this.setState({
       stars
     });
   }
-  
-  newReview(e) {
-    // e.preventDefault();
-    axios.post('api/review/newReview', {
-      title: (e.target.title.value) ? e.target.title.value : "Anonymous" ,
-      content: e.target.content.value,
-      rating: this.state.stars
-    })
+
+  handleSubmit(e) {
+    e.preventDefault();
+    this.props.newReview(e.target,this.state.stars)
   }
+
   createStars = (num)=>{
     var stars = []
     for(var i = 0; i < num; i++){
@@ -39,32 +53,35 @@ export default class ReviewsContainer extends Component{
     }
     return stars
   }
+
   componentDidMount(){   
-    axios.get('api/review')
-    .then(response => {
-      const reviews = response.data;
-      this.setState({reviews},()=>{this.ratingPromedio(this.state.reviews)})
-    })
+    this.props.fetchReviews();
+    this.ratingPromedio()
   }
-  ratingPromedio(reviews){
+
+  componentWillReceiveProps(){
+    // this.props.fetchReviews()
+  }
+
+  ratingPromedio(){
     var aux = 0
-    this.state.reviews.forEach(review => {
-      aux += review.rating;
+    var count = 0
+    this.props.comentarios.comentarios && this.props.comentarios.comentarios.forEach(review => {
+          aux += review.rating;
+          count ++
     });
-    aux = Math.round(aux/ reviews.length)
+    aux = Math.round(aux/ count)
     this.setState({ratingProm: aux},()=>{})
   }
   
-  
   render(){
-    console.log(this.state.stars," Estrellas Puto")
     return (
       <div>
-      {/* <RatingWidget /> */}
-      {/* <Stars/> */}
-      <Reviews newReview={this.newReview} 
-      reviews={this.state.reviews}
+      <Reviews 
+      handleSubmit={this.handleSubmit} 
+      reviews={this.props.comentarios.comentarios}
       ratingPromedio={this.state.ratingProm}
+      promedio={this.props.comentarios.average}
       stars={this.createStars}
       handleClick={this.handleClick}
       />
@@ -74,4 +91,4 @@ export default class ReviewsContainer extends Component{
 }
 
 
-
+export default connect(mapStateToProps,mapDispatchToProps)(ReviewsContainer)

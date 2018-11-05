@@ -9,8 +9,6 @@ router.get('/',(req,res)=>{
 })
 
 router.post('/newReview', (req,res)=>{
-  // console.log(typeof req.body.rating)
-  console.log(req.body.content)
   Review.create({
     title: req.body.title,
     content:req.body.content,
