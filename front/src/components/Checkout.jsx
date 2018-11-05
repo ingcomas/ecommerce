@@ -1,8 +1,8 @@
 import React from 'react'
 
-export default ({cantidad,productos,handleSubmit})=> (
+export default ({cantidad,items,handleSubmit})=> (
     <div className="container" style={{marginTop: '10%'}}>
-        <h1 style={{color: 'white'}}>Chekout</h1>
+        <h1 style={{color: 'white'}}>Checkout</h1>
         <form className=" w-75" onSubmit={handleSubmit}>
         <div className="form-row">
             <div className="col-md-4 mb-3">
@@ -16,6 +16,12 @@ export default ({cantidad,productos,handleSubmit})=> (
             <div className="col-md-4 mb-3">
                 <label for="email">Email</label>
                 <input type="email" className="form-control" id="email" placeholder="Email" required/>
+            </div>
+        </div>
+        <div className="form-row">
+            <div className="col-md-6 mb-3">
+                <label for="address">Dirección</label>
+                <input type="text" className="form-control" id="address" placeholder="Domicilio de entrega" required/>
             </div>
         </div>
         <div className="form-row">

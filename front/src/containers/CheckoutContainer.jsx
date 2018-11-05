@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import Checkout from '../components/Checkout'
+import {createOrder} from '../redux/actions/orders-actions'
 
 class CheckoutContainer extends React.Component{
     constructor(props){
@@ -8,16 +9,16 @@ class CheckoutContainer extends React.Component{
         this.handleSubmit=this.handleSubmit.bind(this)
     }
 handleSubmit(e){
-e.preventDefault();
-console.log(e.target.lastName.value);
-
+    e.preventDefault();
+    this.props.createOrder(e.target,this.props.items);
 }
 render (){
+    console.log(this.props.compraProductos);
     return (
         <div>
             <Checkout
             handleSubmit={this.handleSubmit}
-            productos={1}
+            items={this.props.items}
             cantidad={1}
             />
         </div>
@@ -26,14 +27,16 @@ render (){
 }
 function mapStateToProps(state){
     return { 
-        // compraProductos: state.cart.productos,
+         items: state.cart.cart,
         // cantidad: state.cart.cantidad
 
     }
 }
 function mapDispatchToProps(disptach){
     return {
-
+        createOrder: function(params,items){
+            disptach(createOrder(params,items))
+        }
     }
 }
 export default connect(mapStateToProps,mapDispatchToProps)(CheckoutContainer);

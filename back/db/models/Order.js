@@ -1,7 +1,7 @@
 //requerimos sequelize y la base de datos
 const Sequelize = require ('sequelize');
 const db = require ('../index');
-const User = require('./User')
+const Product = require('./Product')
 
 const Order = db.define('order',{
     state : {
@@ -41,7 +41,6 @@ const Order = db.define('order',{
         type: Sequelize.ARRAY(Sequelize.INTEGER)
     }
 })
-
 
 
 module.exports = Order

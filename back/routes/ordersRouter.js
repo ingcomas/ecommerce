@@ -23,8 +23,11 @@ router.post('/',(req,res)=>{
         province: req.body.province,
         email: req.body.email,
         cellphone: req.body.cellphone,
-        products: req.body
-    }).then(response=>res.send(response))
+        products: req.body.products
+    }).then(response=>{
+        console.log(response)
+        
+        res.send(response)})
 })
 
 
