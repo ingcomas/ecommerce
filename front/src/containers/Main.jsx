@@ -26,7 +26,7 @@ export default class Main extends React.Component{
             <div className="container-fluid" >
                
                 <HeaderContainer/>
-                    <div className="col-sm-9">
+                    <div className="col-sm-12">
                 <Switch>
 					<Route path='/products/newproduct' component= {CreateProductContainer} />
                     <Route exact path='/user/admin/orders' component={OrderContainer}/>
@@ -40,7 +40,6 @@ export default class Main extends React.Component{
                     <Route path="/cart" component={Cart} />
                    
                 </Switch>
-                <CartContainer />
                     </div>
             </div>
         )
