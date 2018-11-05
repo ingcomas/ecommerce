@@ -33,6 +33,11 @@ router.post('/logged', passport.authenticate('local'), (req, res) =>{
         }
     }
 );
+
+router.get ('/allusers', (req,res) => {
+	User.findAll({})
+		.then (data => res.send(data))
+})
     //req.user
     //req.isAuthenticated());
     //req.logout

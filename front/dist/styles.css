@@ -1,14 +1,17 @@
 .tarjeta{
   margin-top: 5%;
-    height: auto
-
-  }
+    height: auto;
+    }
+    .tarjeta-body{
+      opacity: 0.8;
+      background-color: gray
+    }
   .cartWhite{
     color:white
 
   }
   .picante{
-    margin-top: 250px;
+    margin-top: 10%;
   }
   .shoppingCart{
     list-style: none;
