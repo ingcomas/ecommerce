@@ -26,7 +26,7 @@ export default class Main extends React.Component{
             <div className="container-fluid" >
                
                 <HeaderContainer/>
-                <div className="row">
+                <div className="row picante">
                 <CartContainer />
                 <div className="col-sm-9">
                     <Switch>
