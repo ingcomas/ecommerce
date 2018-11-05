@@ -17,9 +17,6 @@ import {listProducts} from '../redux/actions/products-actions'
              this.props.listProducts()
                 console.log(this.props.products)
             };
-    
-        
-
     render(){
         return(
             <div >
