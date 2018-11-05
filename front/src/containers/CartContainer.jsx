@@ -13,10 +13,8 @@ class CartContainer extends Component {
         super(props)
     }
     componentDidMount(){
-        console.log(this.props)
     }
     handleClick(){
-        console.log('fafafa')
     }
     render(){
             // {this.props.cart.cart[0] && console.log(this.props.cart.cart)}
@@ -40,7 +38,7 @@ class CartContainer extends Component {
                 </tr>
               ))}
             </tbody>
-            <tr> <button className="btn btn-success">Para ir al checkout</button></tr>
+            <tr> <Link to='/cart/checkout' className="btn btn-success">Para ir al checkout</Link></tr>
           </table>
 
         )
