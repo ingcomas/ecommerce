@@ -1,8 +1,11 @@
 .tarjeta{
   margin-top: 5%;
-    height: auto
-
-  }
+    height: auto;
+    }
+    .tarjeta-body{
+      opacity: 0.8;
+      background-color: gray
+    }
   .cartWhite{
     color:white
 

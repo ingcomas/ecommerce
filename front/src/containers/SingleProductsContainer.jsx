@@ -1,11 +1,11 @@
 import React from 'react'
 
 import {connect} from 'react-redux'
-import Reviews from '../components/Reviews'
 
 import SingleProduct from '../components/SingleProduct'
 import {singleProduct} from '../redux/actions/products-actions'
 import {addToCart} from '../redux/actions/CartActions'
+import ReviewsContainer from './ReviewsContainer'
 
 class SingleProductContainer extends React.Component{
     constructor(props){
@@ -20,11 +20,13 @@ class SingleProductContainer extends React.Component{
     return (
         <div>
 
-            <Reviews /> 
+            
             <SingleProduct 
              product={this.props.oneProduct}
              addToCart={this.props.addCart}
-            /> 
+             /> 
+             <ReviewsContainer/>
+             
         </div>
             
     )
