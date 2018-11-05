@@ -10,6 +10,7 @@ import productReducer from './productReducer'
 import CartReducer from './CartReducer'
 import ordersReducer from './ordersReducer'
 import loginReducer from './loginReducer'
+import reviewReducer from './reviewReducer';
 import categoriesReducer from './categoriesReducer'
 
 export default combineReducers({
@@ -17,5 +18,6 @@ export default combineReducers({
     cart : CartReducer,
     orders: ordersReducer,
     log: loginReducer,
+    review: reviewReducer,
     categories : categoriesReducer,
   });

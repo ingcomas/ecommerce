@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import Products from '../components/Products';
 import {listProducts} from '../redux/actions/products-actions'
 import {addToCart} from '../redux/actions/CartActions'
-import CartContainer from './CartContainer'
+
 
  class ProductsContainer extends React.Component{
     constructor(props){
@@ -11,9 +11,6 @@ import CartContainer from './CartContainer'
 
          }
 
-        
-
-            
     componentDidMount(){
         this.props.listProducts()
     };
