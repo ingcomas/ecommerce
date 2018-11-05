@@ -34,7 +34,9 @@
     opacity: 0.5;
   }
   .img-single-product{
-    width: 100%;
-    height: 100%;
+
+    width: 200px;
+    height: auto;
+
 
   }
