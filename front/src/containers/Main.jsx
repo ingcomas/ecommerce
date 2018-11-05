@@ -35,9 +35,10 @@ export default class Main extends React.Component{
                     <Route path="/login" component={LoginContainer}/>
                     <Route path='/categories' component={CategoriesContainer} />
                     <Route exact path="/products" component={ProductsContainer} />
-                    <Route path="/products/:id" component={SingleProductsContainer} />							
+                    <Route path="/login" component={LoginContainer}/>
+                    <Route path="/products/:id" component={SingleProductsContainer} />
                     <Route path="/cart" component={Cart} />
-                    <Redirect from="/" to="/products" />
+                   
                 </Switch>
                 <CartContainer />
                     </div>

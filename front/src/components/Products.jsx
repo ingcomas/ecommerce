@@ -4,10 +4,12 @@ import {Link} from 'react-router-dom'
 
 
 export default ({productList})=>(
+
   <div className='container'>
+  
   <div className='row'>
   
-      { productList.map((product)=>(
+      {productList && productList.map((product)=>(
  
 <div key={product.id} className='col-sm-6 col-md-3 col-lg- 4' >
 <div className="card border-top"   style={{width: "1"}} >
@@ -25,12 +27,21 @@ export default ({productList})=>(
     </div>
     
    </div>
+
 </div>
 </div>
 
 ))}
 </div>
-</div>)
+
+
+  
+</div>
+
+
+ 
+)
+
 
 
 
