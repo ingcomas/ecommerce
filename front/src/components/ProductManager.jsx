@@ -4,8 +4,8 @@ import {Link} from 'react-router-dom';
 export default () => (
 	<div className='container' style={{marginTop : '5rem'}}>
 		<div className='row'>
-			<div className='col-sm-3'>
-				<div className="card" style={{width: '13rem'}}>
+			<div className='col-sm-2'>
+				<div className="card" style={{width: '12rem'}}>
 					<img className="card-img-top" src="https://cdn3.iconfinder.com/data/icons/line/36/add-512.png" alt="Card image cap" />
 					<div className="card-body">
 						<h5 className="card-title">New Product</h5>
@@ -14,8 +14,8 @@ export default () => (
 					</div>
 				</div>
 			</div>
-			<div className='col-sm-3'>
-				<div className="card" style={{width: '13rem'}}>
+			<div className='col-sm-2'>
+				<div className="card" style={{width: '12rem'}}>
 					<img className="card-img-top" src="https://cdn3.iconfinder.com/data/icons/line/36/add-512.png" alt="Card image cap" />
 					<div className="card-body">
 						<h5 className="card-title">Edit Product</h5>
@@ -24,8 +24,8 @@ export default () => (
 					</div>
 				</div>
 			</div>
-			<div className='col-sm-3'>
-				<div className="card" style={{width: '13rem'}}>
+			<div className='col-sm-2'>
+				<div className="card" style={{width: '12rem'}}>
 					<img className="card-img-top" src="https://cdn3.iconfinder.com/data/icons/line/36/add-512.png" alt="Card image cap" />
 					<div className="card-body">
 						<h5 className="card-title">New Category</h5>
@@ -34,12 +34,22 @@ export default () => (
 					</div>
 				</div>
 			</div>
-			<div className='col-sm-3'>
-				<div className="card" style={{width: '13rem'}}>
+			<div className='col-sm-2'>
+				<div className="card" style={{width: '12rem'}}>
 					<img className="card-img-top" src="https://cdn3.iconfinder.com/data/icons/line/36/add-512.png" alt="Card image cap" />
 					<div className="card-body">
 						<h5 className="card-title">Edit users</h5>
 						<p className="card-text">Eliminar o editar usuarios.</p>
+						<Link to='/' className="btn btn-primary">Go somewhere</Link>
+					</div>
+				</div>
+			</div>
+			<div className='col-sm-2'>
+				<div className="card" style={{width: '12rem'}}>
+					<img className="card-img-top" src="https://cdn3.iconfinder.com/data/icons/line/36/add-512.png" alt="Card image cap" />
+					<div className="card-body">
+						<h5 className="card-title">Edit orders</h5>
+						<p className="card-text">Eliminar o editar ordenes.</p>
 						<Link to='/' className="btn btn-primary">Go somewhere</Link>
 					</div>
 				</div>

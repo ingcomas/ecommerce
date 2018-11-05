@@ -6,29 +6,37 @@ import {listProducts} from '../redux/actions/products-actions'
  class ProductsContainer extends React.Component{
     constructor(props){
         super(props);
+     
          }
-
             // componentDidMount(){
             //     axios.get("/api/product")
             //     .then(res=> console.log(res.data)) [{…}, {…}, {…}, {…}, {…}]
             // }
+            
+         componentDidMount(){
+             this.props.listProducts()
+                console.log(this.props.products)
+            };
+    
+        
 
     render(){
-       console.log(this.props)
         return(
-            
             <div >
-                <Products productList={this.props.products}/>
+                <Products 
+                productList={this.props.products}
                 
+                />  
             </div>
         )
     }
 }
+
+
 function mapStateToProps(state){
-    
+    //    console.log(state)
     return{
-            products: state.product.allProducts
-            
+            products: state.product.allProducts        
     }
 };
 function mapDispatchToProps(dispatch){
@@ -38,6 +46,5 @@ function mapDispatchToProps(dispatch){
         }
     }
 };
-
 export default connect(mapStateToProps,mapDispatchToProps)(ProductsContainer)
 
