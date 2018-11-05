@@ -1,27 +1,51 @@
 import React, {Component} from 'react';
-import axios from 'axios';
+import { connect } from 'react-redux';
 
-export default class CreateCategoryContainer extends Component {
-	constructor(){
-		super();
+import CreateCategory from '../components/CreateCategory';
+import { postCategory, axiosCategories } from '../redux/actions/categoriesActions';
+import store from '../redux/store';
 
+class CreateCategoryContainer extends Component {
+	constructor(props){
+		super(props);
+		this.state= store.getState();
+		this.handleSubmit= this.handleSubmit.bind(this);
 	}
-
+	handleClick(e){
+		// Definir funcion para borrar la categoria de la DB.
+	}
 	handleSubmit(e){
 		e.preventDefault();
-		const value= e.target.name;
-		axios.post ('/categories/new')
-			.then (response => res.send (response.data))
+		this.props.createCategory(e.target.name.value);
 	}
-
 	componentDidMount(){
-		axios.get ('/api/categories')
-			.then (response => res.send(response.data))
+		this.props.getCategories();
 	}
 
 	render(){
 		return (
-			<CreateCategory />
+			<div>
+				<CreateCategory categories= { this.props.categories } handleSubmit= { this.handleSubmit } />
+			</div>
 		)
 	}
 }
+
+const mapStateToProps= (state) => {
+	return {
+		categories : state.categories.categories
+	}
+}
+
+const mapDispatchToProps= (dispatch) => {
+	return {
+		createCategory : function (category){
+			dispatch(postCategory(category));
+		},
+		getCategories : function (){
+			dispatch(axiosCategories());
+		}
+	}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CreateCategoryContainer);

@@ -3,6 +3,7 @@ importamos librerias
 */
 import React,{ Component } from 'react';
 import { connect } from 'react-redux';
+import {Link} from 'react-router-dom'
 /*
 importamos archivos nuestros
 */
@@ -14,22 +15,34 @@ class CartContainer extends Component {
     componentDidMount(){
         console.log(this.props)
     }
+    handleClick(){
+        console.log('fafafa')
+    }
     render(){
             // {this.props.cart.cart[0] && console.log(this.props.cart.cart)}
-        
+            console.log(this.props.cart)
         return(
-            <div className="col-sm-3">
-            <ul >
-                <sidebar>
-               {this.props.cart.cart && this.props.cart.cart.map(prod => (
-                   <li className='cartWhite' key={prod.id}>{prod.name}
-                   <button>remove elemnet</button></li>
-               ))}
-                
-                <button>Para ir al checkout</button>
-                </sidebar>
-            </ul>
-            </div>
+
+            <table className='table col-sm-3 cartWhite'>
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Price</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {this.props.cart.cart && this.props.cart.cart.map((prod , index) => (
+                <tr className='cartWhite' key={index}>
+                  <td>{prod.name}</td>
+                  <td>{prod.price}</td>
+                  <td><i onClick={this.handleClick} className="fas fa-trash-alt delete-button"></i></td>
+                </tr>
+              ))}
+            </tbody>
+            <tr> <button className="btn btn-success">Para ir al checkout</button></tr>
+          </table>
+
         )
     }
 }
@@ -45,3 +58,13 @@ function mapDispatchToProps(dispatch){
     }
 };
 export default connect(mapStateToProps,mapDispatchToProps)(CartContainer)
+
+{/* <ul className="col-sm-3">
+<div className="shoppingCart">
+{this.props.cart.cart && this.props.cart.cart.map((prod , index) => (
+        <li className='cartWhite' key={index}>
+        <i onClick={this.handleClick} className="fas fa-trash-alt delete-button"></i>   </li>
+))}
+    <button className="btn btn-success">Para ir al checkout</button>
+</div>
+</ul> */}

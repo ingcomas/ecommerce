@@ -7,6 +7,18 @@
     color:white
 
   }
+  .picante{
+    margin-top: 250px;
+  }
+  .shoppingCart{
+    list-style: none;
+  }
+  .delete-button{
+    color: red;
+    margin: 0 5px
+
+
+  }
   .row-view{
     margin-top: 5%
   }
@@ -22,6 +34,9 @@
     opacity: 0.5;
   }
   .img-single-product{
+
     width: 200px;
     height: auto;
+
+
   }
