@@ -31,7 +31,10 @@ router.post('/',(req,res)=>{
         
         res.send(response)})
 })
-
+router.put('/update',(req,res)=>{
+    Orders.update({state:req.body.estado},{where:{id:req.body.id}})
+    .then(response=>res.send(response))
+})
 
 
 // router.get('/:artistId', function (req, res) {
