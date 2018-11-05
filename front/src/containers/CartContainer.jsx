@@ -18,14 +18,18 @@ class CartContainer extends Component {
             // {this.props.cart.cart[0] && console.log(this.props.cart.cart)}
         
         return(
-            <ul className="col-xs-3" >
+            <div className="col-sm-3">
+            <ul >
+                <sidebar>
                {this.props.cart.cart && this.props.cart.cart.map(prod => (
-                   <li key={prod.id}>{prod.name}
+                   <li className='cartWhite' key={prod.id}>{prod.name}
                    <button>remove elemnet</button></li>
                ))}
                 
                 <button>Para ir al checkout</button>
+                </sidebar>
             </ul>
+            </div>
         )
     }
 }
