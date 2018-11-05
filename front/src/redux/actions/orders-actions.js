@@ -28,3 +28,9 @@ export const createOrder = (params,items) => (dispatch)=>{
         products:array,
     })
 }
+export const changeOrder = (param,id) => (dispatch) =>{
+    axios.put('/api/checkout/update',{
+        estado: param,
+        id:id
+    })
+}
