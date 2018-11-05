@@ -27,10 +27,12 @@ export default class Main extends React.Component{
                
                 <HeaderContainer/>
                     
+                    <div className="col-sm-9">
+
                 <Switch>
 					<Route path='/products/newproduct' component= {CreateProductContainer} />
                     <Route exact path='/user/admin/orders' component={OrderContainer}/>
-        						<Route path='/user/admin' component= {ProductManagerContainer} />
+        			<Route path='/user/admin' component= {ProductManagerContainer} />
                     <Route path="/register" component={RegisterContainer}/>
                     <Route path="/login" component={LoginContainer}/>
                     <Route path='/categories' component={CategoriesContainer} />
@@ -40,8 +42,12 @@ export default class Main extends React.Component{
                     <Route path="/cart" component={Cart} />
                    
                 </Switch>
+
                 <CartContainer />
                     
+
+                    </div>
+
             </div>
         )
     }

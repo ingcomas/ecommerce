@@ -22,7 +22,7 @@ const createProduct = () => Product.create({
   description: faker.lorem.paragraph(),
   stock: Math.round(Math.random()*25),
   price: faker.commerce.price(),
-  images : [faker.image.abstract(),faker.image.abstract()]
+  images : [faker.image.imageUrl(),faker.image.imageUrl()]
 
 
 });
