@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import {createProduct} from '../redux/actions/products-actions'
 
 import CreateProduct from '../components/CreateProduct';
-import {axiosCategories} from '../redux/actions/categoriesActions'
+import { createProduct } from '../redux/actions/products-actions'
+import { axiosCategories } from '../redux/actions/categoriesActions'
 
 
 class CreateProductContainer extends Component {
@@ -29,10 +29,9 @@ class CreateProductContainer extends Component {
 }
 
 function mapStateToProps(state){
-    return { 
-		valores: state.product.newProduct,
+	return { 
 		categories : state.categories.categories
-    }
+	}
 }
 function mapDispatchToProps(dispatch){
 	return {
