@@ -22,12 +22,7 @@ export default class Main extends React.Component{
 			super(props);
 	}
 
-<<<<<<< HEAD
-    render(){
-        
-=======
 render(){        
->>>>>>> 454cac378c2e0ef6285fc58a5addc9251763dde1
         return (
             <div className="container-fluid" >
                
