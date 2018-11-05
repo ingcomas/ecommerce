@@ -17,9 +17,6 @@ router.post ('/newcategory', (req, res) => {
 	Category.create({
 		name : req.body.name
 	})
-	.then(response=>{
-		console.log (response, ' RESPONSE BACK')
-		res.send(response)
-	})
+	.then(response=>res.send(response))
 })
 module.exports= router;
