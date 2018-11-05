@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 
 import CreateCategory from '../components/CreateCategory';
-import { postCategory, axiosCategories } from '../redux/actions/categoriesActions';
+import { postCategory, axiosCategories, deleteCategory } from '../redux/actions/categoriesActions';
 
 class CreateCategoryContainer extends Component {
 	constructor(props){
@@ -36,8 +36,7 @@ class CreateCategoryContainer extends Component {
 
 const mapStateToProps= (state) => {
 	return {
-		categories : state.categories.categories,
-		
+		categories : state.categories.categories,	
 	}
 }
 
@@ -49,8 +48,8 @@ const mapDispatchToProps= (dispatch) => {
 		getCategories : function (){
 			dispatch(axiosCategories());
 		},
-		deleteCategories : function(catId){
-			dispatch(deleteCategories(catId))
+		deleteCategory : function(catId){
+			dispatch(deleteCategory(catId))
 		}
 	}
 }

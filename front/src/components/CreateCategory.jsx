@@ -2,7 +2,6 @@ import React from 'react';
 
 export default ({ categories, handleSubmit, handleClick }) => (
 	<form className="form-horizontal" onSubmit= { handleSubmit }>
-	{/* { categories && console.log (categories.data, ' <== cats')} */}
 		<fieldset>
 			<h1 style={{ color : 'white' }}>New Category</h1>
 			<div className="form-group">
