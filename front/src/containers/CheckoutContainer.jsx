@@ -19,7 +19,7 @@ render (){
         <div>
             {/* aqui debe ir la lógica para mostrar o no el form del checkout segun si hay elemento en el carrito */}
             {/* no debería mandarme a esta página si no hay elementos en el carrito */}
-            <Checkout
+            <Checkout 
             handleSubmit={this.handleSubmit}
             items={this.props.items}
             />

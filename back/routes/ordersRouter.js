@@ -1,11 +1,12 @@
-'use strict';
+ 'use strict';
 
+const {api_key} = require('../config/mailing');
+const {DOMAIN} = require('../config/mailing');
 const express = require('express');
 const router = express.Router();
 const Orders = require('../db/models/Order');
 var Mailgun = require("mailgun-js");
-var api_key = 'cc232683ed052d4c1474da943d2ec587-4412457b-9ea7a60f';
-var DOMAIN = 'sandbox5d1f6ce9fe404828962c65ccb6c0e873.mailgun.org';
+
 var mailgun = new Mailgun({apiKey: api_key, domain: DOMAIN});
 
 
@@ -26,15 +27,16 @@ var renderer = ECT({ root : __dirname + '/../views' });
 
 router.post('/email',(req,res)=>{
     console.log(req.body.orden.email);
-    var valores = { title : req.body.orden.email};
+    var aux=req.body.orden
+    var valores = { title : aux.email};
     var html = renderer.render('template.ect', valores);
     
     var data = {
         from: 'delivery_administrator@ecommerce.com.ar',
-        to: `${req.body.orden.email}`,
-        subject: 'New delivery',
+        to: `${aux.email}`,
+        subject: `Orden de compra N°:${aux.id}`,
         text: 'Tu producto está en camino!',
-        html: html,
+        // html: html,
       };
       
       mailgun.messages().send(data, function (error, body) {

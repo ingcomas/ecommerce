@@ -6,35 +6,35 @@ export default ({items,handleSubmit})=> (
         <form className=" w-75" onSubmit={handleSubmit}>
         <div className="form-row">
             <div className="col-md-4 mb-3">
-                <label for="firstName">Nombre</label>
+                <label>Nombre</label>
                 <input type="text" className="form-control" id="firstName" placeholder="Nombre" required/>
             </div>
             <div className="col-md-4 mb-3">
-                <label for="lastName">Apellido</label>
+                <label >Apellido</label>
                 <input type="text" className="form-control" id="lastName" placeholder="Apellido" required/>
             </div>
             <div className="col-md-4 mb-3">
-                <label for="email">Email</label>
+                <label>Email</label>
                 <input type="email" className="form-control" id="email" placeholder="Email" required/>
             </div>
         </div>
         <div className="form-row">
             <div className="col-md-6 mb-3">
-                <label for="address">Dirección</label>
+                <label>Dirección</label>
                 <input type="text" className="form-control" id="address" placeholder="Domicilio de entrega" required/>
             </div>
         </div>
         <div className="form-row">
             <div className="col-md-4 mb-3">
-                <label for="city">Ciudad</label>
+                <label>Ciudad</label>
                 <input type="text" className="form-control" id="city" placeholder="Ciudad" required/>
             </div>
             <div className="col-md-3 mb-3">
-                <label for="province">Provincia</label>
+                <label>Provincia</label>
                 <input type="text" className="form-control" id="province" placeholder="Provincia" required/>
             </div>
             <div className="col-md-4 mb-3">
-                <label for="cellphone">Celular</label>
+                <label>Celular</label>
                 <input type="text" className="form-control" id="cellphone" placeholder="Número sin 0 ni 15" required/>
             </div>
         </div>
