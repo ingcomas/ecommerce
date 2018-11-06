@@ -55,7 +55,6 @@ import LoginContainer from './LoginContainer';
                     </Switch>
                 </div>
                 </div>
-            
         )
     }
 
