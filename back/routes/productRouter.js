@@ -33,3 +33,8 @@ router.post ('/newproduct', (req,res) => {
 		res.send(producto)
 	})
 })
+
+
+
+
+  

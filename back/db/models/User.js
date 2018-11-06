@@ -30,7 +30,7 @@ const User = db.define('user', {
         validate:{
             notEmpty: false,
             len: {
-                args: [1, 50]
+                args: [8, 12]
             }
         }
     },
@@ -54,7 +54,10 @@ const User = db.define('user', {
         allowNull: false
     },
 
-    access: Sequelize.STRING
+    access: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false
+    }
 
 });
 

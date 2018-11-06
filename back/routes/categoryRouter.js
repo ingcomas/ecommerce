@@ -1,7 +1,7 @@
 const express= require ('express');
 const router= express();
 const Category = require('../db/models/Category')
-
+const product =require('../db/models/Product')
 router.get ('/', (req,res) => {
 	Category.findAll({})
 	.then(response=>{
@@ -14,10 +14,14 @@ router.get ('/delete/:id', (req,res) => {
 })
 
 router.get ('/:id', (req,res) => {
-	const id = req.params.id;
-	Category.findOne({where:{id}})
-	.then(prod=>res.send(prod))
-	.catch(err=>res.send(err))
+	// const id = req.params.id;
+	// Category.findOne({where:{id}})
+	// .then(prod=>res.send(prod))
+	// .catch(err=>res.send(err))
+
+	const category=req.params.id
+	product.findAll({where:{id:category}, include:[Product]})
+	.then(prod=> {console.log(prod, "para el back")})
 })
 
 router.post ('/newcategory', (req, res) => {
@@ -27,3 +31,18 @@ router.post ('/newcategory', (req, res) => {
 	.then(response=>res.send(response))
 })
 module.exports= router;
+
+router.get ('/:id/products', (req,res) => {
+	const category=req.params.id
+	product.findAll({where:{id:category}, include:[Product]})
+	.then(prod=> console.log(prod, "para el front"))
+})
+
+
+// router.get ('/:id/categories', (req,res) => {
+//     const product= req.params.id;
+//     Product.findAll ({ where : {id:product}, include : [Category]    })
+//      .then(categories => {
+//         return res.send(categories[0].categories)
+//      })
+// })

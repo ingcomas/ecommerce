@@ -1,5 +1,5 @@
 const initialSate ={};
-import { GET_CATEGORIES, POST_CATEGORY, DELETE_CATEGORY } from '../constants/categoriesConstants'; 
+import { GET_CATEGORIES, POST_CATEGORY, DELETE_CATEGORY, FIND_CATEGORY } from '../constants/categoriesConstants'; 
 
 export default (state = initialSate,action)=>{
 	switch (action.type) {
@@ -9,7 +9,9 @@ export default (state = initialSate,action)=>{
 				return Object.assign({}, state, { category : action.category })
 			case DELETE_CATEGORY:
 				return Object.assign({}, state, { category : action.category })
-			default:
+			case FIND_CATEGORY:
+			return Object.assign({}, state, { categoryId : action.category })	
+				default:
 				return state;
 	}
 }

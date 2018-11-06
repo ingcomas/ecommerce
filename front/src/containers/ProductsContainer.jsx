@@ -3,10 +3,9 @@ import {connect} from 'react-redux'
 
 
 import Products from '../components/Products';
-import {listProducts} from '../redux/actions/products-actions'
+import {listProducts, filterProduct} from '../redux/actions/products-actions'
 import {addToCart} from '../redux/actions/CartActions'
-import {axiosCategories} from '../redux/actions/categoriesActions'
-import axios from 'axios';
+;
 
 
  class ProductsContainer extends React.Component{
@@ -16,12 +15,13 @@ import axios from 'axios';
          }
 
     componentDidMount(){
+        const idCategory = this.props.match.params.id   
         this.props.listProducts()
-        axios.get(`/api/categories`)
-        .then(res => console.log(res.data, 'console categories'))
+        // 
+        if(idCategory) this.props.filterProduct(idCategory)
     };
     render(){
-       const idCategory = this.props.match.params.id 
+        console.log(this.props)
         return(
                     <Products 
                     productList={this.props.products}
@@ -35,7 +35,8 @@ import axios from 'axios';
 function mapStateToProps(state){
 
     return{
-            products: state.product.allProducts        
+            products: state.product.allProducts,
+            categories: state.product.categories      
     }
 };
 function mapDispatchToProps(dispatch){
@@ -46,10 +47,10 @@ function mapDispatchToProps(dispatch){
         addCart : function(product){
             dispatch(addToCart(product))
         },
-        axiosCategories: function(){
-            dispatch(axiosCategories())
-        }
-
+        filterProduct: function(idCategory){
+            dispatch(filterProduct(idCategory))
+        },
+      
     }
 };
 export default connect(mapStateToProps,mapDispatchToProps)(ProductsContainer)

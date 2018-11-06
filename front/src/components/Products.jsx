@@ -6,6 +6,7 @@ import {Link} from 'react-router-dom'
 export default ({productList, addToCart})=>(
 
   <div className='row'>
+  {console.log(productList)}
   {productList && productList.map((product)=>(
    
       

@@ -24,6 +24,7 @@ const seleccionaProducto =(oneProduct)=>({
     oneProduct
 })
 
+
 export const createProduct = (producto) => (dispatch) => {
     const images= producto.images && producto.images.value.split(',');
     const categories= [];
@@ -62,7 +63,4 @@ export const searchProduct = (value) => (dispatch) => {
 export const singleProduct=(productId)=>(dispatch)=>{
     axios.get(`/api/product/${productId}`)
   .then(res=>dispatch(seleccionaProducto(res.data)))
-
- 
-
 }
