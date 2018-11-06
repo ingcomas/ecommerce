@@ -55,8 +55,10 @@ router.get('/allUsers', (req, res) => {
 
 router.get('/logout', (req, res) => {
     req.logout();
+
     res.send('Usuario deslogeado');
 });
+
     //req.user
     //req.isAuthenticated());
     //req.logout
