@@ -19,8 +19,8 @@ router.post('/newUser', (req, res) => {
     .catch(e => res.send(e));
 });
 
-router.post('/logged', passport.authenticate('local'), (req, res) =>{
-        let authenticated = req.isAuthenticated();
+router.post('/logged', passport.authenticate('local'), (req, res) => {
+        const authenticated = req.isAuthenticated();
         if(authenticated){
             res.send({
                 first_name: req.user.first_name,
@@ -28,18 +28,38 @@ router.post('/logged', passport.authenticate('local'), (req, res) =>{
                 email: req.user.email,
                 address: req.user.address,
                 dni: req.user.dni,
-                cellphone: req.user.cellphone
+                cellphone: req.user.cellphone,
+                access: req.user.access
             }) 
         }
     }
 );
 
-router.get ('/allusers', (req,res) => {
-	User.findAll({})
-		.then (data => res.send(data))
-})
+router.post('/createAdmin', (req, res) => {
+    User.findOne({
+        where: {
+            email: req.body.email
+        }
+    })
+    .then(user => {
+        user.access = true;
+        user.save();
+    })
+});
+
+//GETS
+router.get('/allUsers', (req, res) => {
+    User.findAll({})
+    .then(users => res.send(users));
+});
+
+router.get('/logout', (req, res) => {
+    req.logout();
+    res.send('Usuario deslogeado');
+
     //req.user
     //req.isAuthenticated());
     //req.logout
+    //req.session.passport.user
 
 module.exports = router;

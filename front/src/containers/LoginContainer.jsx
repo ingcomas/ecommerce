@@ -1,71 +1,59 @@
 import React from 'react';
-import Login from '../components/Login';
-import axios from 'axios';
 import {connect} from 'react-redux';
-import {logInfo} from '../redux/actions/login-action'
-
-import PrivateProfileContainer from './PrivateProfileContainer';
+import {loginUser} from '../redux/actions/userActions';
+import LoginTEST from '../components/login';
+import PrivateProfile from '../components/PrivateProfile';
+import { logOutUser } from '../redux/actions/userActions';
 
 class LoginContainer extends React.Component{
-    constructor(){
-        super();
-        // this.state = {
-        //     first_name: '',
-        //     last_name: '',
-        //     email: '',
-        //     address: '',
-        //     dni: '',
-        //     cellphone: '',
-        //     password:'',
-        //     wrongPassword: ''
-        // }
+    constructor(props){
+        super(props);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.logOut = this.logOut.bind(this);
     }
 
-    handleSubmit(e){
-        e.preventDefault();
-        var email= e.target.email.value
-        var password= e.target.password.value
+handleSubmit(e){
+    e.preventDefault();
+    this.props.sendLoginInfo(e.target.email.value, e.target.password.value);
+}
 
-        this.props.logInfo(email,password);
-        
-        // axios.post('/api/user/logged', {
-        //     email: e.target.email.value,
-        //     password: e.target.password.value
-        // })
-        // .then(r => this.setState({
-        //     first_name: r.data.first_name,
-        //     last_name: r.data.last_name,
-        //     email: r.data.email,
-        //     address: r.data.address,
-        //     dni: r.data.dni,
-        //     cellphone: r.data.cellphone
-        // }))
-        // .catch(e => {
-        //     this.setState({
-        //         wrongPassword: 'Contraseña incorrecta'
-        //     })
-        // })
-    }
-
+logOut(e){
+    this.props.logOut();
+}
     render(){
         return(
-            <div>
-            <Login logInfo={this.handleSubmit} />            
+            <div className="container">
+                    {this.props.user.first_name ? 
+                        <PrivateProfile 
+                            user={this.props.user}
+                            logOut={this.logOut}
+                        />
+                    : 
+                        <LoginTEST 
+                            handleSubmit={this.handleSubmit} 
+                            wrongPassword={this.props.user.wrongPassword}
+                        />
+                    }           
             </div>
         )
     }
 }
-function mapStateToProps(state){
-    return {
+
+function mapStateToProps(state, ownProps){
+    return{
+        user: state.user
     }
 }
-function mapDispatchToProps(dispatch){
-    return { logInfo: function(email,password){
-            dispatch(logInfo(email,password))
+
+function mapDispatchToProps(dispatch, ownProps){
+    return{
+        sendLoginInfo : function(email, password){
+            dispatch(loginUser(email, password));
+        },
+        logOut: function(){
+            dispatch(logOutUser());
         }
-
     }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(LoginContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(LoginContainer);
