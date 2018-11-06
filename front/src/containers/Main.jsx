@@ -27,6 +27,7 @@ export default class Main extends React.Component{
     render(){
         return (        
             <div>
+                <HeaderContainer/>
                 <CartContainer />
                 <div className="col-sm-12 col-xs-12 col-md-12 col-lg-9">
                     <Switch>
