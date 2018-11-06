@@ -5,26 +5,19 @@ import { Link, Route, Switch, Redirect } from 'react-router-dom';
 import OrderContainer from './OrderContainer';
 import Cart from './CartContainer'
 import HeaderContainer from './HeaderContainer';
-import LoginContainer from './LoginContainer';
 import ProductsContainer from './ProductsContainer'
 import SingleProductsContainer from './SingleProductsContainer'
 import ProductManagerContainer from './ProductManagerContainer';
 import RegisterContainer from './RegisterContainer';
 import CreateCategoryContainer from './CreateCategoryContainer';
-import ReviewsContainer from './ReviewsContainer'
 import CreateProductContainer from './CreateProductContainer';
 import CheckoutContainer from './CheckoutContainer';
-
 import CartContainer from './CartContainer'
-
-
-
-
+  
 //COMPONENTS
 import CreateProduct from '../components/CreateProduct';
-import Jumbotron from '../components/Jumbotron';
-
-
+import PrivateProfile from '../components/PrivateProfile';
+import LoginContainer from './LoginContainer';
 
 export default class Main extends React.Component{
     constructor(props){
@@ -35,11 +28,9 @@ export default class Main extends React.Component{
         
 
         return (
-            <div className="container-fluid" >
-               
+            <div className="container-fluid">
                 <HeaderContainer/>
 
-                <div className="row picante ">
                 <CartContainer />
                 <div className="col-sm-12 col-xs-12 col-md-12 col-lg-9">
                     <Switch>
@@ -49,6 +40,7 @@ export default class Main extends React.Component{
                         <Route path='/user/admin' component= {ProductManagerContainer} />
                         <Route path="/register" component={RegisterContainer}/>
                         <Route path="/login" component={LoginContainer}/>
+                        <Route path="/profile" component={PrivateProfile}/>
                         <Route path='/categories/newcategory' component={CreateCategoryContainer} />
                         <Route exact path="/products" component={ProductsContainer} />
                         <Route path="/login" component={LoginContainer}/>

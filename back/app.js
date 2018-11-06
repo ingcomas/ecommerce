@@ -59,7 +59,7 @@ passport.use(new LocalStrategy({
 },
 function(username, password, done) {
     User.findOne({where: { email: username }})
-    .then(user => {console.log(user.passwordHash(password, user.salt))
+    .then(user => {
       if (!user) {
         return done(null, false, { message: 'Incorrect username.' });
       }
