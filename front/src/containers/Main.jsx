@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, Route, Switch, Redirect } from 'react-router-dom';
+import axios from 'axios'
 
 //CONTAINERS
 import OrderContainer from './OrderContainer';
@@ -30,7 +31,10 @@ export default class Main extends React.Component{
     constructor(props){
         super(props);
     }
-
+    componentDidMount(){
+        axios.get('/me')
+        .then(response => console.log(response))
+    }
     render(){
         
 
