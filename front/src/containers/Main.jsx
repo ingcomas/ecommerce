@@ -12,11 +12,12 @@ import RegisterContainer from './RegisterContainer';
 import CreateCategoryContainer from './CreateCategoryContainer';
 import CreateProductContainer from './CreateProductContainer';
 import CheckoutContainer from './CheckoutContainer';
-import CartContainer from './CartContainer';
 import LoginContainer from './LoginContainer';
+import CartContainer from './CartContainer'
 
+  
 //COMPONENTS
-import Jumbotron from '../components/Jumbotron';
+import CreateProduct from '../components/CreateProduct';
 import PrivateProfile from '../components/PrivateProfile';
 
 export default class Main extends React.Component{
@@ -40,7 +41,8 @@ export default class Main extends React.Component{
 						<Route path="/products/:id" component={SingleProductsContainer} />
                         <Route path='/user/admin' component= {ProductManagerContainer} />
                         <Route path="/register" component={RegisterContainer}/>
-                        <Route path="/login" component={LoginContainer}/>
+                        <Route path="/login" component={LoginContainer}/>         
+                        <Route exact path="/products" component={ProductsContainer} />
                         <Route path='/cart/checkout' component={CheckoutContainer} />
                         <Route path="/cart" component={Cart} />
                     </Switch>
