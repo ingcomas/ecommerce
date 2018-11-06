@@ -7,6 +7,7 @@ const Product = require('./Product')
 const Review = db.define('review',{
   title:{
     type: Sequelize.STRING,
+    // defaultValue: "Anonymous"
   },
   content:{
     type: Sequelize.TEXT,
@@ -14,7 +15,7 @@ const Review = db.define('review',{
   },
   rating:{
     type: Sequelize.INTEGER,
-    allowNull: false,    
+    // allowNull: false,    
     validate:{
       min: 0,
       max: 5,
