@@ -50,7 +50,6 @@ export default class Main extends React.Component{
                     </Switch>
                 </div>
                 </div>
-            </div>
         )
     }
 
