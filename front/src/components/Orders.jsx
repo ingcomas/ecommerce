@@ -23,10 +23,10 @@ export default ({orders,handleSelect})=>{
                     <td>
                 
                 <select value={order.state} className="custom-select" onChange={(e)=> handleSelect(e,order.id)}>
-                    <option value={'created'}>Created</option>
-                    <option value={'processing'}>Processing</option>
-                    <option value={'cancelled'}>Cancelled</option>
-                    <option value={'completed'}>Completed</option>
+                    <option className='sId1' value={'created'}>Created</option>
+                    <option className='sId2' value={'processing'}>Processing</option>
+                    <option className='sId3' value={'cancelled'}>Cancelled</option>
+                    <option className='sId4' value={'completed'}>Completed</option>
                 </select>
                 
                     </td>
