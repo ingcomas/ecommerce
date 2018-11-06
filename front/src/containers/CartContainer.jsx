@@ -13,7 +13,9 @@ class CartContainer extends Component {
     constructor(props){
         super(props)
     }
+
     render(){
+        {console.log('las props del container',this.props.cart)}
         return(
 
             <table className='table col-sm-12 col-xs-12 col-md-12 col-lg-3 cartWhite'>
@@ -36,7 +38,7 @@ class CartContainer extends Component {
               ))}
                 <tr><td colSpan="3" style={{textAlign:"center"}}><Link to='/cart/checkout' className="btn btn-success">Go to checkout</Link></td></tr>
             </tbody>
-
+            
           </table>
         
         )

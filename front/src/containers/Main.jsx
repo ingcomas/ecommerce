@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link, Route, Switch, Redirect } from 'react-router-dom';
 import axios from 'axios'
+import {isLogged} from '../redux/actions/userActions'
+import {connect} from 'react-redux'
 
 //CONTAINERS
 import OrderContainer from './OrderContainer';
@@ -19,14 +21,13 @@ import CartContainer from './CartContainer'
 import CreateProduct from '../components/CreateProduct';
 import PrivateProfile from '../components/PrivateProfile';
 import LoginContainer from './LoginContainer';
-
-export default class Main extends React.Component{
+ class Main extends React.Component{
     constructor(props){
         super(props);
     }
     componentDidMount(){
-        axios.get('/me')
-        .then(response => console.log(response))
+     this.props.isLogged()
+     console.log(sessionStorage.getItem('cart'))
     }
     render(){
         
@@ -54,10 +55,22 @@ export default class Main extends React.Component{
                     </Switch>
                 </div>
                 </div>
-            </div>
+            
         )
     }
 
 }
-
+function mapStateToProps(state){
+    //    console.log(state)
+    return{        
+    }
+};
+function mapDispatchToProps(dispatch){
+    return{
+        isLogged: function(){
+            dispatch(isLogged())
+        }
+    }
+};
+export default connect(mapStateToProps,mapDispatchToProps)(Main)
 
