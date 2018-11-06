@@ -14,16 +14,16 @@ export default ()=>(
     <div className="collapse navbar-collapse" id="navbarSupportedContent">
         <ul className="navbar-nav mr-auto">
         <li className="nav-item active">
-            <a className="nav-link" href="/">Home <span className="sr-only">(current)</span></a>
+            <Link to='/'><span className="nav-link">Home <span className="sr-only">(current)</span></span></Link>
         </li>
         <li className="nav-item">
-            <a className="nav-link" href="/login">Login</a>
+            <Link to="/login"><span className="nav-link">Login</span></Link>
         </li>
         <li className="nav-item">
-            <a className="nav-link" href="/register">Registrarse</a>
+            <Link to="/register"><span className="nav-link">Registrarse</span></Link>
         </li>
         <li className="nav-item active">
-            <a className="nav-link" href="/products">Products <span className="sr-only">(current)</span></a>
+            <Link to="/products"><span className="nav-link">Products</span></Link>
         </li>
         <CategoriesContainer />
         <li className="nav-item">

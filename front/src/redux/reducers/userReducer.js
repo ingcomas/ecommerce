@@ -8,6 +8,8 @@ export default (state = initialState, action) => {
             return Object.assign({}, state, {wrongPassword: action.message});
         case 'LOG_OUT_USER':
             return Object.assign({}, state, action.user);
+        case 'UPDATE_ADMIN_STATE':
+            return Object.assign({}, state, action.user);
         default:
             return state;
     }

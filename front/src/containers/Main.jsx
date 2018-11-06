@@ -17,7 +17,6 @@ import CartContainer from './CartContainer'
 
   
 //COMPONENTS
-import CreateProduct from '../components/CreateProduct';
 import PrivateProfile from '../components/PrivateProfile';
 
 export default class Main extends React.Component{
@@ -32,7 +31,6 @@ export default class Main extends React.Component{
                 <CartContainer />
                 <div className="col-sm-12 col-xs-12 col-md-12 col-lg-9">
                     <Switch>
-                        <Route exact path="/" component={Jumbotron}/>
                         <Route exact path='/user/admin/orders' component={OrderContainer}/>
                         <Route exact path="/products" component={ProductsContainer} />
                         <Route path="/profile" component={PrivateProfile} />

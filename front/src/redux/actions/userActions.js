@@ -14,15 +14,20 @@ const endSession = () => ({
     }
 })
 
+const updateAdminState = (user) => ({
+    type: 'UPDATE_ADMIN_STATE',
+    user
+});
+
 const setLoggedUser = user => ({
     type: 'LOG_WITH_USER',
-    user,
+    user
 });
 
 const sayWrongPassword = e => ({
     type: 'WRONG_PASSWORD',
     message: 'Contraseña incorrecta'
-})
+});
 
 export const loginUser = (email, password) => dispatch => {
     axios.post('/api/user/logged', {
@@ -37,4 +42,14 @@ export const loginUser = (email, password) => dispatch => {
 export const logOutUser = () => dispatch => {
     axios.get('/api/user/logout')
     .then(nothing => dispatch(endSession()));
+}
+
+export const convertUserToAdmin = (email) => dispatch => {
+    axios.post('/api/user/createAdmin', {email})
+    .then(user => dispatch(updateAdminState(user)));
+}
+
+export const removeAdminPermission = (email) => dispatch => {
+    axios.post('/api/user/removeAdmin', {email})
+    .then(user => dispatch(updateAdminState(user)));
 }
