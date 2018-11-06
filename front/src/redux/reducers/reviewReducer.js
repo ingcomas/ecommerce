@@ -5,7 +5,7 @@ export default ( state = {} , action ) => {
       return Object.assign({},state,{newReview:action.review})
     
     case 'LOAD_REVIEWS':
-      var prom =0 
+      var prom = 0 
       action.allReviews.forEach(element => {
         prom += element.rating
       });
