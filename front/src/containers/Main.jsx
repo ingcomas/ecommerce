@@ -14,7 +14,7 @@ import CreateCategoryContainer from './CreateCategoryContainer';
 import ReviewsContainer from './ReviewsContainer'
 import CreateProductContainer from './CreateProductContainer';
 import CheckoutContainer from './CheckoutContainer';
-
+import CategoriesContainer from './CategoriesContainer';
 import CartContainer from './CartContainer'
 
 
@@ -23,6 +23,7 @@ import CartContainer from './CartContainer'
 //COMPONENTS
 import CreateProduct from '../components/CreateProduct';
 import Jumbotron from '../components/Jumbotron';
+
 
 
 
@@ -49,6 +50,7 @@ export default class Main extends React.Component{
                         <Route path='/user/admin' component= {ProductManagerContainer} />
                         <Route path="/register" component={RegisterContainer}/>
                         <Route path="/login" component={LoginContainer}/>
+                        <Route exact path="/categories/:id" component={ProductsContainer} />
                         <Route path='/categories/newcategory' component={CreateCategoryContainer} />
                         <Route exact path="/products" component={ProductsContainer} />
                         <Route path="/login" component={LoginContainer}/>

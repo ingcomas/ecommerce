@@ -34,7 +34,7 @@ class SingleProductContainer extends React.Component{
 }
 
 function mapStateToProps(state){
-    // console.log(state , " state.product")
+   
     return({
     oneProduct: state.product.oneProduct
     })

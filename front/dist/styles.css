@@ -3,8 +3,9 @@
     height: auto;
     }
     .tarjeta-body{
-      opacity: 0.8;
-      background-color: gray
+   
+      background: transparent;
+      
     }
   .cartWhite{
     color:white
