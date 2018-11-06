@@ -38,6 +38,7 @@ jspm_packages/
 #Ignore bundle files
 bundle.js
 bundle.js.map
+mailing.js
 
 # Typescript v1 declaration files
 typings/
