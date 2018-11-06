@@ -11,15 +11,17 @@ class CheckoutContainer extends React.Component{
 handleSubmit(e){
     e.preventDefault();
     this.props.createOrder(e.target,this.props.items);
+    //aqui debería realizar el clear del carrito. Una vez que queda limpio el carrito,
+    //redirigir a la pagina principal
 }
 render (){
-    
     return (
         <div>
+            {/* aqui debe ir la lógica para mostrar o no el form del checkout segun si hay elemento en el carrito */}
+            {/* no debería mandarme a esta página si no hay elementos en el carrito */}
             <Checkout
             handleSubmit={this.handleSubmit}
             items={this.props.items}
-            cantidad={1}
             />
         </div>
     )
@@ -27,8 +29,7 @@ render (){
 }
 function mapStateToProps(state){
     return { 
-         items: state.cart.cart,
-        // cantidad: state.cart.cantidad
+        items: state.cart.cart,//es un arreglo con objetos [{product:{producto},quantity:valor},{}]
 
     }
 }

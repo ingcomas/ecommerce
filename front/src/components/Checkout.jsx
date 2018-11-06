@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default ({cantidad,items,handleSubmit})=> (
+export default ({items,handleSubmit})=> (
     <div className="col-sm-9" style={{marginTop: '10%'}}>
         <h1 style={{color: 'white'}}>Checkout</h1>
         <form className=" w-75" onSubmit={handleSubmit}>
