@@ -1,17 +1,20 @@
-import { CART_ADD, CART_REMOVE} from '../constants/CartConstans'
-export function addToCart(productId) {
+export function addCartToStore(product) {
     return {
-        type: CART_ADD,
+        type: 'CART_ADD',
         product: {
-            productId
+            product
         }
     }
 }
-export function removeFromCart(productId) {
-    return {
-        type: CART_REMOVE,
-        product: {
-            productId
-        }
-    }
+// export function removeFromCart(productId) {
+//     return {
+//         type: CART_REMOVE,
+//         product: {
+//             productId
+//         }
+//     }
+// }
+
+export const addToCart = (product) => (dispatch) => {
+   dispatch(addCartToStore(product))
 }

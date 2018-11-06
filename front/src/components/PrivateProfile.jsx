@@ -6,18 +6,10 @@ export default (props) => {
     return(
         <div>
             {
-                props.access == true ? 
-                    <AdminProfile
-                        allUsers={props.allUsers}
-                    />
+                props.user.access == true ? 
+                    <AdminProfile logOut={props.logOut}/>
                 :
-                    <UserProfile 
-                        logOut={props.logOut}
-                        first_name={props.first_name}
-                        last_name={props.last_name}
-                        dni={props.dni}
-                        cellphone={props.cellphone}
-                    /> 
+                    <UserProfile user={props.user} logOut={props.logOut}/> 
             }
         </div>
     )

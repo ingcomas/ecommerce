@@ -19,7 +19,7 @@ router.post('/newUser', (req, res) => {
     .catch(e => res.send(e));
 });
 
-router.post('/logged', passport.authenticate('local'), (req, res) =>{
+router.post('/logged', passport.authenticate('local'), (req, res) => {
         const authenticated = req.isAuthenticated();
         if(authenticated){
             res.send({
@@ -48,7 +48,6 @@ router.post('/createAdmin', (req, res) => {
 });
 
 //GETS
-
 router.get('/allUsers', (req, res) => {
     User.findAll({})
     .then(users => res.send(users));

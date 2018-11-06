@@ -14,7 +14,7 @@ export default class Cart extends Component {
     }
     render(){
         return(
-            <ul>
+            <ul className="col-xs-3" >
                 <li>aca rendereamos todos los prds<button>remove from cart</button></li>
                 <button>Para ir al checkout</button>
             </ul>

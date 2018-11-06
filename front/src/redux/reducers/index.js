@@ -10,10 +10,14 @@ import productReducer from './productReducer'
 import CartReducer from './CartReducer'
 import ordersReducer from './ordersReducer'
 import loginReducer from './loginReducer'
+import categoriesReducer from './categoriesReducer'
+import userReducer from './userReducer';
 
 export default combineReducers({
     product: productReducer,
     cart : CartReducer,
     orders: ordersReducer,
     log: loginReducer,
+    categories : categoriesReducer,
+    user: userReducer
   });
