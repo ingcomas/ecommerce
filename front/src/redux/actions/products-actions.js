@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {NEW_PRODUCT, LIST_PRODUCTS} from '../constants/productsConstants'
+import {NEW_PRODUCT, LIST_PRODUCTS, SINGLE_PRODUCT} from '../constants/productsConstants'
 
  const productoCreado = (newProduct) => ({
     type: NEW_PRODUCT,
@@ -19,10 +19,9 @@ const buscarProducto = (prods) => ({
     type : 'SEARCH',
     search : prods
 })
-const seleccionaProducto =(oneprod)=>({
-    type :"SINGLE_PRODUCT",
-      oneprod      
-
+const seleccionaProducto =(oneProduct)=>({
+    type :SINGLE_PRODUCT,
+    oneProduct
 })
 
 export const createProduct = (producto) => (dispatch) => {
@@ -62,5 +61,8 @@ export const searchProduct = (value) => (dispatch) => {
 }
 export const singleProduct=(productId)=>(dispatch)=>{
     axios.get(`/api/product/${productId}`)
-   .then(res=>dispatch(seleccionaProducto(res.data)))
+  .then(res=>dispatch(seleccionaProducto(res.data)))
+
+ 
+
 }

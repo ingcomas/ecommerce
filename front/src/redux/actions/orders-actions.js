@@ -4,15 +4,33 @@ const receiveOrders = (orders) => ({
     orders
   });
 
-export const fetchOrders = (orderSearch = '') => (dispatch) => {
-    console.log('action',orderSearch);
-    
+export const fetchOrders = (orderSearch = '') => (dispatch) => {    
     axios.get('/api/user/admin/orders/',{
         params: {
             state:orderSearch
             }
         })
     .then(res => res.data)
-    .then(orders => dispatch(receiveOrders(orders)))
-    
+    .then(orders => dispatch(receiveOrders(orders)))    
+}
+
+export const createOrder = (params,items) => (dispatch)=>{
+    var array=[];
+    items.map(item=>array.push(item.id))
+    axios.post('/api/checkout',{
+        firstName: params.firstName.value,
+        lastName: params.lastName.value,
+        address: params.address.value,
+        city: params.city.value,
+        province: params.province.value,
+        email: params.email.value,
+        cellphone: params.cellphone.value,
+        products:array,
+    })
+}
+export const changeOrder = (param,id) => (dispatch) =>{
+    axios.put('/api/checkout/update',{
+        estado: param,
+        id:id
+    })
 }

@@ -1,27 +1,57 @@
 import React, {Component} from 'react';
-import axios from 'axios';
+import { connect } from 'react-redux';
 
-export default class CreateCategoryContainer extends Component {
-	constructor(){
-		super();
+import CreateCategory from '../components/CreateCategory';
+import { postCategory, axiosCategories, deleteCategory } from '../redux/actions/categoriesActions';
 
+class CreateCategoryContainer extends Component {
+	constructor(props){
+		super(props);
+		this.handleSubmit= this.handleSubmit.bind(this);
+		this.handleClick= this.handleClick.bind(this);
 	}
-
+	handleClick(e){
+		this.props.deleteCategory(e.target.id);
+	}
 	handleSubmit(e){
 		e.preventDefault();
-		const value= e.target.name;
-		axios.post ('/categories/new')
-			.then (response => res.send (response.data))
+		this.props.createCategory(e.target.nombre.value);
 	}
-
 	componentDidMount(){
-		axios.get ('/api/categories')
-			.then (response => res.send(response.data))
+		this.props.getCategories();
 	}
 
 	render(){
 		return (
-			<CreateCategory />
+			<div>
+				<CreateCategory 
+					categories= { this.props.categories } 
+					handleSubmit= { this.handleSubmit } 
+					handleClick= { this.handleClick } 
+				/>
+			</div>
 		)
 	}
 }
+
+const mapStateToProps= (state) => {
+	return {
+		categories : state.categories.categories,	
+	}
+}
+
+const mapDispatchToProps= (dispatch) => {
+	return {
+		createCategory : function (category){
+			dispatch(postCategory(category));
+		},
+		getCategories : function (){
+			dispatch(axiosCategories());
+		},
+		deleteCategory : function(catId){
+			dispatch(deleteCategory(catId))
+		}
+	}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CreateCategoryContainer);

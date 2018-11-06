@@ -1,0 +1,45 @@
+.tarjeta{
+  margin-top: 5%;
+    height: auto;
+    }
+    .tarjeta-body{
+      opacity: 0.8;
+      background-color: gray
+    }
+  .cartWhite{
+    color:white
+
+  }
+  .picante{
+    margin-top: 10%;
+  }
+  .shoppingCart{
+    list-style: none;
+  }
+  .delete-button{
+    color: red;
+    margin: 0 5px
+
+
+  }
+  .row-view{
+    margin-top: 5%
+  }
+  .single-product{
+  
+  }
+  .cont-img-single-product{
+   
+    
+  }
+  .cont-props-single-product{
+    background-color: gray;
+    opacity: 0.5;
+  }
+  .img-single-product{
+
+    width: 200px;
+    height: auto;
+
+
+  }

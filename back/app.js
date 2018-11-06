@@ -18,6 +18,7 @@ const Review = require('./db/models/Review');
 const db = require('./db/index');
 db.sync({force : false});
 
+
 //APP
 var app = express();
 app.use(bodyParser.urlencoded({extended: true}));
@@ -37,12 +38,15 @@ const userRouter = require('./routes/userRouter');
 const ProductRouter = require('./routes/productRouter')
 const ordersRouter = require('./routes/ordersRouter')
 const categoryRouter = require('./routes/categoryRouter')
+const reviewRouter = require('./routes/reviewRouter')
 
 //ROUTES
 app.use('/api/user/admin',ordersRouter);
 app.use('/api/user', userRouter);
+app.use('/api/review', reviewRouter)
 app.use('/api/product', ProductRouter);
-app.use('/api/categories', categoryRouter)
+app.use('/api/categories', categoryRouter);
+app.use('/api/checkout',ordersRouter);
 
 app.use('/*', (req, res) => {
   res.sendFile(path.join(__dirname, '../front/index.html'));

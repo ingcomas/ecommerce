@@ -9,13 +9,15 @@ import ProductsContainer from './ProductsContainer'
 import SingleProductsContainer from './SingleProductsContainer'
 import ProductManagerContainer from './ProductManagerContainer';
 import RegisterContainer from './RegisterContainer';
-import CategoriesContainer from './CategoriesContainer';
+import CreateCategoryContainer from './CreateCategoryContainer';
 import CreateProductContainer from './CreateProductContainer';
-import CartContainer from './CartContainer'
-
-import PrivateProfile from '../components/PrivateProfile';
-import Jumbotron from '../components/Jumbotron';
+import CheckoutContainer from './CheckoutContainer';
+import CartContainer from './CartContainer';
 import LoginContainer from './LoginContainer';
+
+//COMPONENTS
+import Jumbotron from '../components/Jumbotron';
+import PrivateProfile from '../components/PrivateProfile';
 
 export default class Main extends React.Component{
     constructor(props){
@@ -23,31 +25,26 @@ export default class Main extends React.Component{
     }
 
     render(){
-        
-        return (
-            <div className="container-fluid">
-                <HeaderContainer/>
-                    <div className="col-sm-9">
-                <Switch>
-                    <Route exact path="/" component={Jumbotron}/>
-                    <Route exact path="/products" component={ProductsContainer} />
-                    <Route exact path='/user/admin/orders' component={OrderContainer}/>
-
-                    <Route path="/cart" component={Cart} />
-                    <Route path="/login" component={LoginContainer}/>
-                    <Route path="/register" component={RegisterContainer}/>
-                    <Route path="/profile" component={PrivateProfile}/>
-        			<Route path='/user/admin' component= {ProductManagerContainer} />
-                    <Route path='/categories' component={CategoriesContainer} />
-                    <Route path='/products/newproduct' component= {CreateProductContainer} />
-                    <Route path="/products/:id" component={SingleProductsContainer} />							
-                    <Redirect from="/" to="/products" />
-                </Switch>
+        return (        
+            <div>
                 <CartContainer />
-                    </div>
+                <div className="col-sm-12 col-xs-12 col-md-12 col-lg-9">
+                    <Switch>
+                        <Route exact path="/" component={Jumbotron}/>
+                        <Route exact path='/user/admin/orders' component={OrderContainer}/>
+                        <Route exact path="/products" component={ProductsContainer} />
+                        <Route path="/profile" component={PrivateProfile} />
+                        <Route path='/categories/newcategory' component={CreateCategoryContainer} />
+                        <Route path='/products/newproduct' component= {CreateProductContainer} />  
+						<Route path="/products/:id" component={SingleProductsContainer} />
+                        <Route path='/user/admin' component= {ProductManagerContainer} />
+                        <Route path="/register" component={RegisterContainer}/>
+                        <Route path="/login" component={LoginContainer}/>
+                        <Route path='/cart/checkout' component={CheckoutContainer} />
+                        <Route path="/cart" component={Cart} />
+                    </Switch>
+                </div>     
             </div>
         )
     }
 }
-
-
