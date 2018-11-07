@@ -32,6 +32,7 @@ const productActionCategories= (filteredCategories) => ({
 	filteredCategories
 })
 
+
 export const createProduct = (producto) => (dispatch) => {
     const images= producto.images && producto.images.value.split(',');
     const categories= [];
@@ -72,6 +73,7 @@ export const singleProduct=(productId)=>(dispatch)=>{
     axios.get(`/api/product/${productId}`)
   .then(res=>dispatch(seleccionaProducto(res.data)))
 }
+
 
 export const editProduct= (productId) => (dispatch) => {
 	axios.get (`/api/product/${productId}`)	

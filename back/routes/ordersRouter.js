@@ -53,8 +53,9 @@ router.post('/',(req,res)=>{
         province: req.body.province,
         email: req.body.email,
         cellphone: req.body.cellphone,
-        products: req.body.products
-    }).then(response=>{        
+        products: req.body.products,
+        userId:req.body.id
+    }).then(response=>{    
         res.send(response)})
 })
 router.put('/update',(req,res)=>{

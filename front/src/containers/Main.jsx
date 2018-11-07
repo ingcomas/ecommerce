@@ -31,12 +31,12 @@ class Main extends React.Component{
     }
     render(){
         return (        
-            <div>
+            <div className="container-fluid">
                 <HeaderContainer/>
-                <CartContainer />
-                <div className="row">
+              
+                <div className="row picanteo-row">
                     <CartContainer />
-                    <div className="col-xs-9 col-sm-9">
+                    <div className="col-xs-10 col-sm-10">
                     <Switch>
 												{this.props.user.access ? 
 													<Route exact path='/products/:id/edit' component= {ProductsContainer} /> 
@@ -61,6 +61,8 @@ class Main extends React.Component{
                         <Route path="/products/:id" component={SingleProductsContainer} />
                         <Route path='/cart/checkout' component={CheckoutContainer} />
                         <Route path="/cart" component={Cart} />
+                        <Route path="/products/categories/:id" component={ProductsContainer} />
+                        <Route path="/products/:id" component={SingleProductsContainer} />
                     </Switch>
                     </div>
                 </div>

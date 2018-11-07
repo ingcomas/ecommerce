@@ -7,7 +7,9 @@ import {Link} from 'react-router-dom';
 /*
 importamos archivos nuestros
 */
-import {removeFromCart} from '../redux/actions/CartActions'
+import {removeFromCart, addToCart, decProd} from '../redux/actions/CartActions'
+
+
 class CartContainer extends Component {
     constructor(props){
         super(props)
@@ -17,9 +19,10 @@ class CartContainer extends Component {
     }  
     render(){        
         return(
-            <table className='table col-xs-3 col-sm-3 cartWhite'>
+            <table className='table col-xs-2 col-sm-2 cartWhite'>
             <thead>
               <tr>
+                <th>Quantity</th>
                 <th>Product</th>
                 <th>Price</th>
                 <th></th>
@@ -29,8 +32,9 @@ class CartContainer extends Component {
               {this.props.cart.cart && this.props.cart.cart.map((prod , index) => (
                   
                 <tr className='cartWhite' key={index}>
-                  <td>{prod.product.name}</td>
-                  <td>{prod.product.price}</td>
+                    <td><i onClick={()=>this.props.addCart(prod.product)} className="fas fa-plus-circle"></i>{prod.quantity}<i onClick={()=>this.props.decOne(prod.product)} className="fas fa-minus-circle"></i></td>
+                  <td className="cart-name">{prod.product.name}</td>
+                  <td className="cart-price">{prod.product.price}</td>
                   <td><i onClick={()=>this.props.removeFromCart(index)} className="fas fa-trash-alt delete-button"></i></td>
                 </tr>
               ))}
@@ -49,7 +53,9 @@ function mapStateToProps(state){
 };
 function mapDispatchToProps(dispatch){
     return{
-        removeFromCart : (index) => dispatch(removeFromCart(index))
+        removeFromCart : (index) => dispatch(removeFromCart(index)),
+        addCart : (product) => dispatch(addToCart(product)),
+        decOne : (product) => dispatch(decProd(product))
     }
 };
 export default connect(mapStateToProps,mapDispatchToProps)(CartContainer)

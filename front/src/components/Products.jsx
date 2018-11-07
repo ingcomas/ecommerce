@@ -2,9 +2,12 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import CartContainer from '../containers/CartContainer'
 
-export default ({productList, addToCart, handleClick, categories})=>(
-  <div className="row">
-  {productList && productList.map((product)=>(
+
+
+export default ({productList, addToCart, handleClick})=>(
+
+  <div className='row'>
+   {productList && productList.map((product)=>(
    
       
        <div key={product.id} className='col-sm-3 col-md-3 col-lg-3 col-xs-3' >
