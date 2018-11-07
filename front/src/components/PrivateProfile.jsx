@@ -7,7 +7,9 @@ export default (props) => {
         <div>
             {
                 props.user.access == true ? 
-                    <AdminProfile logOut={props.logOut}/>
+                    <AdminProfile
+                        logOut={props.logOut}
+                    />
                 :
                     <UserProfile user={props.user} logOut={props.logOut}/> 
             }

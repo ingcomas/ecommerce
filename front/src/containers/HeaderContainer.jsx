@@ -11,7 +11,7 @@ class HeaderContainer extends React.Component{
                 <Header user={this.props.user}/>
         )
     }
-}
+} 
 
 function mapStateToProps(state){
     return {

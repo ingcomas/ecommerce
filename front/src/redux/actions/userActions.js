@@ -15,15 +15,20 @@ const endSession = () => ({
     }
 })
 
+const updateAdminState = (user) => ({
+    type: 'UPDATE_ADMIN_STATE',
+    user
+});
+
 const setLoggedUser = user => ({
     type: 'LOG_WITH_USER',
-    user,
+    user
 });
 
 const sayWrongPassword = e => ({
     type: 'WRONG_PASSWORD',
     message: 'Contraseña incorrecta'
-})
+});
 
 export const loginUser = (email, password) => dispatch => {
     axios.post('/api/user/logged', {
@@ -38,7 +43,7 @@ export const isLogged = () => dispatch => {
     axios.get('/me')
     .then(res => dispatch(setLoggedUser(res.data)))
     .catch(e => {
-        let session = sessionStorage.getItem('cart');
+        let session = JSON.parse(localStorage.getItem('cart'));
         if(session){
             // console.log('en el logged',JSON.parse(session))
             dispatch(addCartFromStorage(JSON.parse(session)))
@@ -49,4 +54,14 @@ export const isLogged = () => dispatch => {
 export const logOutUser = () => dispatch => {
     axios.get('/api/user/logout')
     .then(nothing => dispatch(endSession()));
+}
+
+export const convertUserToAdmin = (email) => dispatch => {
+    axios.post('/api/user/createAdmin', {email})
+    .then(user => dispatch(updateAdminState(user)));
+}
+
+export const removeAdminPermission = (email) => dispatch => {
+    axios.post('/api/user/removeAdmin', {email})
+    .then(user => dispatch(updateAdminState(user)));
 }

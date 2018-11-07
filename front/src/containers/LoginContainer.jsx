@@ -1,9 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {loginUser} from '../redux/actions/userActions';
-import LoginTEST from '../components/login';
+import Login from '../components/login';
 import PrivateProfile from '../components/PrivateProfile';
-import { logOutUser } from '../redux/actions/userActions';
+import { loginUser, logOutUser } from '../redux/actions/userActions';
 
 class LoginContainer extends React.Component{
     constructor(props){
@@ -29,11 +28,11 @@ logOut(e){
                             logOut={this.logOut}
                         />
                     : 
-                        <LoginTEST 
+                        <Login 
                             handleSubmit={this.handleSubmit} 
                             wrongPassword={this.props.user.wrongPassword}
                         />
-                    }           
+                    }
             </div>
         )
     }
@@ -41,7 +40,7 @@ logOut(e){
 
 function mapStateToProps(state, ownProps){
     return{
-        user: state.user
+        user: state.user,
     }
 }
 
