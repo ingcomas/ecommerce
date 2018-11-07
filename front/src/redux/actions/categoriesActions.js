@@ -1,4 +1,5 @@
 import axios from 'axios'
+import Products from '../../components/Products';
 
 const getCategories = (categories) => ({
   type : 'GET_CATEGORIES',
@@ -14,6 +15,11 @@ const deleteActionCategory= (category) => ({
 	type : 'POST_CATEGORY',
 	category
 })
+const productosPorCategoria=(products)=>({
+	type:'PRODUCT_BY_CATEGORY',
+	products
+})
+
 
 export const axiosCategories = () => (dispatch) => {   
   axios.get(`/api/categories`)
@@ -34,4 +40,11 @@ export const deleteCategory= (categoryId) => (dispatch) => {
 	axios.get (`/api/categories/delete/${categoryId}`)
 		.then (res => res.data)
 		.then (data => dispatch(deleteActionCategory(data)))
+};
+
+
+export const productByCategory = (categoryid)=> (dispatch)=>{
+	axios.get(`/api/categories/${categoryid}`)
+	.then(res=> dispatch(productosPorCategoria(res.data)) )
+	// .then(res=> console.log(res.data, "data categories"))
 }

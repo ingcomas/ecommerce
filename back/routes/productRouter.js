@@ -51,8 +51,4 @@ router.post ('/newproduct', (req,res) => {
 		res.send(producto)
 	})
 })
-// router.post ('/edit/:id', (req,res) => {
-// 	console.log (res.body, ' REQ.BODY')
-// 	Product.update (req.body)
-// 		.then (data => res.send(data))	
-// })
+

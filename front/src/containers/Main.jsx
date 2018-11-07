@@ -45,7 +45,7 @@ class Main extends React.Component{
                     <div className="col-xs-10 col-sm-10">
 >>>>>>> ae9604d772d382cd7b99bf18147587dc3c4c0939
                     <Switch>
-						            <Route exact path='/products/:id/edit' component= {ProductsContainer} />
+						<Route exact path='/products/:id/edit' component= {ProductsContainer} />
                         <Route exact path="/products" component={ProductsContainer} />
                         {this.props.user.access ? 
                             <Route exact path='/user/admin/orders' component={OrderContainer}/>
@@ -63,9 +63,10 @@ class Main extends React.Component{
                         <Route path="/login" component={LoginContainer}/>
                         <Route path="/
                         " component={PrivateProfile}/>
-                        <Route path="/products/:id" component={SingleProductsContainer} />
                         <Route path='/cart/checkout' component={CheckoutContainer} />
                         <Route path="/cart" component={Cart} />
+                        <Route path="/products/categories/:id" component={ProductsContainer} />
+                        <Route path="/products/:id" component={SingleProductsContainer} />
                     </Switch>
 <<<<<<< HEAD
                     </div>
