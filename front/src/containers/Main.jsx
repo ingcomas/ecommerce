@@ -34,7 +34,6 @@ import PrivateProfile from '../components/PrivateProfile';
         return (        
             <div>
                 <HeaderContainer/>
-                <CartContainer />
                 <div className="row">
                     <CartContainer />
                     <div className="col-xs-9 col-sm-9">
@@ -67,6 +66,7 @@ function mapStateToProps(state){
     return{        
     }
 };
+
 function mapDispatchToProps(dispatch){
     return{
         isLogged: function(){
