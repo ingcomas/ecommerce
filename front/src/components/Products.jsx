@@ -6,8 +6,9 @@ import {Link} from 'react-router-dom'
 export default ({productList, addToCart})=>(
 
   <div className='row'>
-  {/* {console.log(productList)} */}
-  {productList && productList.map((product)=>(
+ {/* {console.log(productList, 'products productlist') } */} 
+ 
+   {productList && productList.map((product)=>(
    
       
        <div key={product.id} className='col-sm-6 col-md-6 col-lg-4 col-xs-6' >
@@ -33,6 +34,7 @@ export default ({productList, addToCart})=>(
       </div>
       ))}
     </div>
+    
 
 )
 

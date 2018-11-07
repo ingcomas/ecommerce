@@ -26,7 +26,7 @@ var ECT = require('ect');
 var renderer = ECT({ root : __dirname + '/../views' });
 
 router.post('/email',(req,res)=>{
-    console.log(req.body.orden.email);
+    console.log(req.body.orden);
     var aux=req.body.orden
     var valores = { title : aux.email};
     var html = renderer.render('template.ect', valores);
@@ -35,7 +35,7 @@ router.post('/email',(req,res)=>{
         from: 'delivery_administrator@ecommerce.com.ar',
         to: `${aux.email}`,
         subject: `Orden de compra N°:${aux.id}`,
-        text: 'Tu producto está en camino!',
+        text: `El estado de tu orden de compra es: ${aux.state}!`,
         // html: html,
       };
       
@@ -59,6 +59,10 @@ router.post('/',(req,res)=>{
 })
 router.put('/update',(req,res)=>{
     Orders.update({state:req.body.estado},{where:{id:req.body.id}})
-    .then(response=>res.send(response))
+    .then(()=>{ 
+        Orders.findOne( { where:{ id:req.body.id } } )
+        .then( (response)=>
+        res.send(response.dataValues) )
+    })
 })
 

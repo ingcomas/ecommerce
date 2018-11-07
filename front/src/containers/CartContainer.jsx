@@ -15,7 +15,8 @@ class CartContainer extends Component {
     }
 
     render(){
-        {console.log('las props del container',this.props.cart)}
+        // {console.log('las props del container',this.props.cart)}
+        sessionStorage.setItem('cart', JSON.stringify(this.props.cart))
         return(
 
             <table className='table col-sm-12 col-xs-12 col-md-12 col-lg-3 cartWhite'>

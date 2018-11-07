@@ -40,7 +40,7 @@ export const isLogged = () => dispatch => {
     .catch(e => {
         let session = sessionStorage.getItem('cart');
         if(session){
-            console.log('en el logged',JSON.parse(session))
+            // console.log('en el logged',JSON.parse(session))
             dispatch(addCartFromStorage(JSON.parse(session)))
         }
     });

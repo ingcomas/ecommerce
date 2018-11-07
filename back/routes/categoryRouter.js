@@ -1,7 +1,7 @@
 const express= require ('express');
 const router= express();
 const Category = require('../db/models/Category')
-const product =require('../db/models/Product')
+const Product =require('../db/models/Product')
 router.get ('/', (req,res) => {
 	Category.findAll({})
 	.then(response=>{
@@ -18,11 +18,11 @@ router.get ('/:id', (req,res) => {
 	// Category.findOne({where:{id}})
 	// .then(prod=>res.send(prod))
 	// .catch(err=>res.send(err))
+	
 
 	const category=req.params.id
-	console.log(category, "CATEGORY ID")
-	product.findAll({where:{id:category}, include:[Product]})
-	.then(prod=>res.send(prod.data))
+	Category.findAll({where:{id:category}, include:[Product]})
+	.then(prod=>res.send(prod[0].products))
 })
 
 router.post ('/newcategory', (req, res) => {
