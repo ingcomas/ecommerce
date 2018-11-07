@@ -13,6 +13,7 @@ import loginReducer from './loginReducer'
 import reviewReducer from './reviewReducer';
 import categoriesReducer from './categoriesReducer'
 import userReducer from './userReducer';
+import allUsersReducer from './allUsersReducer';
 
 export default combineReducers({
     product: productReducer,
@@ -21,5 +22,6 @@ export default combineReducers({
     log: loginReducer,
     review: reviewReducer,
     categories : categoriesReducer,
-    user: userReducer
+    user: userReducer,
+    allUsers: allUsersReducer
   });

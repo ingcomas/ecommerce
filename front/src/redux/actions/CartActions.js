@@ -16,12 +16,21 @@ export function addCartStorage(cart) {
         cart
     }
 }
+export function decOne(product) {
+    return {
+        type : 'DECREASE_ONE',
+        product
+    }
+}
 export const addToCart = (product) => (dispatch) => {
-    addCartToStore(product)
+    dispatch(addCartToStore(product))
 }
 export const removeFromCart = (index) => (dispatch) => {
     dispatch(removeFromCartToStore(index))
 }
 export const addCartFromStorage = (cart) => (dispatch) => {
     dispatch(addCartStorage(cart))
+}
+export const decProd = prod => dispatch => {
+    dispatch(decOne(prod))
 }

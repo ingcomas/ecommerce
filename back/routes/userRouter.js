@@ -23,6 +23,7 @@ router.post('/logged', passport.authenticate('local'), (req, res) => {
         const authenticated = req.isAuthenticated();
         if(authenticated){
             res.send({
+                id:req.user.id,
                 first_name: req.user.first_name,
                 last_name: req.user.last_name,
                 email: req.user.email,
@@ -44,6 +45,20 @@ router.post('/createAdmin', (req, res) => {
     .then(user => {
         user.access = true;
         user.save();
+        res.send(user);
+    })
+});
+
+router.post('/removeAdmin', (req, res) => {
+    User.findOne({
+        where: {
+            email: req.body.email
+        }
+    })
+    .then(user => {
+        user.access = false;
+        user.save();
+        res.send(user);
     })
 });
 
@@ -57,6 +72,8 @@ router.get('/logout', (req, res) => {
     req.logout();
     res.send('Usuario deslogeado');
 });
+
+
     //req.user
     //req.isAuthenticated());
     //req.logout

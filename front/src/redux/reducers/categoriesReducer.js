@@ -9,7 +9,10 @@ export default (state = initialSate,action)=>{
 				return Object.assign({}, state, { category : action.category })
 			case DELETE_CATEGORY:
 				return Object.assign({}, state, { category : action.category })
-			default:
+			case 'PRODUCT_BY_CATEGORY':
+			return Object.assign({}, state, { productsByCategory : action.products })
+			
+				default:
 				return state;
 	}
 }
