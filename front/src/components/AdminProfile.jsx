@@ -25,7 +25,7 @@ class AdminProfile extends React.Component{
     render(){
         return(
             <div className="container">{console.log(this.props.allUsers)}
-                <h1 style={{color: 'white'}}>Bienvenido admin</h1>
+                <h1 className="colorRojo">Bienvenido admin</h1>
                 <ul>
                     <h2 style={{color: 'white'}}>E-mails</h2>
                     {
