@@ -36,9 +36,10 @@ class Main extends React.Component{
         return (
             <div className="container-fluid">
                 <HeaderContainer/>
-                <div className="row">
+                {/* <div className="row mt-5">
+                <div className="row mt-5"> */}
                 <CartContainer />
-                <div className="col-xs-9 col-sm-9">
+                <div className="">
                     <Switch>
 						<Route exact path='/products/:id/edit' component= {ProductsContainer} />
                         <Route exact path="/products" component={ProductsContainer} />
@@ -61,10 +62,10 @@ class Main extends React.Component{
                         <Route path="/cart" component={Cart} />
                         <Route path="/products/:id" component={SingleProductsContainer} />
                     </Switch>
-                    
                     </div>
                     </div>
-                </div>
+                //     </div>
+                // </div>
         )
     }
 
