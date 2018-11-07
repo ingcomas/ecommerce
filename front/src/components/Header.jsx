@@ -26,11 +26,11 @@ export default ({user})=>(
             <a className="nav-link" href="/products">Products <span className="sr-only">(current)</span></a>
         </li>
         <CategoriesContainer />
-        {user.access ? 
+        {/* {user.access ?  */}
         <li className="nav-item">
             <Link to='/user/admin' ><button className='btn btn-danger'>ADMIN</button></Link>
         </li>
-        : null}
+        {/* : null} */}
         </ul>
         <SearchContainer />
     </div>
