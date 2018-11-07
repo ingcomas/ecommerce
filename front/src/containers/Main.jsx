@@ -34,7 +34,7 @@ class Main extends React.Component{
             <div className="container-fluid">
                 <HeaderContainer/>
               
-                <div className="row">
+                <div className="row picanteo-row">
                     <CartContainer />
                     <div className="col-xs-10 col-sm-10">
                     <Switch>

@@ -7,8 +7,8 @@
       background-color: gray
     }
   .cartWhite{
-    color:white
-
+    color:white;
+    margin-top: 1%
   }
   .picante{
     margin-top: 10%;
@@ -71,4 +71,7 @@
   .cart-name{
     width: 50%;
     font-weight: bolder
+  }
+  .picanteo-row{
+    margin-top: 5%
   }
