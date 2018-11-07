@@ -35,9 +35,9 @@ import LoginContainer from './LoginContainer';
         return (
             <div className="container-fluid">
                 <HeaderContainer/>
-
+                <div className="row">
                 <CartContainer />
-                <div className="col-sm-12 col-xs-12 col-md-12 col-lg-9">
+                <div className="col-xs-9 col-sm-9">
                     <Switch>
                         <Route path='/products/newproduct' component= {CreateProductContainer} />
                         {/* <Route path='/user/allusers' component= {  } /> */}
@@ -53,7 +53,9 @@ import LoginContainer from './LoginContainer';
                         <Route path='/cart/checkout' component={CheckoutContainer} />
                         <Route path="/cart" component={Cart} />
                     </Switch>
-                </div>
+                    
+                    </div>
+                    </div>
                 </div>
         )
     }
