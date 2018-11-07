@@ -60,3 +60,15 @@
     background-color: #929982;
     color: white
   } */
+  .fa-plus-circle{
+    color:lightgreen;
+    margin-right: 10%;
+  }
+  .fa-minus-circle{
+    color: red;
+    margin-left: 10%;
+  }
+  .cart-name{
+    width: 50%;
+    font-weight: bolder
+  }

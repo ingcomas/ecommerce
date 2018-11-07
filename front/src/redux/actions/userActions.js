@@ -45,7 +45,6 @@ export const isLogged = () => dispatch => {
     .catch(e => {
         let session = JSON.parse(localStorage.getItem('cart'));
         if(session){
-            console.log('pfknaf', session)
             dispatch(addCartFromStorage(session))
         }
     });
