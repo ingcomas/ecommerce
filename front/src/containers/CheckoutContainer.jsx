@@ -22,6 +22,7 @@ render (){
             <Checkout 
             handleSubmit={this.handleSubmit}
             items={this.props.items}
+            user={this.props.user}
             />
         </div>
     )
@@ -30,7 +31,7 @@ render (){
 function mapStateToProps(state){
     return { 
         items: state.cart.cart,//es un arreglo con objetos [{product:{producto},quantity:valor},{}]
-
+        user: state.user
     }
 }
 function mapDispatchToProps(disptach){

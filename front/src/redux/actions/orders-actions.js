@@ -40,4 +40,7 @@ export const changeOrder = (param,id) => (dispatch) =>{
         estado: param,
         id:id
     })
+    .then(order=>{
+        axios.post('/api/checkout/email',{orden:order.data})
+    })
 }

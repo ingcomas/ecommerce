@@ -55,13 +55,15 @@ router.get('/allUsers', (req, res) => {
 
 router.get('/logout', (req, res) => {
     req.logout();
-
     res.send('Usuario deslogeado');
 });
-
     //req.user
     //req.isAuthenticated());
     //req.logout
     //req.session.passport.user
+<<<<<<< HEAD
 // })
+=======
+
+>>>>>>> eeb8f4b04cd3109a51cea882af9821592342230e
 module.exports = router;
