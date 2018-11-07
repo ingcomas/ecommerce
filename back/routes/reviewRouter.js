@@ -1,11 +1,18 @@
 const express = require('express');
 const router = express.Router();
+const Product = require('../db/models/Product')
 
 var Review = require('../db/models/Review');
 
-router.get('/',(req,res)=>{
-  Review.findAll({})
-  .then(response => res.send(response))
+router.get('/:id',(req,res)=>{
+  console.log(req.params.id)
+  Review.findAll({
+    where:{
+      productId:req.params.id
+    }
+  })
+  .then(response => {
+    res.send(response)})
 })
 
 router.post('/newReview', (req,res)=>{
@@ -13,8 +20,12 @@ router.post('/newReview', (req,res)=>{
     title: req.body.title,
     content:req.body.content,
     rating:req.body.rating
-  }).then(response => res.send(response))
-  .catch(e=>res.send(e))
+  }).then(review =>{
+  Product.findOne({where: {id:req.body.prodId}
+  })
+  .then(prod=>review.setProduct(prod.id))
+  .then(res.send(review))
+  })
 })
 
 module.exports = router;

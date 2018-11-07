@@ -2,8 +2,26 @@ import React from 'react'
 import Stars from './Stars'
 import { FaStar } from 'react-icons/fa'
 
-export default function Reviews ({handleSubmit,reviews,stars,handleClick,promedio}){
+export default class Reviews extends React.Component{
+  constructor(props){
+    super(props)
+    this.state={
+      hoverIn:0,
+      hoverStar:0,
+    }
+  }
 
+  mouseOn = (hoverIn)=>{
+    this.setState({hoverIn},()=>{})
+  }
+  mouseLeave = ()=>{
+    this.setState({hoverIn:0},()=>{})
+  }
+  starHighlight = (hoverStar)=>{
+    this.setState({hoverStar},()=>{})
+}
+  render(){
+  const{handleSubmit,reviews,stars,handleClick,promedio} = this.props
   return (
     <div>
     <div className="container">
@@ -15,7 +33,8 @@ export default function Reviews ({handleSubmit,reviews,stars,handleClick,promedi
                     <span className="input-group-text" id="inputGroup-sizing-sm">Title</span>
                     </div>
                     <input type="text" name="title" className="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"/>
-                    <Stars handleClick={handleClick} 
+                    
+                    <Stars handleClick={handleClick} mouseOn={this.mouseOn} mouseLeave={this.mouseLeave} starHighlight={this.starHighlight} hoverStar={this.state.hoverStar} hoverIn={this.state.hoverIn}
                     />
                     </div>
                 <textarea className="col-md-12" id="new_message" name="content"
@@ -52,4 +71,5 @@ export default function Reviews ({handleSubmit,reviews,stars,handleClick,promedi
     </div>
     </div>
   )
+}
 }

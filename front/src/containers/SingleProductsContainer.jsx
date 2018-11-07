@@ -25,7 +25,7 @@ class SingleProductContainer extends React.Component{
              product={this.props.oneProduct}
              addToCart={this.props.addCart}
              /> 
-             <ReviewsContainer/>
+             <ReviewsContainer idProduct={this.props.match.params.id}/>
              
         </div>
             

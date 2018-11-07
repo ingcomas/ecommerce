@@ -1,9 +1,7 @@
 import React,{Component} from 'react'
 import Reviews from '../components/Reviews.jsx'
 import {connect} from 'react-redux'
-import axios from 'axios'
-import {newReview,fetchReviews,ratingPromedio} from '../redux/actions/review-action'
-
+import {newReview,fetchReviews} from '../redux/actions/review-action'
 
 function mapStateToProps(state){
   return { comentarios: state.review}
@@ -11,11 +9,11 @@ function mapStateToProps(state){
 
 function mapDispatchToProps(dispatch){
   return { 
-    newReview: function(param,stars){
-      dispatch(newReview(param,stars))
+    newReview: function(param,stars,prodId){
+      dispatch(newReview(param,stars,prodId))
     },
-    fetchReviews: function (){
-      dispatch(fetchReviews())
+    fetchReviews: function (prodId){
+      dispatch(fetchReviews(prodId))
     }
   }
 }
@@ -25,9 +23,7 @@ class ReviewsContainer extends Component{
   constructor(props){
     super(props)
     this.state={
-      reviews:[],
       ratingProm:0,
-      rating:[],
       stars:0,
     }
     this.createStars=this.createStars.bind(this)
@@ -43,7 +39,8 @@ class ReviewsContainer extends Component{
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.newReview(e.target,this.state.stars)
+    this.props.newReview(e.target,this.state.stars,
+    this.props.idProduct)
   }
 
   createStars = (num)=>{
@@ -55,7 +52,7 @@ class ReviewsContainer extends Component{
   }
 
   componentDidMount(){   
-    this.props.fetchReviews();
+    this.props.fetchReviews(this.props.idProduct);
     this.ratingPromedio()
   }
 
@@ -85,7 +82,6 @@ class ReviewsContainer extends Component{
       stars={this.createStars}
       handleClick={this.handleClick}
       />
-
       </div>
     )
   }

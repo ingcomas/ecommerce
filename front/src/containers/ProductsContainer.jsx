@@ -1,9 +1,9 @@
 import React from 'react';
 import {connect} from 'react-redux'
 
-
+import {filterProduct} from '../redux/actions/categoriesActions'
 import Products from '../components/Products';
-import {listProducts, filterProduct} from '../redux/actions/products-actions'
+import {listProducts} from '../redux/actions/products-actions'
 import {addToCart} from '../redux/actions/CartActions'
 ;
 
@@ -15,13 +15,11 @@ import {addToCart} from '../redux/actions/CartActions'
          }
 
     componentDidMount(){
-        const idCategory = this.props.match.params.id   
         this.props.listProducts()
-        // 
-        if(idCategory) this.props.filterProduct(idCategory)
+     
     };
     render(){
-        console.log(this.props)
+         console.log(this.props, "THIS.PROPS")
         return(
                     <Products 
                     productList={this.props.products}
@@ -33,10 +31,10 @@ import {addToCart} from '../redux/actions/CartActions'
 
 
 function mapStateToProps(state){
-
+//  console.log(state, "STATE!!")
     return{
             products: state.product.allProducts,
-            categories: state.product.categories      
+          
     }
 };
 function mapDispatchToProps(dispatch){
@@ -47,9 +45,7 @@ function mapDispatchToProps(dispatch){
         addCart : function(product){
             dispatch(addToCart(product))
         },
-        filterProduct: function(idCategory){
-            dispatch(filterProduct(idCategory))
-        },
+        
       
     }
 };

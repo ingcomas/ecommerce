@@ -9,27 +9,19 @@ const loadReviews = (allReviews)=>({
   average:0
 })
 
-// const averageReviews = (average) => ({
-//   type: "AVERAGE_REVIEWS",
-//   average
-// })
-
-export const newReview = (param,stars)=>(dispatch)=>{
+export const newReview = (param,stars,prodId)=>(dispatch)=>{
   axios.post('/api/review/newReview', {
     title: (param.title.value),
     content: param.content.value,
-    rating: stars
+    rating: stars,
+    prodId:prodId
   })
   .then(review=>
     dispatch(createdReview(review.data)))
-    .then(response => dispatch(fetchReviews()))
+    .then(response => dispatch(fetchReviews(prodId)))
 }
 
-export const fetchReviews = () => (dispatch) => {
-  axios.get('/api/review')
-    .then(response => dispatch(loadReviews(response.data)))
-}
-
-export const ratingPromedio = () => (dispatch) => {
-    ()=> dispatch(averageReviews(5))
+export const fetchReviews = (prodId) => (dispatch) => {
+  axios.get(`/api/review/${prodId}`)
+  .then(response => dispatch(loadReviews(response.data)))
 }

@@ -20,8 +20,9 @@ router.get ('/:id', (req,res) => {
 	// .catch(err=>res.send(err))
 
 	const category=req.params.id
+	console.log(category, "CATEGORY ID")
 	product.findAll({where:{id:category}, include:[Product]})
-	.then(prod=> {console.log(prod, "para el back")})
+	.then(prod=>res.send(prod.data))
 })
 
 router.post ('/newcategory', (req, res) => {
