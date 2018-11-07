@@ -40,15 +40,23 @@ class Main extends React.Component{
                 <CartContainer />
                 <div className="col-xs-9 col-sm-9">
                     <Switch>
-												<Route exact path='/products/:id/edit' component= {ProductsContainer} />
+						<Route exact path='/products/:id/edit' component= {ProductsContainer} />
                         <Route exact path="/products" component={ProductsContainer} />
-												<Route exact path='/user/admin/orders' component={OrderContainer}/>
-                        <Route path='/products/newproduct' component= {CreateProductContainer} />
+                        {this.props.user.access ? 
+                        <Route exact path='/user/admin/orders' component={OrderContainer}/>
+                        : null}
+                        {this.props.user.access ? 
                         <Route path='/user/admin' component= {ProductManagerContainer} />
+                        : null}
+                        {this.props.user.access ? 
+                        <Route path='/products/newproduct' component= {CreateProductContainer} />
+                        : null}
+                        {this.props.user.access ? 
+                        <Route path='/categories/newcategory' component={CreateCategoryContainer} />
+                        : null}
                         <Route path="/register" component={RegisterContainer}/>
                         <Route path="/login" component={LoginContainer}/>
                         <Route path="/profile" component={PrivateProfile}/>
-                        <Route path='/categories/newcategory' component={CreateCategoryContainer} />
                         <Route path='/cart/checkout' component={CheckoutContainer} />
                         <Route path="/cart" component={Cart} />
                         <Route path="/products/:id" component={SingleProductsContainer} />
@@ -63,7 +71,7 @@ class Main extends React.Component{
 }
 function mapStateToProps(state){
     //    console.log(state)
-    return{        
+    return{ user: state.user,
     }
 };
 function mapDispatchToProps(dispatch){
