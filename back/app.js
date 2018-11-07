@@ -39,6 +39,7 @@ const ProductRouter = require('./routes/productRouter')
 const ordersRouter = require('./routes/ordersRouter')
 const categoryRouter = require('./routes/categoryRouter')
 const reviewRouter = require('./routes/reviewRouter')
+const meRouter = require('./routes/meRouter')
 
 //ROUTES
 app.use('/api/user/admin',ordersRouter);
@@ -47,6 +48,7 @@ app.use('/api/review', reviewRouter)
 app.use('/api/product', ProductRouter);
 app.use('/api/categories', categoryRouter);
 app.use('/api/checkout',ordersRouter);
+app.use('/me', meRouter);
 
 app.use('/*', (req, res) => {
   res.sendFile(path.join(__dirname, '../front/index.html'));
@@ -59,7 +61,7 @@ passport.use(new LocalStrategy({
 },
 function(username, password, done) {
     User.findOne({where: { email: username }})
-    .then(user => {console.log(user.passwordHash(password, user.salt))
+    .then(user => {
       if (!user) {
         return done(null, false, { message: 'Incorrect username.' });
       }

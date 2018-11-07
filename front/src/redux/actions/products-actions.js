@@ -40,10 +40,11 @@ const productActionCategories= (filteredCategories) => ({
 export const createProduct = (producto) => (dispatch) => {
     const images= producto.images && producto.images.value.split(',');
     const categories= [];
-
-		for (var i=0; i<producto.categorias.length; i++){
+    if(producto.categorias){
+	for (var i=0; i<producto.categorias.length; i++){
 			producto.categorias[i].checked == true ? categories.push (producto.categorias[i].value) : null
-		}
+        }
+    }
     axios.post ('/api/product/newproduct', {
 			name : producto.name.value,
 			description : producto.description.value,

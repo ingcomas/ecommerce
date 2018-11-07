@@ -1,35 +1,42 @@
 import React from 'react';
 import { Link, Route, Switch, Redirect } from 'react-router-dom';
+import axios from 'axios'
+import {isLogged} from '../redux/actions/userActions'
+import {connect} from 'react-redux'
 
 //CONTAINERS
 import OrderContainer from './OrderContainer';
 import Cart from './CartContainer'
 import HeaderContainer from './HeaderContainer';
-import LoginContainer from './LoginContainer';
 import ProductsContainer from './ProductsContainer'
 import SingleProductsContainer from './SingleProductsContainer'
 import ProductManagerContainer from './ProductManagerContainer';
 import RegisterContainer from './RegisterContainer';
 import CreateCategoryContainer from './CreateCategoryContainer';
-import ReviewsContainer from './ReviewsContainer'
 import CreateProductContainer from './CreateProductContainer';
 import CheckoutContainer from './CheckoutContainer';
 import CartContainer from './CartContainer'
 
-export default class Main extends React.Component{
+  
+//COMPONENTS
+import PrivateProfile from '../components/PrivateProfile';
+import LoginContainer from './LoginContainer';
+
+class Main extends React.Component{
     constructor(props){
         super(props);
     }
-
+    componentDidMount(){
+     this.props.isLogged()
+     console.log(sessionStorage.getItem('cart'))
+    }
     render(){
         
 
         return (
-            <div className="container-fluid" >
-               
+            <div className="container-fluid">
                 <HeaderContainer/>
 
-                <div className="row picante ">
                 <CartContainer />
                 <div className="col-sm-12 col-xs-12 col-md-12 col-lg-9">
                     <Switch>
@@ -39,6 +46,7 @@ export default class Main extends React.Component{
                         <Route path='/user/admin' component= {ProductManagerContainer} />
                         <Route path="/register" component={RegisterContainer}/>
                         <Route path="/login" component={LoginContainer}/>
+                        <Route path="/profile" component={PrivateProfile}/>
                         <Route path='/categories/newcategory' component={CreateCategoryContainer} />
                         <Route path='/cart/checkout' component={CheckoutContainer} />
                         <Route path="/cart" component={Cart} />
@@ -46,10 +54,21 @@ export default class Main extends React.Component{
                     </Switch>
                 </div>
                 </div>
-            </div>
         )
     }
 
 }
-
+function mapStateToProps(state){
+    //    console.log(state)
+    return{        
+    }
+};
+function mapDispatchToProps(dispatch){
+    return{
+        isLogged: function(){
+            dispatch(isLogged())
+        }
+    }
+};
+export default connect(mapStateToProps,mapDispatchToProps)(Main)
 
