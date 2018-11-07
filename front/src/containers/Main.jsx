@@ -40,7 +40,10 @@ class Main extends React.Component{
                 <CartContainer />
                 <div className="col-xs-9 col-sm-9">
                     <Switch>
-						<Route exact path='/products/:id/edit' component= {ProductsContainer} />
+												{this.props.user.access ? 
+													<Route exact path='/products/:id/edit' component= {ProductsContainer} /> 
+													: null
+												}
                         <Route exact path="/products" component={ProductsContainer} />
                         {this.props.user.access ? 
                         <Route exact path='/user/admin/orders' component={OrderContainer}/>
