@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import LoginTEST from '../components/login';
+import Login from '../components/login';
 import PrivateProfile from '../components/PrivateProfile';
 import { loginUser, logOutUser } from '../redux/actions/userActions';
 
@@ -28,11 +28,11 @@ logOut(e){
                             logOut={this.logOut}
                         />
                     : 
-                        <LoginTEST 
+                        <Login 
                             handleSubmit={this.handleSubmit} 
                             wrongPassword={this.props.user.wrongPassword}
                         />
-                    }           
+                    }
             </div>
         )
     }

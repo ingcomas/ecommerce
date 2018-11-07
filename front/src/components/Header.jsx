@@ -2,11 +2,11 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import SearchContainer from '../containers/SearchContainer'
 import CategoriesContainer from '../containers/HeaderCategoriesContainer'
-export default ()=>(
+export default (props) => (
     <nav className="navbar navbar-expand-sm navbar-dark bg-primary fixed-top">
     <a className="navbar-brand" href="#">
     <img src="/docs/4.1/assets/brand/bootstrap-solid.svg" width="30" height="30" alt=""/>
-  </a>
+  </a>{console.log(props)}
     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span className="navbar-toggler-icon"></span>
     </button>
