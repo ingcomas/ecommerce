@@ -44,6 +44,20 @@ router.post('/createAdmin', (req, res) => {
     .then(user => {
         user.access = true;
         user.save();
+        res.send(user);
+    })
+});
+
+router.post('/removeAdmin', (req, res) => {
+    User.findOne({
+        where: {
+            email: req.body.email
+        }
+    })
+    .then(user => {
+        user.access = false;
+        user.save();
+        res.send(user);
     })
 });
 
@@ -61,5 +75,9 @@ router.get('/logout', (req, res) => {
     //req.isAuthenticated());
     //req.logout
     //req.session.passport.user
+<<<<<<< HEAD
+// })
+=======
 
+>>>>>>> eeb8f4b04cd3109a51cea882af9821592342230e
 module.exports = router;

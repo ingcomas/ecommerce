@@ -48,7 +48,7 @@ class ReviewsContainer extends Component{
       e.target,
       this.state.stars,
       this.props.idProduct):
-    this.setState({flagStar:false},()=>{})
+    this.setState({flagStar:false,stars:0},()=>{})
   }
   deleteClick=(e,reviewId)=>{
     e.preventDefault()
@@ -67,10 +67,6 @@ class ReviewsContainer extends Component{
     const prodId = this.props.idProduct
     this.props.fetchReviews(prodId);
     this.ratingPromedio()
-  }
-
-  componentWillReceiveProps(){
-    // this.props.fetchReviews()
   }
 
   ratingPromedio(){
@@ -96,6 +92,7 @@ class ReviewsContainer extends Component{
       handleClick={this.handleClick}
       flagStar={this.state.flagStar}
       deleteClick={this.deleteClick}
+      estrellas={this.state.stars}
       />
       </div>
     )
