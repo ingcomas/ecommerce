@@ -35,12 +35,14 @@ import PrivateProfile from '../components/PrivateProfile';
             <div>
                 <HeaderContainer/>
                 <CartContainer />
-                <div className="col-sm-12 col-xs-12 col-md-12 col-lg-9">
-                    <Switch>                                                
-                        <Route path="/profile" component={PrivateProfile} />
-                        <Route path='/categories/newcategory' component={CreateCategoryContainer} />                         
-						<Route path="/products/:id" component={SingleProductsContainer} />
+                <div className="row">
+                    <CartContainer />
+                    <div className="col-xs-9 col-sm-9">
+                    <Switch>
+                        <Route path="/profile" component={PrivateProfile} />   
                         <Route path='/products/newproduct' component= {CreateProductContainer} />
+                        <Route path="/products/:id" component={SingleProductsContainer} />
+                        <Route path='/categories/newcategory' component={CreateCategoryContainer} />                         
 						<Route exact path='/user/admin/orders' component={OrderContainer}/>
                         <Route path='/user/admin' component= {ProductManagerContainer} />
                         <Route path="/register" component={RegisterContainer}/>
@@ -49,7 +51,8 @@ import PrivateProfile from '../components/PrivateProfile';
                         <Route path='/cart/checkout' component={CheckoutContainer} />
                         <Route path="/cart" component={Cart} />
                     </Switch>
-                </div>     
+                    </div>
+                </div>
             </div>
         )
     }
