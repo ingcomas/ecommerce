@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default ({ categories, handleSubmit, handleClick }) => (
-	<form className="form-horizontal" onSubmit= { handleSubmit }>
+	<form className="form-horizontal" onSubmit= { handleSubmit }> 
 		<fieldset>
 			<h1 style={{ color : 'white' }}>New Category</h1>
 			<div className="form-group">
@@ -16,7 +16,7 @@ export default ({ categories, handleSubmit, handleClick }) => (
 					<div className= 'col-sm-6'>
 						<div className= 'row'>
 							{ 
-								categories && categories.data.map (cat => {
+								categories && categories.map (cat => {
 									return (
 										<div className= 'col-sm-6' key= {cat.id}>
 											<div className="alert alert-warning alert-dismissible fade show" role="alert">

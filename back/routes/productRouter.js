@@ -11,6 +11,16 @@ router.get ('/', (req,res) => {
 		res.send(response)
 	})
 })
+
+router.get ('/:id/categories', (req,res) => {
+	const product= req.params.id;
+	Product.findAll ({ where : {id:product}, include : [Category]	})
+	 .then(categories => {
+		// console.log (categories[0].categories, ' ID') 
+		return res.send(categories[0].categories)
+	 })
+})
+
 router.get ('/:id', (req,res) => {
 	const id = req.params.id;
 	Product.findOne({where:{id}})
@@ -32,4 +42,9 @@ router.post ('/newproduct', (req,res) => {
 		})	
 		res.send(producto)
 	})
+})
+router.post ('/edit/:id', (req,res) => {
+	// console.log (res.body, ' REQ.BODY')
+	Product.update (req.body)
+		.then (data => res.send(data))	
 })

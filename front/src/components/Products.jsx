@@ -3,12 +3,9 @@ import {Link} from 'react-router-dom'
 
 
 
-export default ({productList, addToCart})=>(
-
+export default ({productList, addToCart, handleClick, categories})=>(
   <div className='row'>
-  {productList && productList.map((product)=>(
-   
-      
+	  {productList && productList.map((product)=>(
        <div key={product.id} className='col-sm-6 col-md-6 col-lg-4 col-xs-6' >
           <div className="card border-top tarjeta" >
           <Link to={`/products/${product.id}`}>
@@ -23,7 +20,7 @@ export default ({productList, addToCart})=>(
             <p className="card-text">stock:{product.stock} </p>
              
             <div className="btn-group " role="group" aria-label="Basic example">
-              <Link to='/products/edit'><button type="button" className="btn btn-dark">EDIT</button></Link>
+              <Link to='/products/edit'><button onClick= { handleClick } id= {product.id} type="button" className="btn btn-dark">EDIT</button></Link>
               <button onClick={()=>addToCart(product)}>add</button>
               <button type="button" className="btn btn-danger">DELETE</button>
             </div>
@@ -31,8 +28,7 @@ export default ({productList, addToCart})=>(
         </div>
       </div>
       ))}
-    </div>
-
+  </div>
 )
 
 

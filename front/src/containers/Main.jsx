@@ -14,17 +14,7 @@ import CreateCategoryContainer from './CreateCategoryContainer';
 import ReviewsContainer from './ReviewsContainer'
 import CreateProductContainer from './CreateProductContainer';
 import CheckoutContainer from './CheckoutContainer';
-
 import CartContainer from './CartContainer'
-
-
-
-
-//COMPONENTS
-import CreateProduct from '../components/CreateProduct';
-import Jumbotron from '../components/Jumbotron';
-
-
 
 export default class Main extends React.Component{
     constructor(props){
@@ -43,18 +33,16 @@ export default class Main extends React.Component{
                 <CartContainer />
                 <div className="col-sm-12 col-xs-12 col-md-12 col-lg-9">
                     <Switch>
-                        <Route path='/products/newproduct' component= {CreateProductContainer} />
-                        {/* <Route path='/user/allusers' component= {  } /> */}
+                        <Route exact path="/products" component={ProductsContainer} />
 												<Route exact path='/user/admin/orders' component={OrderContainer}/>
+                        <Route path='/products/newproduct' component= {CreateProductContainer} />
                         <Route path='/user/admin' component= {ProductManagerContainer} />
                         <Route path="/register" component={RegisterContainer}/>
                         <Route path="/login" component={LoginContainer}/>
                         <Route path='/categories/newcategory' component={CreateCategoryContainer} />
-                        <Route exact path="/products" component={ProductsContainer} />
-                        <Route path="/login" component={LoginContainer}/>
-                        <Route path="/products/:id" component={SingleProductsContainer} />
                         <Route path='/cart/checkout' component={CheckoutContainer} />
                         <Route path="/cart" component={Cart} />
+                        <Route path="/products/:id" component={SingleProductsContainer} />
                     </Switch>
                 </div>
                 </div>
