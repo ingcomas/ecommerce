@@ -1,4 +1,5 @@
 import axios from 'axios';
+
 const createdReview = (review)=>({
   type:'CREATED_REVIEW',
   review
@@ -9,12 +10,12 @@ const loadReviews = (allReviews)=>({
   average:0
 })
 
-export const newReview = (param,stars,prodId)=>(dispatch)=>{
+export const newReview = (param,stars,prodId,user)=>(dispatch)=>{
   axios.post('/api/review/newReview', {
-    // title: (param.title.value), DEBERIA IR EL USERNAME
     content: param.content.value,
     rating: stars,
-    prodId:prodId
+    prodId:prodId,
+    user:user
   })
   .then(review =>
     dispatch(createdReview(review.data)))

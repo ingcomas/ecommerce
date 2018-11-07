@@ -25,7 +25,7 @@ export default class CategoriesContainer extends Component {
                 </a>
                 <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                     {categories && categories.map(elem=>(
-                        <Link className="dropdown-item" to={`/categories/${elem.id}`} key={elem.id} >{elem.name}</Link>
+                        <Link className="dropdown-item" to={`/products/categories/${elem.id}`} key={elem.id} >{elem.name}</Link>
                     ))}
                 </div>
             </li>
