@@ -31,12 +31,12 @@ class Main extends React.Component{
     }
     render(){
         return (        
-            <div>
+            <div className="container-fluid">
                 <HeaderContainer/>
-                <CartContainer />
-                <div className="row">
+              
+                <div className="row picanteo-row">
                     <CartContainer />
-                    <div className="col-xs-9 col-sm-9">
+                    <div className="col-xs-10 col-sm-10">
                     <Switch>
 						<Route exact path='/products/:id/edit' component= {ProductsContainer} />
                         <Route exact path="/products" component={ProductsContainer} />

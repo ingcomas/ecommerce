@@ -78,6 +78,4 @@ router.get('/logout', (req, res) => {
     //req.logout
     //req.session.passport.user
 // })
-
-module.exports = router
-
+module.exports = router;
