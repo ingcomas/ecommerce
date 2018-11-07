@@ -27,7 +27,6 @@ import LoginContainer from './LoginContainer';
     }
     componentDidMount(){
      this.props.isLogged()
-     console.log(sessionStorage.getItem('cart'))
     }
     render(){
         

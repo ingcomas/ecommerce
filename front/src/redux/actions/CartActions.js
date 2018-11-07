@@ -17,7 +17,7 @@ export function addCartStorage(cart) {
     }
 }
 export const addToCart = (product) => (dispatch) => {
-    addCartToStore(product)
+    dispatch(addCartToStore(product))
 }
 export const removeFromCart = (index) => (dispatch) => {
     dispatch(removeFromCartToStore(index))

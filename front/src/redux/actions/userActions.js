@@ -38,10 +38,10 @@ export const isLogged = () => dispatch => {
     axios.get('/me')
     .then(res => dispatch(setLoggedUser(res.data)))
     .catch(e => {
-        let session = sessionStorage.getItem('cart');
+        let session = JSON.parse(localStorage.getItem('cart'));
         if(session){
-            console.log('en el logged',JSON.parse(session))
-            dispatch(addCartFromStorage(JSON.parse(session)))
+            console.log('pfknaf', session)
+            dispatch(addCartFromStorage(session))
         }
     });
 }

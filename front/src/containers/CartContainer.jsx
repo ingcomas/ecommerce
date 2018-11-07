@@ -8,19 +8,20 @@ import {Link} from 'react-router-dom';
 importamos archivos nuestros
 */
 import {removeFromCart} from '../redux/actions/CartActions'
-
 class CartContainer extends Component {
     constructor(props){
         super(props)
     }
-
-    render(){
-        {console.log('las props del container',this.props.cart)}
-        sessionStorage.setItem('cart', JSON.stringify(this.props.cart))
+    componentWillReceiveProps(){
+        console.log('will receive', this.props.cart)
+        localStorage.setItem('cart', JSON.stringify(this.props.cart))
+    }
+    componentWillUnmount(){
+        localStorage.setItem('cart', JSON.stringify(this.props.cart))
+    }
+    render(){        
         return(
-
             <table className='table col-xs-3 col-sm-3 cartWhite'>
-            
             <thead>
               <tr>
                 <th>Product</th>
@@ -38,14 +39,11 @@ class CartContainer extends Component {
                 </tr>
               ))}
                 <tr><td colSpan="3" style={{textAlign:"center"}}><Link to='/cart/checkout' className="btn btn-success">Go to checkout</Link></td></tr>
-            </tbody>
-            
+            </tbody>   
           </table>
-        
         )
     }
 }
-
 function mapStateToProps(state){
     return{
             cart: state.cart      
