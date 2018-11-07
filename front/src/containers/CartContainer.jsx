@@ -19,7 +19,7 @@ class CartContainer extends Component {
         sessionStorage.setItem('cart', JSON.stringify(this.props.cart))
         return(
 
-            <table className='table col-sm-12 col-xs-12 col-md-12 col-lg-3 cartWhite'>
+            <table className='table col-xs-3 col-sm-3 cartWhite'>
             
             <thead>
               <tr>
