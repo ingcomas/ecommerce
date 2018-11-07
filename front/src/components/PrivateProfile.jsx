@@ -13,7 +13,8 @@ render(){
         <div>
             {
                 this.props.user.access == true ? 
-                    <Redirect to="/user/admin"/>
+                    <Redirect to='/user/admin' />
+                    // <AdminProfile logOut={props.logOut}/>
                 :
                     <UserProfile user={this.props.user} logOut={this.props.logOut}/> 
             }
