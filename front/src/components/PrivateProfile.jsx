@@ -11,7 +11,7 @@ class PrivateProfileContainer extends React.Component{
 render(){
     return(
         <div>
-            {
+            {/* {
 <<<<<<< HEAD
                 this.props.user.access == true ? 
                     <Redirect to='/user/admin' />
@@ -23,8 +23,8 @@ render(){
                     />
 >>>>>>> ae9604d772d382cd7b99bf18147587dc3c4c0939
                 :
+            } */}
                     <UserProfile user={this.props.user} logOut={this.props.logOut}/> 
-            }
         </div>
     )
 }

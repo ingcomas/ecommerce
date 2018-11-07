@@ -98,7 +98,7 @@ export const productCategories= (productId) => (dispatch) => {
 }
 
 // Hago un post para borrar la categoria de un producto especifico:
-export const deleteProductCategory= (prodId, catId) => (dispatch) => { 
+export const deleteProductCategory= (prodId, catId) => (dispatch) => {
 	axios.post (`/api/product/${prodId}/edit`, {
 		id : 	catId
 	})

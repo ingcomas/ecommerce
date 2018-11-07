@@ -57,7 +57,7 @@ class Main extends React.Component{
                         : null}
                         <Route path="/register" component={RegisterContainer}/>
                         <Route path="/login" component={LoginContainer}/>
-                        <Route path="/" component={PrivateProfile}/>
+                        <Route exact path="/" component={PrivateProfile}/>
                         <Route path="/products/:id" component={SingleProductsContainer} />
                         <Route path='/cart/checkout' component={CheckoutContainer} />
                         <Route path="/cart" component={Cart} />

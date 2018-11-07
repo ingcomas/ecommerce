@@ -57,6 +57,7 @@ import {addToCart} from '../redux/actions/CartActions'
 			e.preventDefault();
 			const prodId= this.props.match.params.id;
 			const catId= e.target.id;
+			console.log (catId, 'cat')
 			this.props.removeProductCategory(prodId, catId);
 		}
 
@@ -116,8 +117,8 @@ function mapDispatchToProps(dispatch){
 				removeCategory : (catId) => {
 					dispatch(deleteCategory(catId))
 				},
-				removeProductCategory : (catId) => {
-					dispatch(deleteProductCategory(catId))
+				removeProductCategory : (prodId,catId) => {
+					dispatch(deleteProductCategory(prodId,catId))
 				},
 				productByCategory: function(idCategory){
 						dispatch(productByCategory(idCategory))
