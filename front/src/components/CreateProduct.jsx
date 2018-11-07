@@ -1,8 +1,8 @@
 import React from 'react';
 
-export default ({ handleSubmit, categories, selectedProduct, title, handleEdit, removeCategory, productCategories }) => (
+export default ({ handleSubmit, categories, selectedProduct, title, handleEdit, removeCategory, removeProductCategory, productCategories }) => (
 	<div className= 'container-fluid'> 
-	{console.log (productCategories, ' CATEGORIES')}
+	{/* {console.log (categories, ' CATEGORIES')} */}
 		<div className='row'>
 			<div className='col-sm-2'></div>
 			<div className='col-sm-8'>
@@ -50,7 +50,7 @@ export default ({ handleSubmit, categories, selectedProduct, title, handleEdit, 
 												<div className= 'col-sm-6' key= {cat.id}>
 													<div className="alert alert-warning alert-dismissible fade show" role="alert">
 														<strong>{ cat.name }</strong>
-														<button type="button" className="close" data-dismiss="alert" aria-label="Close" onClick= { removeCategory }>
+														<button type="button" className="close" data-dismiss="alert" aria-label="Close" onClick= { removeCategory || removeProductCategory}>
 															<i id={ cat.id } className= 'fas fa-trash-alt delete-button'></i>
 														</button>
 													</div>

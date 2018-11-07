@@ -28,7 +28,7 @@ class Main extends React.Component{
     }
     componentDidMount(){
      this.props.isLogged()
-     console.log(sessionStorage.getItem('cart'))
+    //  console.log(sessionStorage.getItem('cart'))
     }
     render(){
         
@@ -40,6 +40,7 @@ class Main extends React.Component{
                 <CartContainer />
                 <div className="col-sm-12 col-xs-12 col-md-12 col-lg-9">
                     <Switch>
+												<Route exact path='/products/:id/edit' component= {ProductsContainer} />
                         <Route exact path="/products" component={ProductsContainer} />
 												<Route exact path='/user/admin/orders' component={OrderContainer}/>
                         <Route path='/products/newproduct' component= {CreateProductContainer} />

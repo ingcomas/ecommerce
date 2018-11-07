@@ -5,8 +5,6 @@ import {NEW_PRODUCT, LIST_PRODUCTS, SINGLE_PRODUCT, EDIT_PRODUCT, HANDLE_EDIT, I
     type: NEW_PRODUCT,
     newProduct
 })
-
-
 const listaproductos = function(allproducts){
     return{
         type: LIST_PRODUCTS,
@@ -21,17 +19,14 @@ const seleccionaProducto =(oneProduct)=>({
     type :SINGLE_PRODUCT,
     oneProduct
 })
-
 const editActionProduct= (prod) => ({
 	type : EDIT_PRODUCT,
 	prod
 })
-
 const handleEditAction= (prod) => ({
 	type: HANDLE_EDIT,
 	prod
 })
-
 const productActionCategories= (filteredCategories) => ({
 	type : INCLUDE_CATEGORIES,
 	filteredCategories
@@ -98,4 +93,10 @@ export const productCategories= (productId) => (dispatch) => {
 		.then (data => {
 			dispatch(productActionCategories(data))
 		})
+}
+
+// Hago un post para borrar la categoria de un producto especifico:
+export const deleteProductCategory= (productId) => (dispatch) => { 
+	axios.post (`/api/product/${productId}`)
+		.then (res => console.log (res, ' Respuesta del back'));
 }

@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 
 import Products from '../components/Products';
 import CreateProduct from '../components/CreateProduct';
-import {listProducts, editProduct, handleEdit, productCategories} from '../redux/actions/products-actions'
+import {listProducts, editProduct, handleEdit, productCategories, deleteProductCategory} from '../redux/actions/products-actions'
 import {axiosCategories, deleteCategory} from '../redux/actions/categoriesActions';
 import {addToCart} from '../redux/actions/CartActions'
 
@@ -21,7 +21,6 @@ import {addToCart} from '../redux/actions/CartActions'
 
 		handleClick(e){
 			e.preventDefault();
-			// console.log(e.target.id, ' getCategories');
 			this.props.getCategories();
 			this.props.getProductCategories(e.target.id);
 			this.props.editProduct(e.target.id);
@@ -39,6 +38,7 @@ import {addToCart} from '../redux/actions/CartActions'
     render(){
         return(
 				<div>
+					{console.log(this.props.selectedProduct, ' selectedProduct')}
 					{ 						
 						this.props.selectedProduct ?
 							<CreateProduct 
@@ -46,7 +46,8 @@ import {addToCart} from '../redux/actions/CartActions'
 								removeCategory= { this.removeCategory }
 								categories= { this.props.categories } 
 								title= { 'Product edit' } 
-								selectedProduct= {this.props.selectedProduct} 
+								selectedProduct= {this.props.selectedProduct}
+								removeProductCategory= {this.props.removeProductCategory} 
 							/> : 
 							<Products 
 								handleClick= {this.handleClick}
@@ -90,6 +91,9 @@ function mapDispatchToProps(dispatch){
 				},
 				removeCategory : (catId) => {
 					dispatch(deleteCategory(catId))
+				},
+				removeProductCategory : (catId) => {
+					dispatch(deleteProductCategory(catId))
 				}
 
     }

@@ -14,6 +14,7 @@ class CreateProductContainer extends Component {
 	}
 	componentDidMount(){
 		this.props.axiosCategories()
+		// console.log ('CATEGORIES ', this.props.categories)
 	}
 	
 	handleSubmit(e){

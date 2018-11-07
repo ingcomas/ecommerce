@@ -15,10 +15,18 @@ router.get ('/', (req,res) => {
 router.get ('/:id/categories', (req,res) => {
 	const product= req.params.id;
 	Product.findAll ({ where : {id:product}, include : [Category]	})
-	 .then(categories => {
-		// console.log (categories[0].categories, ' ID') 
-		return res.send(categories[0].categories)
-	 })
+		.then(categories => {
+			return res.send(categories[0].categories)
+		})
+})
+
+router.get ('/:productId/:categoryId', (req,res) => {
+	const product= req.params.productId;
+	const category= req.params.categoryId;
+	Product.findOne ({ where : {id:productId}, include : [Category] })
+		.then(category => {
+			console.log (category, ' CATEGORY')
+		})
 })
 
 router.get ('/:id', (req,res) => {
@@ -43,8 +51,8 @@ router.post ('/newproduct', (req,res) => {
 		res.send(producto)
 	})
 })
-router.post ('/edit/:id', (req,res) => {
-	// console.log (res.body, ' REQ.BODY')
-	Product.update (req.body)
-		.then (data => res.send(data))	
-})
+// router.post ('/edit/:id', (req,res) => {
+// 	console.log (res.body, ' REQ.BODY')
+// 	Product.update (req.body)
+// 		.then (data => res.send(data))	
+// })
