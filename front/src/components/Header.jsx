@@ -2,7 +2,7 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import SearchContainer from '../containers/SearchContainer'
 import CategoriesContainer from '../containers/HeaderCategoriesContainer'
-export default ()=>(
+export default ({user})=>(
     <nav className="navbar navbar-expand-sm navbar-dark bg-primary fixed-top">
     <a className="navbar-brand" href="#">
     <img src="/docs/4.1/assets/brand/bootstrap-solid.svg" width="30" height="30" alt=""/>
@@ -26,9 +26,11 @@ export default ()=>(
             <a className="nav-link" href="/products">Products <span className="sr-only">(current)</span></a>
         </li>
         <CategoriesContainer />
+        {user.access ? 
         <li className="nav-item">
             <Link to='/user/admin' ><button className='btn btn-danger'>ADMIN</button></Link>
         </li>
+        : null}
         </ul>
         <SearchContainer />
     </div>
