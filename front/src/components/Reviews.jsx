@@ -1,7 +1,6 @@
 import React from 'react'
 import Stars from './Stars'
 import { FaStar } from 'react-icons/fa'
-import { right } from 'glamor';
 
 export default class Reviews extends React.Component{
   constructor(props){
@@ -9,14 +8,16 @@ export default class Reviews extends React.Component{
     this.state={
       hoverIn:0,
       hoverStar:0,
+      value:""
     }
   }
+  
 
   mouseOn = (hoverIn)=>{
     this.setState({hoverIn},()=>{})
   }
   mouseLeave = ()=>{
-    this.setState({hoverIn:0},()=>{})
+    this.setState({hoverStar:0},()=>{})
   }
   starHighlight = (hoverStar)=>{
     this.setState({hoverStar},()=>{})
@@ -35,18 +36,18 @@ export default class Reviews extends React.Component{
                  
                 {(this.props.flagStar)?
                   <div style={{float:"right"}} >  
-                    <Stars handleClick={handleClick} mouseOn={this.mouseOn} mouseLeave={this.mouseLeave} starHighlight={this.starHighlight} hoverStar={this.state.hoverStar} hoverIn={this.state.hoverIn}
+                    <Stars handleClick={handleClick} mouseOn={this.mouseOn} mouseLeave={this.mouseLeave} starHighlight={this.starHighlight} hoverStar={this.state.hoverStar} hoverIn={this.state.hoverIn} estrellas={this.props.estrellas}
                     />
                     </div>
                 :
                 <div style={{float:"right"}}  className="animated 2s shake delay-0s" >  
-                <Stars handleClick={handleClick} mouseOn={this.mouseOn} mouseLeave={this.mouseLeave} starHighlight={this.starHighlight} hoverStar={this.state.hoverStar} hoverIn={this.state.hoverIn}
+                <Stars handleClick={handleClick} mouseOn={this.mouseOn} mouseLeave={this.mouseLeave} starHighlight={this.starHighlight} hoverStar={this.state.hoverStar} hoverIn={this.state.hoverIn} estrellas={this.props.estrellas}
                 />
                 </div>
-                 }                
+                 }
                 </div>
                 <textarea className="col-md-12" id="new_message" name="content"
-                placeholder="Type in your message" rows="5"></textarea>
+                placeholder="Type in your message" rows="5" ></textarea>
                 <h6 className="pull-right">320 characters remaining</h6>
                 <button className="btn btn-info" type="submit">Post New Review</button>
               </form>
