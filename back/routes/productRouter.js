@@ -20,27 +20,20 @@ router.get ('/:id/categories', (req,res) => {
 		})
 })
 
-router.get ('/:productId/:categoryId', (req,res) => {
-	const product= req.params.productId;
-	const category= req.params.categoryId;
-	Product.findOne ({ where : {id:productId}, include : [Category] })
-		.then(category => {
-			console.log (category, ' CATEGORY')
-		})
-})
-
 router.get ('/:id', (req,res) => {
 	const id = req.params.id;
 	Product.findOne({where:{id}})
 	.then(prod=>res.send(prod))
 	.catch(err=>res.send(err))
 })
+
 router.get ('/:name', (req,res) => {
 	const name = req.params.name;
 	Product.findAll({where:{name}})
 	.then(prod=>res.send(prod))
 	.catch(err=>res.send(err))
 })
+
 router.post ('/newproduct', (req,res) => {
 	Product.create (req.body)
 	.then (producto => {
@@ -52,3 +45,12 @@ router.post ('/newproduct', (req,res) => {
 	})
 })
 
+router.post ('/:productId/edit', (req,res) => {
+	const product= req.params.productId;
+	const category= req.body.id;
+	Product.findOne ({ where : {id:product}, include : [Category] })
+		.then(product => {
+			product.removeCategory(category);
+			res.sendStatus(200);
+		})
+})

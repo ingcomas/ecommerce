@@ -2,7 +2,6 @@ import React from 'react';
 
 export default ({ handleSubmit, categories, selectedProduct, title, handleEdit, removeCategory, removeProductCategory, productCategories }) => (
 	<div className= 'container-fluid'> 
-	{/* {console.log (categories, ' CATEGORIES')} */}
 		<div className='row'>
 			<div className='col-sm-2'></div>
 			<div className='col-sm-8'>

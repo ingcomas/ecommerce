@@ -10,7 +10,6 @@ import {axiosCategories, deleteCategory} from '../redux/actions/categoriesAction
 import {addToCart} from '../redux/actions/CartActions'
 ;
 
-
  class ProductsContainer extends React.Component{
     constructor(props){
       super(props);
@@ -18,7 +17,7 @@ import {addToCart} from '../redux/actions/CartActions'
         productsLocal:[]
     }       
 			this.handleClick= this.handleClick.bind(this);
-			this.removeCategory= this.removeCategory.bind(this);
+			this.removeProductCategory= this.removeProductCategory.bind(this);
     }
 
     componentDidMount(){
@@ -49,34 +48,29 @@ import {addToCart} from '../redux/actions/CartActions'
          };
 
 		handleClick(e){
-			e.preventDefault();
 			this.props.getCategories();
 			this.props.getProductCategories(e.target.id);
 			this.props.editProduct(e.target.id);
 		}
-		handleEdit(e){
-			e.preventDefault();
-			this.props.handleEdit(e.target)
-		}
 
-		removeCategory(e){
+		removeProductCategory(e){
 			e.preventDefault();
-			this.props.removeCategory(e.target.id);
+			const prodId= this.props.match.params.id;
+			const catId= e.target.id;
+			this.props.removeProductCategory(prodId, catId);
 		}
 
     render(){
         return(
 				<div>
-					{console.log(this.props.selectedProduct, ' selectedProduct')}
 					{ 						
 						this.props.selectedProduct ?
 							<CreateProduct 
 								productCategories= {this.props.productCategories}
-								removeCategory= { this.removeCategory }
 								categories= { this.props.categories } 
 								title= { 'Product edit' } 
 								selectedProduct= {this.props.selectedProduct}
-								removeProductCategory= {this.props.removeProductCategory} 
+								removeProductCategory= {this.removeProductCategory} 
 							/> : 
 							<Products 
 								handleClick= {this.handleClick}
@@ -125,9 +119,9 @@ function mapDispatchToProps(dispatch){
 				removeProductCategory : (catId) => {
 					dispatch(deleteProductCategory(catId))
 				},
-                productByCategory: function(idCategory){
-                    dispatch(productByCategory(idCategory))
-                }
+				productByCategory: function(idCategory){
+						dispatch(productByCategory(idCategory))
+				}
     }
 };
 export default connect(mapStateToProps,mapDispatchToProps)(ProductsContainer)
