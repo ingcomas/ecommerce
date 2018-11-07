@@ -78,4 +78,5 @@ router.get('/logout', (req, res) => {
     //req.isAuthenticated());
     //req.logout
     //req.session.passport.user
+// })
 module.exports = router;

@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Product = require('../db/models/Product')
-
+const User = require('../db/models/User')
 var Review = require('../db/models/Review');
 
 router.get('/delete/:reviewId',(req,res)=>{
@@ -23,15 +23,25 @@ router.get('/:id',(req,res)=>{
 
 router.post('/newReview', (req,res)=>{
   Review.create({
-    // title: req.body.title,DEBERIA IR EL USERNAME
+    title: (req.body.user) ? req.body.user.first_name +" "+ req.body.user.last_name : null,
     content:req.body.content,
-    rating:req.body.rating
+    rating:req.body.rating,
+    userId: (req.body.user.id) ? req.body.user.id : null
   }).then(review =>{
-    Product.findOne({where: {id:req.body.prodId}
-  })
+    Product.findOne({where: {id:req.body.prodId}})
   .then(prod=>review.setProduct(prod.id))
   .then(res.send(review))
+  })
 })
-})
+
+
+
+// User.findOne({where:{id:1}})
+// .then(peo=>
+// Review.findOne({where:{id: 1}})
+// .then(com=>
+//     com.setUser(peo.dataValues.id)
+// )
+// ).catch(e => console.log(e))
 
 module.exports = router;
