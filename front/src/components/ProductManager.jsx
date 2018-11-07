@@ -40,7 +40,7 @@ export default () => (
 					<div className="card-body">
 						<h5 className="card-title">Edit users</h5>
 						<p className="card-text">Eliminar o editar usuarios.</p>
-						<Link to='/user/allusers' className="btn btn-primary">Go somewhere</Link>
+						<Link to='/profile/admin' className="btn btn-primary">Go somewhere</Link>
 					</div>
 				</div>
 			</div>

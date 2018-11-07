@@ -3,12 +3,13 @@
     height: auto;
     }
     .tarjeta-body{
-      opacity: 0.8;
-      background-color: gray
+   
+      background: transparent;
+      
     }
   .cartWhite{
-    color:white
-
+    color:white;
+    margin-top: 1%
   }
   .picante{
     margin-top: 10%;
@@ -60,3 +61,18 @@
     background-color: #929982;
     color: white
   } */
+  .fa-plus-circle{
+    color:lightgreen;
+    margin-right: 10%;
+  }
+  .fa-minus-circle{
+    color: red;
+    margin-left: 10%;
+  }
+  .cart-name{
+    width: 50%;
+    font-weight: bolder
+  }
+  .picanteo-row{
+    margin-top: 5%
+  }
