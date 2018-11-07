@@ -1,8 +1,15 @@
-'use strict';
+ 'use strict';
 
+const {api_key} = require('../config/mailing');
+const {DOMAIN} = require('../config/mailing');
 const express = require('express');
 const router = express.Router();
 const Orders = require('../db/models/Order');
+var Mailgun = require("mailgun-js");
+
+var mailgun = new Mailgun({apiKey: api_key, domain: DOMAIN});
+
+
 module.exports = router;
 
 router.get('/orders', function (req, res, next) {
@@ -14,9 +21,30 @@ if(req.query.state  == ''){
       .then(orders=>res.json(orders))
   }
 });
-router.post('/',(req,res)=>{
-    console.log(req.body);
+
+var ECT = require('ect');
+var renderer = ECT({ root : __dirname + '/../views' });
+
+router.post('/email',(req,res)=>{
+    console.log(req.body.orden.email);
+    var aux=req.body.orden
+    var valores = { title : aux.email};
+    var html = renderer.render('template.ect', valores);
     
+    var data = {
+        from: 'delivery_administrator@ecommerce.com.ar',
+        to: `${aux.email}`,
+        subject: `Orden de compra N°:${aux.id}`,
+        text: 'Tu producto está en camino!',
+        // html: html,
+      };
+      
+      mailgun.messages().send(data, function (error, body) {
+        console.log(body);
+      });
+})
+router.post('/',(req,res)=>{
+     
     Orders.create({
         first_name: req.body.firstName,
         last_name: req.body.lastName,
@@ -26,9 +54,7 @@ router.post('/',(req,res)=>{
         email: req.body.email,
         cellphone: req.body.cellphone,
         products: req.body.products
-    }).then(response=>{
-        console.log(response)
-        
+    }).then(response=>{        
         res.send(response)})
 })
 router.put('/update',(req,res)=>{
@@ -36,21 +62,3 @@ router.put('/update',(req,res)=>{
     .then(response=>res.send(response))
 })
 
-
-// router.get('/:artistId', function (req, res) {
-//   res.json(req.artist);
-// });
-
-// router.get('/:artistId/albums', function (req, res, next) {
-//   req.artist.getAlbums() // instance method, check it out in the model
-//   .then(albums => res.json(albums))
-//   .catch(next);
-// });
-
-// router.get('/:artistId/songs', function (req, res, next) {
-//   req.artist.getSongs({
-//     include: [Artist]
-//   })
-//   .then(songs => res.json(songs))
-//   .catch(next);
-// });
