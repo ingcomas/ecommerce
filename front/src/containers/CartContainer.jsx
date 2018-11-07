@@ -11,14 +11,10 @@ import {removeFromCart} from '../redux/actions/CartActions'
 class CartContainer extends Component {
     constructor(props){
         super(props)
-    }
-    componentWillReceiveProps(){
-        console.log('will receive', this.props.cart)
-        localStorage.setItem('cart', JSON.stringify(this.props.cart))
-    }
-    componentWillUnmount(){
-        localStorage.setItem('cart', JSON.stringify(this.props.cart))
-    }
+    }  
+    componentWillReceiveProps(nextProps){
+            localStorage.setItem('cart', JSON.stringify(nextProps.cart)) 
+    }  
     render(){        
         return(
             <table className='table col-xs-3 col-sm-3 cartWhite'>
@@ -40,8 +36,10 @@ class CartContainer extends Component {
               ))}
                 <tr><td colSpan="3" style={{textAlign:"center"}}><Link to='/cart/checkout' className="btn btn-success">Go to checkout</Link></td></tr>
             </tbody>   
+            
           </table>
         )
+        
     }
 }
 function mapStateToProps(state){
