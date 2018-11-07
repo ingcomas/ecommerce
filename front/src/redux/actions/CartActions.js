@@ -10,11 +10,18 @@ export function removeFromCartToStore(index) {
         index
     }
 }
-
+export function addCartStorage(cart) {
+    return {
+        type : 'CART_FROM_STORAGE',
+        cart
+    }
+}
 export const addToCart = (product) => (dispatch) => {
-   dispatch(addCartToStore(product))
+    addCartToStore(product)
 }
 export const removeFromCart = (index) => (dispatch) => {
-    console.log(index)
     dispatch(removeFromCartToStore(index))
+}
+export const addCartFromStorage = (cart) => (dispatch) => {
+    dispatch(addCartStorage(cart))
 }

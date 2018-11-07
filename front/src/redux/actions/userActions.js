@@ -1,4 +1,5 @@
 import axios from 'axios';
+import {addCartFromStorage} from './CartActions'
 
 const endSession = () => ({
     type: 'LOG_OUT_USER',
@@ -37,6 +38,17 @@ export const loginUser = (email, password) => dispatch => {
     .then(res => res.data)
     .then(user => dispatch(setLoggedUser(user)))
     .catch(e => dispatch(sayWrongPassword(e)));
+}
+export const isLogged = () => dispatch => {
+    axios.get('/me')
+    .then(res => dispatch(setLoggedUser(res.data)))
+    .catch(e => {
+        let session = sessionStorage.getItem('cart');
+        if(session){
+            console.log('en el logged',JSON.parse(session))
+            dispatch(addCartFromStorage(JSON.parse(session)))
+        }
+    });
 }
 
 export const logOutUser = () => dispatch => {

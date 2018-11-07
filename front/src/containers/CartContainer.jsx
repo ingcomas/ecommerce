@@ -4,19 +4,23 @@ importamos librerias
 import React,{ Component } from 'react';
 import { connect } from 'react-redux';
 import {Link} from 'react-router-dom';
-import {removeFromCart} from '../redux/actions/CartActions'
 /*
 importamos archivos nuestros
 */
+import {removeFromCart} from '../redux/actions/CartActions'
 
 class CartContainer extends Component {
     constructor(props){
         super(props)
     }
+
     render(){
+        {console.log('las props del container',this.props.cart)}
+        sessionStorage.setItem('cart', JSON.stringify(this.props.cart))
         return(
 
             <table className='table col-sm-12 col-xs-12 col-md-12 col-lg-3 cartWhite'>
+            
             <thead>
               <tr>
                 <th>Product</th>
@@ -34,10 +38,10 @@ class CartContainer extends Component {
                 </tr>
               ))}
                 <tr><td colSpan="3" style={{textAlign:"center"}}><Link to='/cart/checkout' className="btn btn-success">Go to checkout</Link></td></tr>
-
             </tbody>
+            
           </table>
-
+        
         )
     }
 }
