@@ -1,8 +1,10 @@
 import React from 'react'
 
-export default ({items,handleSubmit})=> (
+export default ({items,handleSubmit,user})=> (
     <div className="col-sm-9" style={{marginTop: '10%'}}>
         <h1 style={{color: 'white'}}>Checkout</h1>
+        {console.log(items)}
+        {user.email && items!='' ? 
         <form className=" w-75" onSubmit={handleSubmit}>
         <div className="form-row">
             <div className="col-md-4 mb-3">
@@ -40,5 +42,10 @@ export default ({items,handleSubmit})=> (
         </div>
             <button className="btn btn-primary" type="submit">Confirmar</button>
         </form>
+        :
+        <div className="alert alert-warning" role="alert">
+            Que te parece si agregas algunos productos al carrito?
+        </div>
+        }
     </div>
 )

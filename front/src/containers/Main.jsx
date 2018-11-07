@@ -18,17 +18,16 @@ import CheckoutContainer from './CheckoutContainer';
 import LoginContainer from './LoginContainer';
 import CartContainer from './CartContainer'
 
-  
 //COMPONENTS
 import PrivateProfile from '../components/PrivateProfile';
 
- class Main extends React.Component{
+class Main extends React.Component{
     constructor(props){
         super(props);
     }
     componentDidMount(){
      this.props.isLogged()
-     console.log(sessionStorage.getItem('cart'))
+    //  console.log(sessionStorage.getItem('cart'))
     }
     render(){
         return (        
@@ -39,15 +38,25 @@ import PrivateProfile from '../components/PrivateProfile';
                     <CartContainer />
                     <div className="col-xs-9 col-sm-9">
                     <Switch>
-                        <Route path="/profile" component={PrivateProfile} />   
-                        <Route path='/products/newproduct' component= {CreateProductContainer} />
-                        <Route path="/products/:id" component={SingleProductsContainer} />
-                        <Route path='/categories/newcategory' component={CreateCategoryContainer} />                         
-						<Route exact path='/user/admin/orders' component={OrderContainer}/>
-                        <Route path='/user/admin' component= {ProductManagerContainer} />
-                        <Route path="/register" component={RegisterContainer}/>
-                        <Route path="/login" component={LoginContainer}/>         
+						            <Route exact path='/products/:id/edit' component= {ProductsContainer} />
                         <Route exact path="/products" component={ProductsContainer} />
+                        {this.props.user.access ? 
+                            <Route exact path='/user/admin/orders' component={OrderContainer}/>
+                        : null}
+                        {this.props.user.access ? 
+                            <Route path='/user/admin' component= {ProductManagerContainer} />
+                        : null}
+                        {this.props.user.access ? 
+                            <Route path='/products/newproduct' component= {CreateProductContainer} />
+                        : null}
+                        {this.props.user.access ? 
+                            <Route path='/categories/newcategory' component={CreateCategoryContainer} />
+                        : null}
+                        <Route path="/register" component={RegisterContainer}/>
+                        <Route path="/login" component={LoginContainer}/>
+                        <Route path="/
+                        " component={PrivateProfile}/>
+                        <Route path="/products/:id" component={SingleProductsContainer} />
                         <Route path='/cart/checkout' component={CheckoutContainer} />
                         <Route path="/cart" component={Cart} />
                     </Switch>
@@ -64,7 +73,7 @@ import PrivateProfile from '../components/PrivateProfile';
 
 function mapStateToProps(state){
     //    console.log(state)
-    return{        
+    return{ user: state.user,
     }
 };
 function mapDispatchToProps(dispatch){

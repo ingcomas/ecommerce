@@ -20,7 +20,7 @@ const Review = db.define('review',{
     type: Sequelize.INTEGER,
     allowNull: false,    
     validate:{
-      notEmpty:true,
+      // notEmpty:true,
     }
   }
 });
