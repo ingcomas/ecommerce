@@ -41,7 +41,7 @@ import LoginContainer from './LoginContainer';
                     <Switch>
                         <Route path='/products/newproduct' component= {CreateProductContainer} />
                         {/* <Route path='/user/allusers' component= {  } /> */}
-												<Route exact path='/user/admin/orders' component={OrderContainer}/>
+						<Route exact path='/user/admin/orders' component={OrderContainer}/>
                         <Route path='/user/admin' component= {ProductManagerContainer} />
                         <Route path="/register" component={RegisterContainer}/>
                         <Route path="/login" component={LoginContainer}/>

@@ -1,7 +1,7 @@
 import React,{Component} from 'react'
 import Reviews from '../components/Reviews.jsx'
 import {connect} from 'react-redux'
-import {newReview,fetchReviews} from '../redux/actions/review-action'
+import {newReview,fetchReviews,deleteReview} from '../redux/actions/review-action'
 
 function mapStateToProps(state){
   return { comentarios: state.review}
@@ -14,6 +14,9 @@ function mapDispatchToProps(dispatch){
     },
     fetchReviews: function (prodId){
       dispatch(fetchReviews(prodId))
+    },
+    deleteReview: function(reviewId,prodId){
+      dispatch(deleteReview(reviewId,prodId))
     }
   }
 }
@@ -25,6 +28,7 @@ class ReviewsContainer extends Component{
     this.state={
       ratingProm:0,
       stars:0,
+      flagStar:true
     }
     this.createStars=this.createStars.bind(this)
     this.handleClick=this.handleClick.bind(this)
@@ -39,10 +43,18 @@ class ReviewsContainer extends Component{
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.newReview(e.target,this.state.stars,
-    this.props.idProduct)
+    (this.state.stars)?
+    this.props.newReview(
+      e.target,
+      this.state.stars,
+      this.props.idProduct):
+    this.setState({flagStar:false},()=>{})
   }
-
+  deleteClick=(e,reviewId)=>{
+    e.preventDefault()
+    console.log(reviewId)
+    this.props.deleteReview(reviewId,this.props.idProduct)
+  }
   createStars = (num)=>{
     var stars = []
     for(var i = 0; i < num; i++){
@@ -52,7 +64,8 @@ class ReviewsContainer extends Component{
   }
 
   componentDidMount(){   
-    this.props.fetchReviews(this.props.idProduct);
+    const prodId = this.props.idProduct
+    this.props.fetchReviews(prodId);
     this.ratingPromedio()
   }
 
@@ -81,6 +94,8 @@ class ReviewsContainer extends Component{
       promedio={this.props.comentarios.average}
       stars={this.createStars}
       handleClick={this.handleClick}
+      flagStar={this.state.flagStar}
+      deleteClick={this.deleteClick}
       />
       </div>
     )
