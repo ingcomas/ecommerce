@@ -4,7 +4,7 @@ export default ({items,handleSubmit,user})=> (
     <div className="col-sm-9" style={{marginTop: '10%'}}>
         <h1 style={{color: 'white'}}>Checkout</h1>
         {console.log(items)}
-        {user.email && items!='' ? 
+        {items!='' ? 
         <form className=" w-75" onSubmit={handleSubmit}>
         <div className="form-row">
             <div className="col-md-4 mb-3">

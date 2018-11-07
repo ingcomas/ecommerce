@@ -24,7 +24,7 @@ logOut(e){
             <div className="container">
                     {this.props.user.first_name ? 
                         <PrivateProfile 
-                            user={this.props.user}
+                          
                             logOut={this.logOut}
                         />
                     : 
