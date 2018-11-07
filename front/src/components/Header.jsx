@@ -2,7 +2,8 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import SearchContainer from '../containers/SearchContainer'
 import CategoriesContainer from '../containers/HeaderCategoriesContainer'
-export default ()=>(
+
+export default ({user})=>(
     <nav className="navbar navbar-expand-sm navbar-dark bg-primary fixed-top">
     <a className="navbar-brand" href="#">
     <img src="/docs/4.1/assets/brand/bootstrap-solid.svg" width="30" height="30" alt=""/>
@@ -14,21 +15,23 @@ export default ()=>(
     <div className="collapse navbar-collapse" id="navbarSupportedContent">
         <ul className="navbar-nav mr-auto">
         <li className="nav-item active">
-            <a className="nav-link" href="/">Home <span className="sr-only">(current)</span></a>
+            <Link to='/'><span className="nav-link">Home <span className="sr-only">(current)</span></span></Link>
         </li>
         <li className="nav-item">
-            <a className="nav-link" href="/login">Login</a>
+            <Link to="/login"><span className="nav-link">Login</span></Link>
         </li>
         <li className="nav-item">
-            <a className="nav-link" href="/register">Registrarse</a>
+            <Link to="/register"><span className="nav-link">Registrarse</span></Link>
         </li>
         <li className="nav-item active">
-            <a className="nav-link" href="/products">Products <span className="sr-only">(current)</span></a>
+            <Link to="/products"><span className="nav-link">Products</span></Link>
         </li>
         <CategoriesContainer />
+        {user.access ? 
         <li className="nav-item">
             <Link to='/user/admin' ><button className='btn btn-danger'>ADMIN</button></Link>
         </li>
+        : null}
         </ul>
         <SearchContainer />
     </div>

@@ -21,10 +21,10 @@ const productosPorCategoria=(products)=>({
 })
 
 
-export const axiosCategories = () => (dispatch) => {    
+export const axiosCategories = () => (dispatch) => {   
   axios.get(`/api/categories`)
-  	.then(catArray=>dispatch(getCategories(catArray)))
-    
+		.then (res => res.data)
+		.then (data => dispatch(getCategories(data))) 
 };
 
 export const postCategory= (categoryName) => (dispatch) => {

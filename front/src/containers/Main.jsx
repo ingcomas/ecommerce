@@ -15,15 +15,13 @@ import RegisterContainer from './RegisterContainer';
 import CreateCategoryContainer from './CreateCategoryContainer';
 import CreateProductContainer from './CreateProductContainer';
 import CheckoutContainer from './CheckoutContainer';
-import CategoriesContainer from './CategoriesContainer';
-import CartContainer from './CartContainer'
 import LoginContainer from './LoginContainer';
+import CartContainer from './CartContainer'
+
 //COMPONENTS
-import CreateProduct from '../components/CreateProduct';
 import PrivateProfile from '../components/PrivateProfile';
 
-
- class Main extends React.Component{
+class Main extends React.Component{
     constructor(props){
         super(props);
     }
@@ -32,40 +30,51 @@ import PrivateProfile from '../components/PrivateProfile';
     //  console.log(sessionStorage.getItem('cart'))
     }
     render(){
-        
-
-        return (
-            <div className="container-fluid">
+        return (        
+            <div>
                 <HeaderContainer/>
-
                 <CartContainer />
-                <div className="col-sm-12 col-xs-12 col-md-12 col-lg-9">
+                <div className="row">
+                    <CartContainer />
+                    <div className="col-xs-9 col-sm-9">
                     <Switch>
-                        <Route path='/products/newproduct' component= {CreateProductContainer} />
-                        {/* <Route path='/user/allusers' component= {  } /> */}
-						<Route exact path='/user/admin/orders' component={OrderContainer}/>
-                        <Route path='/user/admin' component= {ProductManagerContainer} />
+						<Route exact path='/products/:id/edit' component= {ProductsContainer} />
+                        <Route exact path="/products" component={ProductsContainer} />
+                        {this.props.user.access ? 
+                            <Route exact path='/user/admin/orders' component={OrderContainer}/>
+                        : null}
+                        {this.props.user.access ? 
+                            <Route path='/user/admin' component= {ProductManagerContainer} />
+                        : null}
+                        {this.props.user.access ? 
+                            <Route path='/products/newproduct' component= {CreateProductContainer} />
+                        : null}
+                        {this.props.user.access ? 
+                            <Route path='/categories/newcategory' component={CreateCategoryContainer} />
+                        : null}
                         <Route path="/register" component={RegisterContainer}/>
                         <Route path="/login" component={LoginContainer}/>
-                        <Route exact path="/products/categories/:id" component={ProductsContainer} />
-                        <Route path="/profile" component={PrivateProfile}/>
-                        <Route path='/categories/newcategory' component={CreateCategoryContainer} />
-                        <Route exact path="/products" component={ProductsContainer} />
-                        <Route path="/login" component={LoginContainer}/>
-                        <Route path="/products/:id" component={SingleProductsContainer} />
+                        <Route path="/
+                        " component={PrivateProfile}/>
                         <Route path='/cart/checkout' component={CheckoutContainer} />
                         <Route path="/cart" component={Cart} />
+                        <Route path="/products/categories/:id" component={ProductsContainer} />
+                        <Route path="/products/:id" component={SingleProductsContainer} />
                     </Switch>
+                    </div>
                 </div>
-                </div>
-
+            </div>
         )
     }
-
 }
+  
+        
+    
+
+
 function mapStateToProps(state){
     //    console.log(state)
-    return{        
+    return{ user: state.user,
     }
 };
 function mapDispatchToProps(dispatch){
@@ -76,4 +85,3 @@ function mapDispatchToProps(dispatch){
     }
 };
 export default connect(mapStateToProps,mapDispatchToProps)(Main)
-

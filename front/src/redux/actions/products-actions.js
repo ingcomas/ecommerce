@@ -1,20 +1,16 @@
 import axios from 'axios'
-import {NEW_PRODUCT, LIST_PRODUCTS, SINGLE_PRODUCT} from '../constants/productsConstants'
+import {NEW_PRODUCT, LIST_PRODUCTS, SINGLE_PRODUCT, EDIT_PRODUCT, HANDLE_EDIT, INCLUDE_CATEGORIES} from '../constants/productsConstants'
 
  const productoCreado = (newProduct) => ({
     type: NEW_PRODUCT,
     newProduct
 })
-// const listaproductos = (productos)=>({
-    
-// })
 const listaproductos = function(allproducts){
     return{
         type: LIST_PRODUCTS,
         products : allproducts
     }
 }
-
 const buscarProducto = (prods) => ({
     type : 'SEARCH',
     search : prods
@@ -22,6 +18,18 @@ const buscarProducto = (prods) => ({
 const seleccionaProducto =(oneProduct)=>({
     type :SINGLE_PRODUCT,
     oneProduct
+})
+const editActionProduct= (prod) => ({
+	type : EDIT_PRODUCT,
+	prod
+})
+const handleEditAction= (prod) => ({
+	type: HANDLE_EDIT,
+	prod
+})
+const productActionCategories= (filteredCategories) => ({
+	type : INCLUDE_CATEGORIES,
+	filteredCategories
 })
 
 
@@ -64,4 +72,33 @@ export const searchProduct = (value) => (dispatch) => {
 export const singleProduct=(productId)=>(dispatch)=>{
     axios.get(`/api/product/${productId}`)
   .then(res=>dispatch(seleccionaProducto(res.data)))
+}
+
+
+export const editProduct= (productId) => (dispatch) => {
+	axios.get (`/api/product/${productId}`)	
+	.then (res => res.data)
+	.then (data => dispatch(editActionProduct(data)))
+}
+
+// Pido los datos del producto a editar, para rellenar el form:
+export const handleEdit= (productId) => (dispatch) => {
+	axios.post (`/api/product/edit/${productId}`)
+		.then (res => res.data)
+		.then (data => dispatch(handleEditAction(data)))
+}
+
+// Pido por las categorias pertenecientes al producto seleccionado:
+export const productCategories= (productId) => (dispatch) => {
+	axios.get (`/api/product/${productId}/categories`)
+		.then (res => res.data)
+		.then (data => {
+			dispatch(productActionCategories(data))
+		})
+}
+
+// Hago un post para borrar la categoria de un producto especifico:
+export const deleteProductCategory= (productId) => (dispatch) => { 
+	axios.post (`/api/product/${productId}`)
+		.then (res => console.log (res, ' Respuesta del back'));
 }

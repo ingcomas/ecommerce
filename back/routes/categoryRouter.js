@@ -2,6 +2,7 @@ const express= require ('express');
 const router= express();
 const Category = require('../db/models/Category')
 const Product =require('../db/models/Product')
+
 router.get ('/', (req,res) => {
 	Category.findAll({})
 	.then(response=>{
@@ -23,6 +24,14 @@ router.get ('/:id', (req,res) => {
 	const category=req.params.id
 	Category.findAll({where:{id:category}, include:[Product]})
 	.then(prod=>res.send(prod[0].products))
+	
+})
+
+router.get ('/', (req,res) => {
+	Category.findAll({})
+	.then(response=>{
+		res.send(response)
+	})
 })
 
 router.post ('/newcategory', (req, res) => {

@@ -1,72 +1,102 @@
 import React from 'react';
 import {connect} from 'react-redux'
-import axios from 'axios'
-import {Route, Switch} from 'react-router-dom';
+
 
 import { productByCategory} from '../redux/actions/categoriesActions'
 import Products from '../components/Products';
-import {listProducts} from '../redux/actions/products-actions'
+import CreateProduct from '../components/CreateProduct';
+import {listProducts, editProduct, handleEdit, productCategories, deleteProductCategory} from '../redux/actions/products-actions'
+import {axiosCategories, deleteCategory} from '../redux/actions/categoriesActions';
 import {addToCart} from '../redux/actions/CartActions'
-import ProdctsFilterByCategoryContainer from './ProductsFilterByCategoryContainer'
 ;
 
 
  class ProductsContainer extends React.Component{
     constructor(props){
-        super(props);
-         this.state={
-             products:[]
-         }       
-         }
+      super(props);
+      this.state={
+        productsLocal:[]
+    }       
+			this.handleClick= this.handleClick.bind(this);
+			this.removeCategory= this.removeCategory.bind(this);
+    }
 
     componentDidMount(){
        
        
-    //    console.log(this.props.match.params.id, 'props.match')
-    //    console.log(this.props, 'props.products')
-    
-       if (this.props.match.params.id) {
-          this.props.productByCategory(this.props.match.params.id)
-        //    this.setState({products:this.props.products})
-        }
-        else{ this.props.listProducts()}
-     };
-     
-     componentWillReceiveProps(nextPRops){
-        if (this.props.match.params.id){
-            this.setState({
-                products: nextPRops.productsByCategory
-            })
-        } else {
-            this.setState({
-                products: nextPRops.products
-            })
-        }
-     }
+        //    console.log(this.props.match.params.id, 'props.match')
+        //    console.log(this.props, 'props.products')
+        
+           if (this.props.match.params.id) {
+              this.props.productByCategory(this.props.match.params.id)
+			  this.setState({productsLocal:this.props.productsByCategorys})
+            }
+			else{ this.props.listProducts()
+				this.setState({productsLocal:this.props.products})
+			}
+         };
+         
+         componentWillReceiveProps(nextPRops){
+            if (this.props.match.params.id){
+                this.setState({
+                    productsLocal: nextPRops.productsByCategory
+                })
+            } else {
+                this.setState({
+                    productsLocal: nextPRops.products
+                })
+            }
+         };
+
+		handleClick(e){
+			e.preventDefault();
+			this.props.getCategories();
+			this.props.getProductCategories(e.target.id);
+			this.props.editProduct(e.target.id);
+		}
+		handleEdit(e){
+			e.preventDefault();
+			this.props.handleEdit(e.target)
+		}
+
+		removeCategory(e){
+			e.preventDefault();
+			this.props.removeCategory(e.target.id);
+		}
 
     render(){
-        // console.log(this.state, 'this.state')
-        //  console.log(this.props, "THIS.PROPS")
-        return( 
-            <Products productList={this.state.products} addToCart={this.props.addCart}/>
-        // <div> 
-             
-        //     <Route  path='/products' render={()=>(<Products productList={this.state.products} addToCart={this.props.addCart} />) }/>
-        //     {/* <Route path='/products/categories/:id' render={()=><ProdctsFilterByCategoryContainer */}
-        //      {/* product
-        //     />}/> */}
-            
-        //     </div>
-                )
+        return(
+				<div>
+					{console.log(this.props.selectedProduct, ' selectedProduct')}
+					{ 						
+						this.props.selectedProduct ?
+							<CreateProduct 
+								productCategories= {this.props.productCategories}
+								removeCategory= { this.removeCategory }
+								categories= { this.props.categories } 
+								title= { 'Product edit' } 
+								selectedProduct= {this.props.selectedProduct}
+								removeProductCategory= {this.props.removeProductCategory} 
+							/> : 
+							<Products 
+								handleClick= {this.handleClick}
+								productList={this.state.productsLocal}
+								addToCart={this.props.addCart}
+							/>
+					} 
+				</div>
+        )
     }
 }
 
 
 function mapStateToProps(state){
-// console.log(state, "STATE!!")
     return{
             products: state.product.allProducts,
-            productsByCategory: state.categories.productsByCategory
+						selectedProduct : state.product.product,
+						categories : state.categories.categories,
+                        productCategories : state.product.filteredCategories,
+                        productsByCategory: state.categories.productsByCategory
     }
 };
 function mapDispatchToProps(dispatch){
@@ -77,12 +107,27 @@ function mapDispatchToProps(dispatch){
         addCart : function(product){
             dispatch(addToCart(product))
         },
-        productByCategory: function(idCategory){
-            dispatch(productByCategory(idCategory))
-        }
-        
-        
-      
+				editProduct : (product) => {
+					dispatch(editProduct(product))
+				},
+				handleEdit : (product) => {
+					dispatch(handleEdit(product))
+				},
+				getCategories : () => {
+					dispatch(axiosCategories())
+				},
+				getProductCategories : (productId) => {
+					dispatch(productCategories(productId))
+				},
+				removeCategory : (catId) => {
+					dispatch(deleteCategory(catId))
+				},
+				removeProductCategory : (catId) => {
+					dispatch(deleteProductCategory(catId))
+				},
+                productByCategory: function(idCategory){
+                    dispatch(productByCategory(idCategory))
+                }
     }
 };
 export default connect(mapStateToProps,mapDispatchToProps)(ProductsContainer)
