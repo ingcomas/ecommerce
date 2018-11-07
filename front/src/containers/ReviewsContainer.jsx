@@ -4,13 +4,16 @@ import {connect} from 'react-redux'
 import {newReview,fetchReviews,deleteReview} from '../redux/actions/review-action'
 
 function mapStateToProps(state){
-  return { comentarios: state.review}
+  return { 
+    comentarios: state.review,
+    user:state.user
+  }
 }
 
 function mapDispatchToProps(dispatch){
   return { 
-    newReview: function(param,stars,prodId){
-      dispatch(newReview(param,stars,prodId))
+    newReview: function(param,stars,prodId,user){
+      dispatch(newReview(param,stars,prodId,user))
     },
     fetchReviews: function (prodId){
       dispatch(fetchReviews(prodId))
@@ -44,17 +47,20 @@ class ReviewsContainer extends Component{
   handleSubmit(e) {
     e.preventDefault();
     (this.state.stars)?
-    this.props.newReview(
-      e.target,
-      this.state.stars,
-      this.props.idProduct):
-    this.setState({flagStar:false,stars:0},()=>{})
+      this.props.newReview(
+        e.target,
+        this.state.stars,
+        this.props.idProduct,
+        this.props.user
+      )
+    :this.setState({flagStar:false},()=>{})
   }
+
   deleteClick=(e,reviewId)=>{
     e.preventDefault()
-    console.log(reviewId)
     this.props.deleteReview(reviewId,this.props.idProduct)
   }
+
   createStars = (num)=>{
     var stars = []
     for(var i = 0; i < num; i++){
@@ -84,15 +90,16 @@ class ReviewsContainer extends Component{
     return (
       <div>
       <Reviews 
-      handleSubmit={this.handleSubmit} 
-      reviews={this.props.comentarios.comentarios}
-      ratingPromedio={this.state.ratingProm}
-      promedio={this.props.comentarios.average}
-      stars={this.createStars}
-      handleClick={this.handleClick}
-      flagStar={this.state.flagStar}
-      deleteClick={this.deleteClick}
-      estrellas={this.state.stars}
+        handleSubmit={this.handleSubmit} 
+        reviews={this.props.comentarios.comentarios}
+        ratingPromedio={this.state.ratingProm}
+        promedio={this.props.comentarios.average}
+        stars={this.createStars}
+        handleClick={this.handleClick}
+        flagStar={this.state.flagStar}
+        user={this.props.user}
+        deleteClick={this.deleteClick}
+        estrellas={this.state.stars}
       />
       </div>
     )
