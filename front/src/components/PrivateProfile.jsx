@@ -12,16 +12,8 @@ render(){
     return(
         <div>
             {
-<<<<<<< HEAD
                 this.props.user.access == true ? 
-                    <Redirect to='/user/admin' />
-                    // <AdminProfile logOut={props.logOut}/>
-=======
-                props.user.access == true ? 
-                    <AdminProfile
-                        logOut={props.logOut}
-                    />
->>>>>>> ae9604d772d382cd7b99bf18147587dc3c4c0939
+                    <Redirect to="/user/admin"/>
                 :
                     <UserProfile user={this.props.user} logOut={this.props.logOut}/> 
             }
