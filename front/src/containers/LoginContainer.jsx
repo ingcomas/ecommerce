@@ -21,6 +21,7 @@ logOut(e){
 }
     render(){
         return(
+            
             <div className="container">
                     {this.props.user.first_name ? 
                         <PrivateProfile 
@@ -32,6 +33,8 @@ logOut(e){
                             handleSubmit={this.handleSubmit} 
                             wrongPassword={this.props.user.wrongPassword}
                         />
+
+                        
                     }
             </div>
         )

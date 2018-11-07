@@ -15,8 +15,6 @@ class CartContainer extends Component {
     }
 
     render(){
-
-        {console.log('las props del container',this.props.cart)}
         sessionStorage.setItem('cart', JSON.stringify(this.props.cart))
 
         return(

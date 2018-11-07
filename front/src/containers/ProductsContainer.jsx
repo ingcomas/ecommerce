@@ -38,7 +38,6 @@ import {addToCart} from '../redux/actions/CartActions'
     render(){
         return(
 				<div>
-					{console.log(this.props.selectedProduct, ' selectedProduct')}
 					{ 						
 						this.props.selectedProduct ?
 							<CreateProduct 
