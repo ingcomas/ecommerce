@@ -4,7 +4,6 @@ import {connect} from 'react-redux'
 import {newReview,fetchReviews,deleteReview} from '../redux/actions/review-action'
 
 function mapStateToProps(state){
-  console.log(state)
   return { 
     comentarios: state.review,
     user:state.user
@@ -46,9 +45,10 @@ class ReviewsContainer extends Component{
   }
   cleanForm=(e)=>{
     e.preventDefault()
-    e.target.content.value=""
+    e.target.content.value="";
     this.setState({stars:0})
   }
+
   handleSubmit(e) {
     e.preventDefault();
     (this.state.stars)?
