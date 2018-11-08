@@ -10,6 +10,7 @@ import {addToCart} from '../redux/actions/CartActions'
 import {isLogged} from '../redux/actions/userActions'
 ;
 
+
  class ProductsContainer extends React.Component{
     constructor(props){
       super(props);
