@@ -1,34 +1,64 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom'
+import {connect} from 'react-redux'
 
-export default class CategoriesContainer extends Component {
+import { productByCategory, axiosCategories} from '../redux/actions/categoriesActions'
+
+
+
+ class HeaderCategoriesContainer extends Component {
     constructor(props){
         super(props)
-        this.state = {
-            categories : []
-        }
+    
     }
     componentDidMount(){
-        axios.get('/api/categories')
-        .then(res=>this.setState({
-            categories : res.data
-        }))
+       
+        this.props.axiosCategories()
+          }
+          
+    
 
-    }
     render(){
-        const { categories } = this.state
+       
         return(
             <li className="nav-item dropdown">
                 <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Categorias
                 </a>
                 <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                    {categories && categories.map(elem=>(
-                        <Link className="dropdown-item" to={`/products/categories/${elem.id}`} key={elem.id} >{elem.name}</Link>
+                    {this.props.categories && this.props.categories.map(elem=>(
+                         
+                       
+                        <Link to={`/categories/${elem.id}`} className="dropdown-item" key={elem.id} name={elem.name} >
+                                {elem.name}
+                        </Link>
+                        
+                       
                     ))}
                 </div>
             </li>
         )
     }
 }
+// 
+
+function mapStateToProps(state){
+        return({
+            productsByCategory: state.categories.productsByCategory,
+            categories: state.categories.categories
+            })
+};
+function mapDispatchToProps(dispatch){
+    return({
+        productByCategory: function(idCategory){
+            dispatch(productByCategory(idCategory))
+        },
+        axiosCategories: function(){
+            dispatch(axiosCategories())
+        },
+    })
+       
+}
+
+export default connect (mapStateToProps,mapDispatchToProps)(HeaderCategoriesContainer)

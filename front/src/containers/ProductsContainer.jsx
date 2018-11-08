@@ -1,12 +1,15 @@
 import React from 'react';
 import {connect} from 'react-redux'
 
-import {productByCategory, axiosCategories} from '../redux/actions/categoriesActions';
-import {listProducts, editProduct, handleEdit, productCategories, deleteProductCategory, submitEditedProduct} from '../redux/actions/products-actions'
-import {addToCart} from '../redux/actions/CartActions'
-import CreateProduct from '../components/CreateProduct';
+
 import Products from '../components/Products';
-// Cambios 
+import CreateProduct from '../components/CreateProduct';
+import {listProducts, editProduct, handleEdit, productCategories, deleteProductCategory} from '../redux/actions/products-actions'
+import {axiosCategories, deleteCategory,productByCategory} from '../redux/actions/categoriesActions';
+import {addToCart} from '../redux/actions/CartActions'
+import {isLogged} from '../redux/actions/userActions'
+;
+
 
  class ProductsContainer extends React.Component{
     constructor(props){
@@ -20,36 +23,33 @@ import Products from '../components/Products';
     }
 
     componentDidMount(){
-       
-       
-        //    console.log(this.props.match.params.id, 'props.match')
-        //    console.log(this.props, 'props.products')
-        
-      if (this.props.match.params.id) {
-        this.props.productByCategory(this.props.match.params.id)
-			  this.setState({productsLocal:this.props.productsByCategorys})
-      }
+		       
+           if (this.props.match.params.id) {
+              this.props.productByCategory(this.props.match.params.id)
+			  this.setState({productsLocal:this.props.productsByCategory})
+            }
+			else{ this.props.listProducts()
+			 this.setState({productsLocal:this.props.products})
+			}
+         };
+         
+         componentWillReceiveProps(nextPRops){
+			if (this.props.match.params.id) {
+				this.props.productByCategory(this.props.match.params.id)
+				this.setState({productsLocal:this.props.productsByCategory})
+            } 
 			else{ this.props.listProducts()
 				this.setState({productsLocal:this.props.products})
 			}
-			};
-			
-			componentWillReceiveProps(nextPRops){
-				if (this.props.match.params.id){
-					this.setState({
-						productsLocal: nextPRops.productsByCategory
-					})
-				} else {
-					this.setState({
-						productsLocal: nextPRops.products
-					})
-				}
-			};
+		
+            
+         };
 
 		handleClick(e){
 			this.props.getCategories();
 			this.props.getProductCategories(e.target.id);
-			this.props.editProduct(e.target.id);
+			this.props.editProduct(e.target.id)
+			// listProducts()
 		}
 
 		removeCategory(e){
@@ -96,6 +96,7 @@ import Products from '../components/Products';
 								handleClick= {this.handleClick}
 								productList={this.state.productsLocal}
 								addToCart={this.props.addCart}
+								user={this.props.user}
 							/>
 					} 
 				</div>
@@ -105,13 +106,14 @@ import Products from '../components/Products';
 
 
 function mapStateToProps(state){
-	return{
-		products: state.product.allProducts,
-		selectedProduct : state.product.product,
-		categories : state.categories.categories,
-		productCategories : state.product.filteredCategories,
-		productsByCategory: state.categories.productsByCategory
-	}
+    return{
+            products: state.product.allProducts,
+						selectedProduct : state.product.product,
+						categories : state.categories.categories,
+                        productCategories : state.product.filteredCategories,
+						productsByCategory: state.categories.productsByCategory,
+						user: state.user,
+    }
 };
 
 function mapDispatchToProps(dispatch){
@@ -140,10 +142,17 @@ function mapDispatchToProps(dispatch){
 				productByCategory: function(idCategory){
 					dispatch(productByCategory(idCategory))
 				},
+                productByCategory: function(idCategory){
+                    dispatch(productByCategory(idCategory))
+				},
+				isLogged: function(){
+					dispatch(isLogged())
+				},		
 				handleSubmit : (prodId,fields) => {
 					dispatch(submitEditedProduct(prodId,fields))
 				}
-    }
-};
+			}
+
+			};
 export default connect(mapStateToProps,mapDispatchToProps)(ProductsContainer)
 

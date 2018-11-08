@@ -65,7 +65,9 @@ class Main extends React.Component{
                         <Route path="/products/:id" component={SingleProductsContainer} />
                         <Route path='/cart/checkout' component={CheckoutContainer} />
                         <Route path="/cart" component={Cart} />
-                        <Route path="/products/categories/:id" component={ProductsContainer} />
+                        {/* //>>>>>>>not remove<<<<<<//// */}
+                        <Route path="/categories/:id" component={ProductsContainer} />
+                        {/* //>>>>>>>not remove<<<<<<////    */}
                         <Route path="/products/:id" component={SingleProductsContainer} />
                     </Switch>
                     </div>

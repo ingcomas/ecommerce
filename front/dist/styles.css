@@ -1,3 +1,19 @@
+.add-to-cart{
+ 
+   background: url(https://image.flaticon.com/icons/svg/115/115736.svg) no-repeat;
+   padding: 0 0 0 10px;
+    height: 25px;
+    width:30px
+}
+.product-name{
+  margin-top: 8%
+}
+
+.product-price{
+  font-weight: bold;
+  color:darkblue;
+  margin-top: 4%  
+}
 .tarjeta{
   margin-top: 5%;
     height: auto;
