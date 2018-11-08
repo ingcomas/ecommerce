@@ -6,7 +6,7 @@ import {listProducts, editProduct, handleEdit, productCategories, deleteProductC
 import {addToCart} from '../redux/actions/CartActions'
 import CreateProduct from '../components/CreateProduct';
 import Products from '../components/Products';
-;
+// Cambios 
 
  class ProductsContainer extends React.Component{
     constructor(props){
