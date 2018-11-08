@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {NEW_PRODUCT, LIST_PRODUCTS, SINGLE_PRODUCT, EDIT_PRODUCT, HANDLE_EDIT, INCLUDE_CATEGORIES} from '../constants/productsConstants'
+import {NEW_PRODUCT, LIST_PRODUCTS, SINGLE_PRODUCT, EDIT_PRODUCT, HANDLE_EDIT, INCLUDE_CATEGORIES, EDITED_PRODUCT} from '../constants/productsConstants'
 
  const productoCreado = (newProduct) => ({
     type: NEW_PRODUCT,
@@ -31,13 +31,16 @@ const productActionCategories= (filteredCategories) => ({
 	type : INCLUDE_CATEGORIES,
 	filteredCategories
 })
-
+const editedAction= (editedProduct) => ({
+	type : EDITED_PRODUCT,
+	editedProduct
+})
 
 export const createProduct = (producto) => (dispatch) => {
     const images= producto.images && producto.images.value.split(',');
     const categories= [];
     if(producto.categorias){
-	for (var i=0; i<producto.categorias.length; i++){
+		for (var i=0; i<producto.categorias.length; i++){
 			producto.categorias[i].checked == true ? categories.push (producto.categorias[i].value) : null
         }
     }
@@ -94,12 +97,22 @@ export const productCategories= (productId) => (dispatch) => {
 		.then (res => res.data)
 		.then (data => {
 			dispatch(productActionCategories(data))
-		})
+		});
 }
 
 // Hago un post para borrar la categoria de un producto especifico:
 export const deleteProductCategory= (prodId, catId) => (dispatch) => {
 	axios.post (`/api/product/${prodId}/edit`, {
 		id : 	catId
-	})
+	});
+}
+
+// Actualizo la informacion de un producto:
+export const submitEditedProduct= (prodId, prodFields) => (dispatch) => {
+	// const images= producto.images && producto.images.value.split(',');
+	console.log (prodFields, 'campos')
+	axios.put (`/api/product/${prodId}`, prodFields)
+		.then (data => {
+			dispatch(editedAction(data));
+		})
 }

@@ -10,21 +10,15 @@ class CreateProductContainer extends Component {
 	constructor (props){
 		super(props);
 		this.handleSubmit= this.handleSubmit.bind(this);
-		// this.handleClick= this.handleClick.bind(this);
 	}
 	componentDidMount(){
 		this.props.axiosCategories()
-		// console.log ('CATEGORIES ', this.props.categories)
 	}
 	
 	handleSubmit(e){
 		e.preventDefault();
 		this.props.createProduct(e.target)
 	}
-	// handleClick(e){
-	// 	e.preventDefault();
-	// 	this.props.editProduct(e.target.id.value);
-	// }
 
 	render (){
 		return 	(

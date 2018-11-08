@@ -54,3 +54,17 @@ router.post ('/:productId/edit', (req,res) => {
 			res.sendStatus(200);
 		})
 })
+
+router.put('/:productId', (req,res) => {
+	console.log(req.body, ' info para updatear')
+	Product.findById(req.params.productId)
+		.then (product => product.update(req.body))
+		.then (product => {
+			req.body.categories.map(catId => {
+				Category.findOne({ where : { id : catId } })
+					.then (cat => cat.addProduct(product))
+			})	
+			res.send(product)
+		})
+		// .then (product => res.send(product))
+})
