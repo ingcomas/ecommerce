@@ -56,7 +56,6 @@ router.post ('/:productId/edit', (req,res) => {
 })
 
 router.put('/:productId', (req,res) => {
-	console.log(req.body, ' info para updatear')
 	Product.findById(req.params.productId)
 		.then (product => product.update(req.body))
 		.then (product => {

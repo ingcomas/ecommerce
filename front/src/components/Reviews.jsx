@@ -7,11 +7,11 @@ export default class Reviews extends React.Component{
     super(props)
     this.state={
       hoverStar:0,
+      textarea:"",
+      check:true
     }
   }
-  componentDidMount(){
-    this.setState({content:""},()=>{})
-  }
+
   mouseLeave = ()=>{
     this.setState({hoverStar:0},()=>{})
   }
@@ -20,15 +20,21 @@ export default class Reviews extends React.Component{
     this.setState({hoverStar},()=>{})
   }
 
+  texto=(e)=>{
+    this.setState({textarea:e.target.value},()=>{});
+    e.target.value.length != 0 && e.target.value.length < 320 ?
+    this.setState({check:false} , ()=>{}) : this.setState({check:true},()=>{})
+  }
+
   render(){
-  const{handleSubmit,reviews,stars,handleClick,promedio,deleteClick,user} = this.props
+  const{handleSubmit,reviews,stars,handleClick,promedio,deleteClick,user,cleanForm} = this.props
   return (
     <div>
       {(user.id)? 
         <div className="container">
           <div className="row">
             <div className="col-md-5">
-              <form onSubmit={handleSubmit}>
+              <form onSubmit={(e)=>{handleSubmit(e) ;cleanForm(e)}}>
                 <div style={{clear:"both"}}>
                   
                     <h3 style={{float:"left" ,color:"white"}} >{`${user.first_name} ${user.last_name}`}</h3>
@@ -56,9 +62,13 @@ export default class Reviews extends React.Component{
                  }
                 </div>
                 <textarea className="col-md-12" id="new_message" name="content"
-                placeholder="Type in your message" rows="5"></textarea>
-                {/* <h6 className="pull-right">320 characters remaining</h6> */}
-                <button className="btn btn-info" type="submit">Post New Review</button>
+                placeholder="Type in your message" rows="5" onChange={(e)=>this.texto(e)}></textarea>
+                <h6 className="pull-right">
+                {((320- this.state.textarea.length) >0)? `${(320 - this.state.textarea.length)}  characters remaining`
+                  : `Please stop writing`}
+                 </h6>
+                <button className="btn btn-info" 
+                disabled={this.state.check}>Post New Review</button>
               </form>
             </div>
           </div>

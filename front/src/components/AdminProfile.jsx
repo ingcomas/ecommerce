@@ -24,7 +24,7 @@ class AdminProfile extends React.Component{
 
     render(){
         return(
-            <div className="container">{console.log(this.props.allUsers)}
+            <div className="container">
                 <h1 className="colorRojo">Bienvenido admin</h1>
                 <ul>
                     <h2 style={{color: 'white'}}>E-mails</h2>
@@ -46,7 +46,6 @@ class AdminProfile extends React.Component{
                         })
                     }
                 </ul>
-                <button className="btn btn-primary" onClick={this.props.logOut}>Logout</button>
             </div>
         )
     }

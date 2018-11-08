@@ -43,6 +43,11 @@ class ReviewsContainer extends Component{
       stars
     });
   }
+  cleanForm=(e)=>{
+    e.preventDefault()
+    e.target.content.value="";
+    this.setState({stars:0})
+  }
 
   handleSubmit(e) {
     e.preventDefault();
@@ -90,6 +95,7 @@ class ReviewsContainer extends Component{
     return (
       <div>
       <Reviews 
+        cleanForm={this.cleanForm}
         handleSubmit={this.handleSubmit} 
         reviews={this.props.comentarios.comentarios}
         ratingPromedio={this.state.ratingProm}
