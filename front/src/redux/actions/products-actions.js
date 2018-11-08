@@ -32,6 +32,7 @@ const productActionCategories= (filteredCategories) => ({
 	filteredCategories
 })
 
+
 export const createProduct = (producto) => (dispatch) => {
     const images= producto.images && producto.images.value.split(',');
     const categories= [];
@@ -73,6 +74,7 @@ export const singleProduct=(productId)=>(dispatch)=>{
   .then(res=>dispatch(seleccionaProducto(res.data)))
 }
 
+
 export const editProduct= (productId) => (dispatch) => {
 	axios.get (`/api/product/${productId}`)	
 	.then (res => res.data)
@@ -81,7 +83,7 @@ export const editProduct= (productId) => (dispatch) => {
 
 // Pido los datos del producto a editar, para rellenar el form:
 export const handleEdit= (productId) => (dispatch) => {
-	axios.post (`/api/product/edit/${productId}`)
+	axios.post (`/api/product/${productId}/edit`)
 		.then (res => res.data)
 		.then (data => dispatch(handleEditAction(data)))
 }
@@ -96,7 +98,8 @@ export const productCategories= (productId) => (dispatch) => {
 }
 
 // Hago un post para borrar la categoria de un producto especifico:
-export const deleteProductCategory= (productId) => (dispatch) => { 
-	axios.post (`/api/product/${productId}`)
-		.then (res => console.log (res, ' Respuesta del back'));
+export const deleteProductCategory= (prodId, catId) => (dispatch) => { 
+	axios.post (`/api/product/${prodId}/edit`, {
+		id : 	catId
+	})
 }

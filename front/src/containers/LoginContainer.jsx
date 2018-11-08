@@ -21,6 +21,7 @@ logOut(e){
 }
     render(){
         return(
+            
             <div className="container">
             {console.log(this.props.user.first_name)
             }
@@ -33,6 +34,8 @@ logOut(e){
                             handleSubmit={this.handleSubmit} 
                             wrongPassword={this.props.user.wrongPassword}
                         />
+
+                        
                     }
             </div>
         )
