@@ -16,7 +16,8 @@ import CreateCategoryContainer from './CreateCategoryContainer';
 import CreateProductContainer from './CreateProductContainer';
 import CheckoutContainer from './CheckoutContainer';
 import LoginContainer from './LoginContainer';
-import CartContainer from './CartContainer'
+import CartContainer from './CartContainer';
+import PrivateProfile from '../components/PrivateProfile'
 
 //COMPONENTS
 import AdminProfile from '../components/AdminProfile';
