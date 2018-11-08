@@ -12,7 +12,8 @@ export default (props) => {
                 <div className="form-group">
                     <label>Contraseña</label>
                     <input type="password" name="password" className="form-control" placeholder="Contraseña"/>
-                    {props.wrongPassword ? <div className="alert alert-danger">{props.wrongPassword}</div> : null}
+                    {props.wrongPassword ? <div className="alert alert-danger">{props.wrongPassword}</div> 
+                    : null}
                 </div>
                 <button type="submit" className="btn btn-primary">Login</button>
             </form>

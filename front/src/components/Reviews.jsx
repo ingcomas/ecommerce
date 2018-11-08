@@ -21,14 +21,14 @@ export default class Reviews extends React.Component{
   }
 
   render(){
-  const{handleSubmit,reviews,stars,handleClick,promedio,deleteClick,user} = this.props
+  const{handleSubmit,reviews,stars,handleClick,promedio,deleteClick,user,cleanForm} = this.props
   return (
     <div>
       {(user.id)? 
         <div className="container">
           <div className="row">
             <div className="col-md-5">
-              <form onSubmit={handleSubmit}>
+              <form onSubmit={(e)=>{handleSubmit(e) ;cleanForm(e)}}>
                 <div style={{clear:"both"}}>
                   
                     <h3 style={{float:"left" ,color:"white"}} >{`${user.first_name} ${user.last_name}`}</h3>
