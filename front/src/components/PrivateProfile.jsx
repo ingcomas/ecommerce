@@ -1,4 +1,4 @@
-import React from 'react';
+ import React from 'react';
 import {Redirect} from 'react-router-dom'
 import AdminProfile from '../components/AdminProfile';
 import UserProfile from '../components/UserProfile';
@@ -12,16 +12,9 @@ render(){
     return(
         <div>
             {
-<<<<<<< HEAD
                 this.props.user.access == true ? 
                     <Redirect to='/user/admin' />
                     // <AdminProfile logOut={props.logOut}/>
-=======
-                props.user.access == true ? 
-                    <AdminProfile
-                        logOut={props.logOut}
-                    />
->>>>>>> ae9604d772d382cd7b99bf18147587dc3c4c0939
                 :
                     <UserProfile user={this.props.user} logOut={this.props.logOut}/> 
             }
