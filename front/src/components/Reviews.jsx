@@ -7,17 +7,23 @@ export default class Reviews extends React.Component{
     super(props)
     this.state={
       hoverStar:0,
+      textarea:"",
+      check:true
     }
   }
-  componentDidMount(){
-    this.setState({content:""},()=>{})
-  }
+
   mouseLeave = ()=>{
     this.setState({hoverStar:0},()=>{})
   }
 
   starHighlight = (hoverStar)=>{
     this.setState({hoverStar},()=>{})
+  }
+
+  texto=(e)=>{
+    this.setState({textarea:e.target.value},()=>{});
+    e.target.value.length != 0 && e.target.value.length < 320 ?
+    this.setState({check:false} , ()=>{}) : this.setState({check:true},()=>{})
   }
 
   render(){
@@ -56,9 +62,13 @@ export default class Reviews extends React.Component{
                  }
                 </div>
                 <textarea className="col-md-12" id="new_message" name="content"
-                placeholder="Type in your message" rows="5"></textarea>
-                {/* <h6 className="pull-right">320 characters remaining</h6> */}
-                <button className="btn btn-info" type="submit">Post New Review</button>
+                placeholder="Type in your message" rows="5" onChange={(e)=>this.texto(e)}></textarea>
+                <h6 className="pull-right">
+                {((320- this.state.textarea.length) >0)? `${(320 - this.state.textarea.length)}  characters remaining`
+                  : `Please stop writing`}
+                 </h6>
+                <button className="btn btn-info" 
+                disabled={this.state.check}>Post New Review</button>
               </form>
             </div>
           </div>

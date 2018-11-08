@@ -34,8 +34,6 @@ router.post('/newReview', (req,res)=>{
   })
 })
 
-
-
 // User.findOne({where:{id:1}})
 // .then(peo=>
 // Review.findOne({where:{id: 1}})

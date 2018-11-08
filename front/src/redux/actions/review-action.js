@@ -17,8 +17,7 @@ export const newReview = (param,stars,prodId,user)=>(dispatch)=>{
     prodId:prodId,
     user:user
   })
-  .then(review =>
-    dispatch(createdReview(review.data)))
+  .then(review =>dispatch(createdReview(review.data)))
   .then(response => dispatch(fetchReviews(prodId)))
 }
 
