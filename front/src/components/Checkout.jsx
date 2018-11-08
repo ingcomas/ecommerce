@@ -3,13 +3,15 @@ import React from 'react'
 export default ({items,handleSubmit,user})=> (
     <div className="col-sm-9" style={{marginTop: '10%'}}>
         <h1 style={{color: 'white'}}>Checkout</h1>
-        {console.log(items)}
+        {console.log(user)}
         {items!='' ? 
         <form className=" w-75" onSubmit={handleSubmit}>
         <div className="form-row">
             <div className="col-md-4 mb-3">
                 <label>Nombre</label>
-                <input type="text" className="form-control" id="firstName" placeholder="Nombre" required/>
+                <input type="text" className="form-control" id="firstName" placeholder="Nombre"
+                value={user.first_name ? user.first_name:undefined}
+                required/>
             </div>
             <div className="col-md-4 mb-3">
                 <label >Apellido</label>

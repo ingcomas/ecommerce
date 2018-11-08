@@ -45,3 +45,20 @@ export const changeOrder = (param,id) => (dispatch) =>{
         axios.post('/api/checkout/email',{orden:order.data})
     })
 }
+export const getOrdersUser = (id) => (dispatch) => {
+    axios.get('/api/user/admin/orders/prueba',{  
+        params: {
+            id:id
+        }
+    })
+    .then(res => res.data)
+    .then(orders => {   
+        console.log('holaaaaaaa',orders)
+    dispatch(receiveOrders(orders))
+    })
+}
+// export const getProductsOrders = (orders) => (dispatch) => {
+//     orders.map(order => {
+//         order.products.map
+//     })
+// }

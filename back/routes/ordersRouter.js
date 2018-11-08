@@ -12,6 +12,10 @@ var mailgun = new Mailgun({apiKey: api_key, domain: DOMAIN});
 
 module.exports = router;
 
+router.get('/orders/prueba', function (req, res, next) {
+    Orders.findAll({where:{userId:req.query.id}})
+    .then(orders=>res.json(orders))
+    });
 router.get('/orders', function (req, res, next) {
 if(req.query.state  == ''){
       Orders.findAll()
