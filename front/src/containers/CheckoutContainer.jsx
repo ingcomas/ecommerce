@@ -10,7 +10,7 @@ class CheckoutContainer extends React.Component{
     }
 handleSubmit(e){
     e.preventDefault();
-    this.props.createOrder(e.target,this.props.items);
+    this.props.createOrder(e.target,this.props.user.id,this.props.items);
     //aqui debería realizar el clear del carrito. Una vez que queda limpio el carrito,
     //redirigir a la pagina principal
 }
@@ -36,8 +36,8 @@ function mapStateToProps(state){
 }
 function mapDispatchToProps(disptach){
     return {
-        createOrder: function(params,items){
-            disptach(createOrder(params,items))
+        createOrder: function(params,id,items){
+            disptach(createOrder(params,id,items))
         }
     }
 }

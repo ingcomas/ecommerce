@@ -1,13 +1,12 @@
 import React from 'react';
 
-export default ({ handleSubmit, categories, selectedProduct, title, handleEdit, removeCategory, removeProductCategory, productCategories }) => (
+export default ({ handleSubmit, categories, selectedProduct, title, removeCategory, productCategories }) => (
 	<div className= 'container-fluid'> 
-	{/* {console.log (categories, ' CATEGORIES')} */}
 		<div className='row'>
 			<div className='col-sm-2'></div>
 			<div className='col-sm-8'>
 				<div className="well">
-					<form className="form-horizontal" onSubmit= {handleEdit && handleEdit || handleSubmit}>
+					<form className="form-horizontal" onSubmit= {handleSubmit}>
 						<fieldset>
 							<h1 style={{color : 'white'}}>{title || 'New Product'}</h1>			
 							<div className="form-group">
@@ -50,7 +49,7 @@ export default ({ handleSubmit, categories, selectedProduct, title, handleEdit, 
 												<div className= 'col-sm-6' key= {cat.id}>
 													<div className="alert alert-warning alert-dismissible fade show" role="alert">
 														<strong>{ cat.name }</strong>
-														<button type="button" className="close" data-dismiss="alert" aria-label="Close" onClick= { removeCategory || removeProductCategory}>
+														<button type="button" className="close" data-dismiss="alert" aria-label="Close" onClick= { removeCategory }>
 															<i id={ cat.id } className= 'fas fa-trash-alt delete-button'></i>
 														</button>
 													</div>

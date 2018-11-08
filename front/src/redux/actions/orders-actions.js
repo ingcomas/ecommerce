@@ -15,12 +15,13 @@ export const fetchOrders = (orderSearch = '') => (dispatch) => {
     // .then(()=>axios.get('/api/checkout/email'))    
 }
 
-export const createOrder = (params,items) => (dispatch)=>{
+export const createOrder = (params,id,items) => (dispatch)=>{
     var array=[];
     items.map(item=>{
         for (let i = 0; i < item.quantity; i++) {array.push(item.product.id); }
         })
     axios.post('/api/checkout',{
+        id:id,
         firstName: params.firstName.value,
         lastName: params.lastName.value,
         address: params.address.value,
@@ -44,3 +45,20 @@ export const changeOrder = (param,id) => (dispatch) =>{
         axios.post('/api/checkout/email',{orden:order.data})
     })
 }
+export const getOrdersUser = (id) => (dispatch) => {
+    axios.get('/api/user/admin/orders/prueba',{  
+        params: {
+            id:id
+        }
+    })
+    .then(res => res.data)
+    .then(orders => {   
+        console.log('holaaaaaaa',orders)
+    dispatch(receiveOrders(orders))
+    })
+}
+// export const getProductsOrders = (orders) => (dispatch) => {
+//     orders.map(order => {
+//         order.products.map
+//     })
+// }

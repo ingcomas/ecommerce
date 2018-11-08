@@ -11,7 +11,7 @@ export default ({productList, addToCart, handleClick,user})=>(
      (product.stock&&
    <div key={product.id} className='col-sm-3 col-md-3 col-lg-3 col-xs-3' >
       <div>
-          <img className="card-img-top" src="http://staticmd1.lavozdelinterior.com.ar/sites/default/files/styles/landscape_1020_560/public/blog/roman-riquelme-1.jpg" alt=""/>
+          <img className="card-img-top" src={product.images[0]} alt=""/>
       </div>
       <div>
       <button className="add-to-cart" onClick={()=>addToCart(product)}></button>

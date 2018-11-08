@@ -1,9 +1,9 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import SearchContainer from '../containers/SearchContainer'
 import CategoriesContainer from '../containers/HeaderCategoriesContainer'
 
-export default ({user})=>(
+export default ({user, logOut})=>(
     <nav className="navbar navbar-expand-sm navbar-dark bg-primary fixed-top">
     <a className="navbar-brand" href="#">
     <img src="/docs/4.1/assets/brand/bootstrap-solid.svg" width="30" height="30" alt=""/>
@@ -34,6 +34,10 @@ export default ({user})=>(
         </li>
         : null}
         </ul>
+        {user.first_name ?
+            <button className="btn btn-dark" onClick={logOut}>Logout</button>
+        : null
+        }
         <SearchContainer />
     </div>
     </nav>

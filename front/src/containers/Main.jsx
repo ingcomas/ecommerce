@@ -16,10 +16,11 @@ import CreateCategoryContainer from './CreateCategoryContainer';
 import CreateProductContainer from './CreateProductContainer';
 import CheckoutContainer from './CheckoutContainer';
 import LoginContainer from './LoginContainer';
-import CartContainer from './CartContainer'
+import CartContainer from './CartContainer';
+import PrivateProfile from '../components/PrivateProfile'
 
 //COMPONENTS
-import PrivateProfile from '../components/PrivateProfile';
+import AdminProfile from '../components/AdminProfile';
 
 class Main extends React.Component{
     constructor(props){
@@ -38,8 +39,13 @@ class Main extends React.Component{
                     <CartContainer />
                     <div className="col-xs-10 col-sm-10">
                     <Switch>
-						<Route exact path='/products/:id/edit' component= {ProductsContainer} />
+                        {this.props.user.access ? 
+                            <Route exact path='/products/:id/edit' component= {ProductsContainer} /> 
+                            : null
+                        }
+                        <Route exact path="/" component={ProductsContainer}/>
                         <Route exact path="/products" component={ProductsContainer} />
+                        <Route exact path='/products/:id/edit' component= {ProductsContainer} />
                         {this.props.user.access ? 
                             <Route exact path='/user/admin/orders' component={OrderContainer}/>
                         : null}
@@ -52,10 +58,11 @@ class Main extends React.Component{
                         {this.props.user.access ? 
                             <Route path='/categories/newcategory' component={CreateCategoryContainer} />
                         : null}
+                        <Route path="/profile/admin" component={AdminProfile} />
                         <Route path="/register" component={RegisterContainer}/>
                         <Route path="/login" component={LoginContainer}/>
-                        <Route path="/
-                        " component={PrivateProfile}/>
+                        <Route path="/profile/user" component={PrivateProfile}/>
+                        <Route path="/products/:id" component={SingleProductsContainer} />
                         <Route path='/cart/checkout' component={CheckoutContainer} />
                         <Route path="/cart" component={Cart} />
                         {/* //>>>>>>>not remove<<<<<<//// */}
@@ -69,16 +76,12 @@ class Main extends React.Component{
         )
     }
 }
-  
-        
-    
-
 
 function mapStateToProps(state){
-    //    console.log(state)
     return{ user: state.user,
     }
 };
+
 function mapDispatchToProps(dispatch){
     return{
         isLogged: function(){
