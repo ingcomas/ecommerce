@@ -7,6 +7,14 @@ const Order = require('../db/models/Order');
 const Review = require('../db/models/Review');
 const db = require('../db/index');
 
+function fakeImages(){
+	var img= [];
+	for (var i=0; i<5; i++){
+		img.push(('https://picsum.photos/300/300/?image=' + Math.ceil(Math.random()*500)))
+	}
+	return img;
+}
+
 const createCategory = () => Category.create({
   name: faker.commerce.department(),
 });
@@ -22,7 +30,7 @@ const createProduct = () => Product.create({
   description: faker.lorem.paragraph(),
   stock: Math.round(Math.random()*25),
   price: faker.commerce.price(),
-  images : [faker.image.imageUrl(),faker.image.imageUrl()]
+  images : fakeImages()
 
 
 });

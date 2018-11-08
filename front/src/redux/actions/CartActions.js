@@ -22,6 +22,11 @@ export function decOne(product) {
         product
     }
 }
+export function nonCart(){
+    return {
+        type : 'DESTROY_CART'
+    }
+}
 export const addToCart = (product) => (dispatch) => {
     dispatch(addCartToStore(product))
 }
@@ -33,4 +38,7 @@ export const addCartFromStorage = (cart) => (dispatch) => {
 }
 export const decProd = prod => dispatch => {
     dispatch(decOne(prod))
+}
+export const destroyCart = () => dispatch => {
+    dispatch(nonCart())
 }
