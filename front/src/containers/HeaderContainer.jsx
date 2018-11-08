@@ -28,11 +28,6 @@ function mapStateToProps(state, ownProps){
         user: state.user,
     }
 }
-<<<<<<< HEAD
-function mapDispatchToProps(dispatch){return{
-    
-}}
-=======
 function mapDispatchToProps(dispatch, ownProps){
     return {
         logOut: function(){
@@ -40,6 +35,5 @@ function mapDispatchToProps(dispatch, ownProps){
         }
     }
 }
->>>>>>> 8f0e2d253f853b8dd6f5a1ac7a1644318d6693d8
 
 export default connect(mapStateToProps,mapDispatchToProps)(HeaderContainer)
