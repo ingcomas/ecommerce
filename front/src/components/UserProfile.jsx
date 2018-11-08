@@ -1,36 +1,35 @@
 import React from 'react';
+import {connect} from 'react-redux';
+import {getOrdersUser} from '../redux/actions/orders-actions';
 
-// export default props => {
-//     return(
-//         <div className="container">
-//             <h1>{`Bienvenido ${props.user.first_name} ${props.user.last_name}!`}</h1>
-//             <img src="https://media.tenor.com/images/61f264d4e7167addb805f9d16e75352d/tenor.gif"/>
-//             <p>{`Tu DNI es ${props.user.dni} y tu número de celular ${props.user.cellphone}`}</p>
-//             <button className="btn btn-primary" onClick={props.logOut}>Logout</button>
-//         </div>       
-//     )
-// }
-
-export default ({user,logOut})=>{
+class UserProfile extends React.Component{
+    constructor(props){
+        super(props);
+    }
+    componentDidMount(){
+        
+        this.props.getOrdersUser(this.props.user.id)
+    }
+render(){
     return (
-<div className="row mt-5">
-<div className="row mt-5">
-
-
-    <div className="">
-        <div className="col-sm-12 col-md-12 col-lg-12">
+        <div className="row">
+            {this.props.orders && this.props.orders.map(order=>(
+       <div key={order.id} className="col-sm-9 col-md-9 col-lg-9">
             <table className="table table-hover table-dark">
                 <thead>
                     <tr>
-                        <th>Orden N°<br></br><span>Estado: </span><span className="text-success"><strong>In Stock</strong></span></th>
+                        <th>Orden N°{order.id}<br></br><span>Estado: </span><span className="text-success"><strong>{order.state}</strong></span></th>
                         <th className="align-middle">Cantidad</th>
                         <th className="align-middle text-center">Precio</th>
                         <th className="align-middle text-center">Subtotal</th>
                     </tr>
                 </thead>
                 <tbody>
+                    {order.products.map(prod=> {
+                        
+                    })}
                     <tr>
-                        <td className="col-sm-8 col-md-6 col-lg-6">
+                        <td className="col-sm-6 col-md-6 col-lg-6">
                         <div className="media">
                             <a className="thumbnail pull-left" href="#"> <img className="media-object" src="http://icons.iconarchive.com/icons/custom-icon-design/flatastic-2/72/product-icon.png" style={{width: '60px', height: '60px'}}/> </a>
                             <div className="media-body">
@@ -38,11 +37,11 @@ export default ({user,logOut})=>{
                             </div>
                         </div>
                         </td>
-                        <td className="col-sm-1 col-md-1 align-middle text-center" >
+                        <td className="col-sm-1 col-md-1 col-lg-6 align-middle text-center" >
                         <strong>3</strong>
                         </td>
-                        <td className="col-sm-1 col-md-1 align-middle text-right"><strong>$4.87</strong></td>
-                        <td className="col-sm-1 col-md-1 align-middle text-right"><strong>$14.61</strong></td>
+                        <td className="col-sm-1 col-md-1 col-lg-6 align-middle text-right"><strong>$4.87</strong></td>
+                        <td className="col-sm-1 col-md-1 col-lg-6 align-middle text-right"><strong>$14.61</strong></td>
                     </tr>
                     <tr>
                         <td>   </td>
@@ -53,10 +52,22 @@ export default ({user,logOut})=>{
                 </tbody>
             </table>
         </div>
-    </div>
-</div>
-
-</div>
-    )
+            ))}
+        </div>
+    )}
 }
+function mapStateToProps(state){
+    return {
+        user: state.user,
+        orders: state.orders
+    }
+}
+function mapDispatchToProps(dispatch){
+    return {
+        getOrdersUser:function(id){
+            dispatch(getOrdersUser(id))
+        }
+    }
+}
+export default connect(mapStateToProps,mapDispatchToProps)(UserProfile)
 // https://bootsnipp.com/snippets/featured/shopping-cart-bs-3
