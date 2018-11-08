@@ -18,6 +18,8 @@ function mapStateToProps(state){
         user: state.user,
     }
 }
-function mapDispatchToProps(dispatch){return{}}
+function mapDispatchToProps(dispatch){return{
+    
+}}
 
 export default connect(mapStateToProps,mapDispatchToProps)(HeaderContainer)

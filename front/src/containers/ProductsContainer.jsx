@@ -2,12 +2,12 @@ import React from 'react';
 import {connect} from 'react-redux'
 
 
-import { productByCategory} from '../redux/actions/categoriesActions'
 import Products from '../components/Products';
 import CreateProduct from '../components/CreateProduct';
 import {listProducts, editProduct, handleEdit, productCategories, deleteProductCategory} from '../redux/actions/products-actions'
-import {axiosCategories, deleteCategory} from '../redux/actions/categoriesActions';
+import {axiosCategories, deleteCategory,productByCategory} from '../redux/actions/categoriesActions';
 import {addToCart} from '../redux/actions/CartActions'
+import {isLogged} from '../redux/actions/userActions'
 ;
 
 
@@ -22,37 +22,34 @@ import {addToCart} from '../redux/actions/CartActions'
     }
 
     componentDidMount(){
-       
-       
-        //    console.log(this.props.match.params.id, 'props.match')
-        //    console.log(this.props, 'props.products')
-        
+		       
            if (this.props.match.params.id) {
               this.props.productByCategory(this.props.match.params.id)
-			  this.setState({productsLocal:this.props.productsByCategorys})
+			  this.setState({productsLocal:this.props.productsByCategory})
             }
 			else{ this.props.listProducts()
-				this.setState({productsLocal:this.props.products})
+			 this.setState({productsLocal:this.props.products})
 			}
          };
          
          componentWillReceiveProps(nextPRops){
-            if (this.props.match.params.id){
-                this.setState({
-                    productsLocal: nextPRops.productsByCategory
-                })
-            } else {
-                this.setState({
-                    productsLocal: nextPRops.products
-                })
-            }
+			if (this.props.match.params.id) {
+				this.props.productByCategory(this.props.match.params.id)
+				this.setState({productsLocal:this.props.productsByCategory})
+            } 
+			else{ this.props.listProducts()
+				this.setState({productsLocal:this.props.products})
+			}
+		
+            
          };
 
 		handleClick(e){
 			e.preventDefault();
 			this.props.getCategories();
 			this.props.getProductCategories(e.target.id);
-			this.props.editProduct(e.target.id);
+			this.props.editProduct(e.target.id)
+			// listProducts()
 		}
 		handleEdit(e){
 			e.preventDefault();
@@ -67,21 +64,22 @@ import {addToCart} from '../redux/actions/CartActions'
     render(){
         return(
 				<div>
-					{console.log(this.props.selectedProduct, ' selectedProduct')}
+					{/* {console.log(this.props, ' selectedProduct')} */}
 					{ 						
-						this.props.selectedProduct ?
-							<CreateProduct 
-								productCategories= {this.props.productCategories}
-								removeCategory= { this.removeCategory }
-								categories= { this.props.categories } 
-								title= { 'Product edit' } 
-								selectedProduct= {this.props.selectedProduct}
-								removeProductCategory= {this.props.removeProductCategory} 
-							/> : 
+						// this.props.selectedProduct ?
+						// 	<CreateProduct 
+						// 		productCategories= {this.props.productCategories}
+						// 		removeCategory= { this.removeCategory }
+						// 		categories= { this.props.categories } 
+						// 		title= { 'Product edit' } 
+						// 		selectedProduct= {this.props.selectedProduct}
+						// 		removeProductCategory= {this.props.removeProductCategory} 
+						// 	/> : 
 							<Products 
 								handleClick= {this.handleClick}
 								productList={this.state.productsLocal}
 								addToCart={this.props.addCart}
+								user={this.props.user}
 							/>
 					} 
 				</div>
@@ -96,7 +94,8 @@ function mapStateToProps(state){
 						selectedProduct : state.product.product,
 						categories : state.categories.categories,
                         productCategories : state.product.filteredCategories,
-                        productsByCategory: state.categories.productsByCategory
+						productsByCategory: state.categories.productsByCategory,
+						user: state.user,
     }
 };
 function mapDispatchToProps(dispatch){
@@ -127,7 +126,10 @@ function mapDispatchToProps(dispatch){
 				},
                 productByCategory: function(idCategory){
                     dispatch(productByCategory(idCategory))
-                }
+				},
+				isLogged: function(){
+					dispatch(isLogged())
+				}
     }
 };
 export default connect(mapStateToProps,mapDispatchToProps)(ProductsContainer)

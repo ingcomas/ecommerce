@@ -26,6 +26,7 @@ export default ({user})=>(
         <li className="nav-item active">
             <Link to="/products"><span className="nav-link">Products</span></Link>
         </li>
+        
         <CategoriesContainer />
         {user.access ? 
         <li className="nav-item">

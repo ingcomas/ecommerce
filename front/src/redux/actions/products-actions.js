@@ -62,6 +62,7 @@ export const listProducts = (value)=>(dispatch)=>{
     axios.get('/api/product')
         .then(res=>  dispatch(listaproductos(res.data)))
         .catch(e=>console.log('error',e))
+        
 }
 
 export const searchProduct = (value) => (dispatch) => {
