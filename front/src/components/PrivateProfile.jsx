@@ -1,4 +1,4 @@
-import React from 'react';
+ import React from 'react';
 import {Redirect} from 'react-router-dom'
 import AdminProfile from '../components/AdminProfile';
 import UserProfile from '../components/UserProfile';
