@@ -13,7 +13,7 @@ export default ({productList, addToCart, handleClick})=>(
        <div key={product.id} className='col-sm-3 col-md-3 col-lg-3 col-xs-3' >
           <div className="card border-top tarjeta" >
           <Link to={`/products/${product.id}`}>
-            <img className="card-img-top" src={`http://staticmd1.lavozdelinterior.com.ar/sites/default/files/styles/landscape_1020_560/public/blog/roman-riquelme-1.jpg`} />
+            <img className="card-img-top" src={product.images[0]} />
           </Link> 
             <div className="card-body tarjeta-body">
             <Link to={`/products/${product.id}`}>
