@@ -40,8 +40,10 @@ const ordersRouter = require('./routes/ordersRouter')
 const categoryRouter = require('./routes/categoryRouter')
 const reviewRouter = require('./routes/reviewRouter')
 const meRouter = require('./routes/meRouter')
+const cartRouter = require('./routes/cartRouter')
 
 //ROUTES
+app.use('/api/cart', cartRouter);
 app.use('/api/user/admin',ordersRouter);
 app.use('/api/user', userRouter);
 app.use('/api/review', reviewRouter)
