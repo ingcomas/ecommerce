@@ -60,7 +60,7 @@ passport.use(new LocalStrategy({
   passwordField: 'password'
 },
 function(username, password, done) {
-    User.findOne({where: { email: username }})
+    User.findOne({ where: { email: username }})
     .then(user => {
       if (!user) {
         return done(null, false, { message: 'Incorrect username.' });

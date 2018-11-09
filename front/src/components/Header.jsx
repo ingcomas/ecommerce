@@ -18,9 +18,6 @@ export default ({user, logOut})=>(
             <Link to='/'><span className="nav-link">Home <span className="sr-only">(current)</span></span></Link>
         </li>
         <li className="nav-item">
-            <Link to="/login"><span className="nav-link">Login</span></Link>
-        </li>
-        <li className="nav-item">
             <Link to="/register"><span className="nav-link">Registrarse</span></Link>
         </li>
         <li className="nav-item active">
@@ -35,8 +32,14 @@ export default ({user, logOut})=>(
         : null}
         </ul>
         {user.first_name ?
-            <button className="btn btn-dark" onClick={logOut}>Logout</button>
-        : null
+            (
+            <span>
+                <label className="userNameLabel">{user.first_name} {user.last_name}</label>
+                <button className="btn btn-dark" onClick={logOut}>Logout</button>
+            </span>
+            )
+        : 
+            <Link to="/login"><button className="btn btn-dark">Login</button></Link>
         }
         <SearchContainer />
     </div>

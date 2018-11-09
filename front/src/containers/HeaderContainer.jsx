@@ -10,7 +10,7 @@ class HeaderContainer extends React.Component{
         this.logOut = this.logOut.bind(this);
     }
     logOut(e){
-        <Redirect to="/"/>
+        <Redirect to="/login"/>
         this.props.logOut();
     }
     render(){

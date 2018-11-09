@@ -15,7 +15,7 @@ router.post('/newUser', (req, res) => {
         address: req.body.address,
         dni: req.body.dni,
         cellphone: req.body.cellphone
-    }).then(response => res.send(response))
+    }).then(user => res.send(user))
     .catch(e => res.send(e));
 });
 

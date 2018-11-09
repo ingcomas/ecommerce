@@ -37,8 +37,9 @@ export const loginUser = (email, password) => dispatch => {
     })
     .then(res => res.data)
     .then(user => dispatch(setLoggedUser(user)))
-    .catch(e => dispatch(sayWrongPassword(e)));
+    .catch(e => {console.log(e);dispatch(sayWrongPassword(e))});
 }
+
 export const isLogged = () => dispatch => {
     axios.get('/me')
     .then(res => dispatch(setLoggedUser(res.data)))
