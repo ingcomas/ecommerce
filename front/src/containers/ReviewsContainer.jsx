@@ -1,12 +1,11 @@
 import React,{Component} from 'react'
 import Reviews from '../components/Reviews.jsx'
 import {connect} from 'react-redux'
-import {newReview,fetchReviews,deleteReview} from '../redux/actions/review-action'
+import {newReview,fetchReviews,deleteReview,pullOrders} from '../redux/actions/review-action'
 
 function mapStateToProps(state){
   return { 
     comentarios: state.review,
-    user:state.user
   }
 }
 
@@ -20,6 +19,9 @@ function mapDispatchToProps(dispatch){
     },
     deleteReview: function(reviewId,prodId){
       dispatch(deleteReview(reviewId,prodId))
+    },
+    pullOrders: function(prod,user){
+      dispatch(pullOrders(prod,user))
     }
   }
 }
@@ -31,20 +33,39 @@ class ReviewsContainer extends Component{
     this.state={
       ratingProm:0,
       stars:0,
-      flagStar:true
+      flagStar:true,
+      product:{},
+      user:{},
+      contador: 0
     }
-    this.createStars=this.createStars.bind(this)
-    this.handleClick=this.handleClick.bind(this)
-    this.handleSubmit=this.handleSubmit.bind(this)
+  }
+  
+  componentDidMount() {   
+    this.props.fetchReviews(this.props.idProduct);
+    this.props.product && Object.keys(this.props.user).length && this.props.pullOrders(this.props.product,this.props.user)
+    this.setState({product:this.props.product,user:this.props.user},()=>{})
+  }
+  
+  componentWillReceiveProps(nextProps){
+    if(nextProps.product && Object.keys(nextProps.user).length){
+      (nextProps.product !== this.props.product || nextProps.user !== this.props.user)
+      && nextProps.pullOrders(nextProps.product,nextProps.user)
+    }
   }
 
-  handleClick (stars){
+  handleClick = (stars) => {
     this.setState({
       stars
     });
   }
 
-  handleSubmit(e) {
+  cleanForm = (e) => {
+    e.preventDefault();
+    (this.state.stars != 0)? `${e.target.content.value=""}`: null;
+    this.setState({stars:0})
+  }
+
+  handleSubmit= (e) => {
     e.preventDefault();
     (this.state.stars)?
       this.props.newReview(
@@ -53,15 +74,15 @@ class ReviewsContainer extends Component{
         this.props.idProduct,
         this.props.user
       )
-    :this.setState({flagStar:false},()=>{})
+    :null
   }
 
-  deleteClick=(e,reviewId)=>{
+  deleteClick = (e,reviewId) => {
     e.preventDefault()
     this.props.deleteReview(reviewId,this.props.idProduct)
   }
 
-  createStars = (num)=>{
+  createStars = (num) => {
     var stars = []
     for(var i = 0; i < num; i++){
       stars.push(i)
@@ -69,13 +90,8 @@ class ReviewsContainer extends Component{
     return stars
   }
 
-  componentDidMount(){   
-    const prodId = this.props.idProduct
-    this.props.fetchReviews(prodId);
-    this.ratingPromedio()
-  }
 
-  ratingPromedio(){
+  ratingPromedio() {
     var aux = 0
     var count = 0
     this.props.comentarios.comentarios && this.props.comentarios.comentarios.forEach(review => {
@@ -87,9 +103,10 @@ class ReviewsContainer extends Component{
   }
   
   render(){
-    return (
+    return(
       <div>
       <Reviews 
+        cleanForm={this.cleanForm}
         handleSubmit={this.handleSubmit} 
         reviews={this.props.comentarios.comentarios}
         ratingPromedio={this.state.ratingProm}
@@ -100,11 +117,11 @@ class ReviewsContainer extends Component{
         user={this.props.user}
         deleteClick={this.deleteClick}
         estrellas={this.state.stars}
+        purchaseProduct={this.props.comentarios.purchaseProduct}
       />
       </div>
     )
   }
 }
-
 
 export default connect(mapStateToProps,mapDispatchToProps)(ReviewsContainer)

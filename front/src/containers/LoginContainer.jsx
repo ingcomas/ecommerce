@@ -21,9 +21,12 @@ logOut(e){
 }
     render(){
         return(
-            <div className="container">{console.log('Rendered')}
-                    {this.props.user.first_name ? 
-                        <PrivateProfile   
+            
+            <div className="container">
+            {console.log(this.props.user.first_name)
+            }
+                    {this.props.user.first_name ?                    
+                        <PrivateProfile                           
                             logOut={this.logOut}
                         />
                     : 

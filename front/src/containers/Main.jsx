@@ -16,7 +16,8 @@ import CreateCategoryContainer from './CreateCategoryContainer';
 import CreateProductContainer from './CreateProductContainer';
 import CheckoutContainer from './CheckoutContainer';
 import LoginContainer from './LoginContainer';
-import CartContainer from './CartContainer'
+import CartContainer from './CartContainer';
+import PrivateProfile from '../components/PrivateProfile'
 
 //COMPONENTS
 import AdminProfile from '../components/AdminProfile';
@@ -60,10 +61,13 @@ class Main extends React.Component{
                         <Route path="/profile/admin" component={AdminProfile} />
                         <Route path="/register" component={RegisterContainer}/>
                         <Route path="/login" component={LoginContainer}/>
+                        <Route path="/profile/user" component={PrivateProfile}/>
                         <Route path="/products/:id" component={SingleProductsContainer} />
                         <Route path='/cart/checkout' component={CheckoutContainer} />
                         <Route path="/cart" component={Cart} />
-                        <Route path="/products/categories/:id" component={ProductsContainer} />
+                        {/* //>>>>>>>not remove<<<<<<//// */}
+                        <Route path="/categories/:id" component={ProductsContainer} />
+                        {/* //>>>>>>>not remove<<<<<<////    */}
                         <Route path="/products/:id" component={SingleProductsContainer} />
                     </Switch>
                     </div>

@@ -12,11 +12,20 @@ export default ( state = {} , action ) => {
       var average = Math.round(prom/ action.allReviews.length)
       return Object.assign({},state,{ comentarios:action.allReviews, average: average });
     
-    case 'AVERAGE_REVIEWS':
-      return Object.assign({},state,{promedio:action.average})
-    
-    case 'DELETE_REVIEW':
-      return Object.assign({},state,{reviewDelete:action.review})
+    case 'ORDER_PRODUCT':
+      var purchaseProduct = false;
+      action.orderUser.forEach(order =>{        
+        if(order.userId == action.userId){
+          order.products.forEach(product => {
+            if(product == action.prod.id){
+              return purchaseProduct = true
+            }
+          })
+        }
+      })
+      
+      return Object.assign({},state,{purchaseProduct: purchaseProduct})
+
     default:
       return state;
   }
