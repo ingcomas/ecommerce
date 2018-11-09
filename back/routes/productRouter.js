@@ -12,7 +12,7 @@ router.get ('/', (req,res) => {
 	})
 })
 
-router.get ('/hola/:id/categories', (req,res) => {
+router.get ('/:id/categories', (req,res) => {
 	const product= req.params.id;
 	Product.findAll ({ where : {id:product}, include : [Category]	})
 		.then(categories => {
@@ -27,7 +27,7 @@ router.get ('/:id', (req,res) => {
 	.catch(err=>res.send(err))
 })
 
-router.get ('/hola/:name', (req,res) => {
+router.get ('/:name', (req,res) => {
 	const name = req.params.name;
 	Product.findAll({where:{name}})
 	.then(prod=>res.send(prod))
