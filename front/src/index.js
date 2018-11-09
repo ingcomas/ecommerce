@@ -13,7 +13,3 @@ ReactDom.render(
     </Provider>,
     document.getElementById('app')
 );
-
-
-
-
