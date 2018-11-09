@@ -10,21 +10,31 @@ class CreateProductContainer extends Component {
 	constructor (props){
 		super(props);
 		this.handleSubmit= this.handleSubmit.bind(this);
-		// this.handleClick= this.handleClick.bind(this);
 	}
 	componentDidMount(){
 		this.props.axiosCategories()
-		// console.log ('CATEGORIES ', this.props.categories)
 	}
 	
 	handleSubmit(e){
 		e.preventDefault();
-		this.props.createProduct(e.target)
+		const producto= e.target;
+    const images= producto.images && producto.images.value.split(',');
+    const categories= [];
+    if(producto.categorias){
+		for (var i=0; i<producto.categorias.length; i++){
+			producto.categorias[i].checked == true ? categories.push (producto.categorias[i].value) : null
+      }
+    }
+		const prod= {
+			name : producto.name.value,
+			description : producto.description.value,
+			price : producto.price.value,
+			stock : producto.stock.value,
+			images : images,
+			categories : categories
+		}
+		this.props.createProduct(prod)
 	}
-	// handleClick(e){
-	// 	e.preventDefault();
-	// 	this.props.editProduct(e.target.id.value);
-	// }
 
 	render (){
 		return 	(
@@ -38,7 +48,6 @@ class CreateProductContainer extends Component {
 function mapStateToProps(state){
 	return { 
 		categories : state.categories.categories
-		
 	}
 }
 function mapDispatchToProps(dispatch){

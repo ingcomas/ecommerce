@@ -25,7 +25,7 @@ class SingleProductContainer extends React.Component{
              product={this.props.oneProduct}
              addToCart={this.props.addCart}
              /> 
-             <ReviewsContainer idProduct={this.props.match.params.id}/>
+             <ReviewsContainer idProduct={this.props.match.params.id} user={this.props.user} product={this.props.oneProduct}/>
              
         </div>
             
@@ -36,7 +36,8 @@ class SingleProductContainer extends React.Component{
 function mapStateToProps(state){
    
     return({
-    oneProduct: state.product.oneProduct
+    oneProduct: state.product.oneProduct,
+    user: state.user,
     })
 }
 function mapDispatchToProps(dispatch){

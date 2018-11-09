@@ -40,7 +40,6 @@ router.post ('/newcategory', (req, res) => {
 	})
 	.then(response=>res.send(response))
 })
-module.exports= router;
 
 router.get ('/:id/products', (req,res) => {
 	const category=req.params.id
@@ -48,11 +47,4 @@ router.get ('/:id/products', (req,res) => {
 	.then(prod=> console.log(prod, "para el front"))
 })
 
-
-// router.get ('/:id/categories', (req,res) => {
-//     const product= req.params.id;
-//     Product.findAll ({ where : {id:product}, include : [Category]    })
-//      .then(categories => {
-//         return res.send(categories[0].categories)
-//      })
-// })
+module.exports= router;
