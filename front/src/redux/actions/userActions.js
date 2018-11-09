@@ -1,5 +1,6 @@
 import axios from 'axios';
-import {addCartFromStorage} from './CartActions'
+import {addCartFromStorage ,setCartFromBD} from './CartActions'
+
 
 const endSession = () => ({
     type: 'LOG_OUT_USER',
@@ -43,10 +44,11 @@ export const loginUser = (email, password) => dispatch => {
 export const isLogged = () => dispatch => {
     axios.get('/me')
     .then(res => dispatch(setLoggedUser(res.data)))
+    .then(res => dispatch(setCartFromBD()))
     .catch(e => {
         let session = JSON.parse(localStorage.getItem('cart'));
-        if(session){
-            dispatch(addCartFromStorage(JSON.parse(session)))
+        if(Object.keys(session).length > 0){
+            dispatch(addCartFromStorage(session))
         }
     });
 }
