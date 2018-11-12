@@ -30,15 +30,15 @@ export default ({product, addToCart})=> (
     </div>
     } 
    
-   {/* { product && <div className="col-sm-2 col-md-4 col-lg-4 cont-props-single-product">
+    {/* { product && <div className="col-sm-2 col-md-4 col-lg-4 cont-props-single-product">
      
        <h2> {product.price}</h2>
       <p> STOCK: {product.stock}</p>
-      { <p> {product}</p>
-      <p> {product}</p> }
+       <p> {product}</p>
+      <p> {product}</p> 
       <button onClick={()=>addToCart(product)}>add</button>
-    </div>  */
-   } 
+    </div> 
+   }  */}
  
   
 
