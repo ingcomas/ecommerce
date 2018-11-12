@@ -1,10 +1,9 @@
 body{
-    background: url('https://okhosting.com/resources/uploads/2016/01/comercio-electronico-1.jpg') no-repeat;
+    /* background: url('https://okhosting.com/resources/uploads/2016/01/comercio-electronico-1.jpg') no-repeat; */
    
     
 }
 label{
-    color: white;
     font-family: 'Acme', sans-serif;
 }
 .jumbotron{
@@ -45,8 +44,4 @@ label{
 @media screen and (max-height: 450px) {
     .sidenav {padding-top: 15px;}
     .sidenav a {font-size: 18px;}
-}
-
-.userNameLabel{
-    
 }

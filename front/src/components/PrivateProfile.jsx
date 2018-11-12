@@ -16,7 +16,7 @@ render(){
                 this.props.user.access == true ? 
                     <Redirect to='/user/admin' />
                 :
-                    <UserProfile /> 
+                    <UserProfile/> 
             }
         </div>
     )

@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom'
 import SearchContainer from '../containers/SearchContainer'
 import CategoriesContainer from '../containers/HeaderCategoriesContainer'
 
-export default ({user, logOut})=>(
-    <nav className="navbar navbar-expand-sm navbar-dark bg-primary fixed-top">
+export default ({user, logOut, showCart})=>(
+    <nav style={{borderBottom: '3px solid black'}}className="navbar navbar-expand-sm navbar-dark bg-primary fixed-top">
     <a className="navbar-brand" href="#">
     <img src="/docs/4.1/assets/brand/bootstrap-solid.svg" width="30" height="30" alt=""/>
   </a>
@@ -31,10 +31,11 @@ export default ({user, logOut})=>(
         </li>
         : null}
         </ul>
+        <i onClick={showCart}className="fas fa-shopping-cart" style={{fontSize: '30px', marginRight: '30px'}}></i>
         {user.first_name ?
             (
             <span>
-                <label className="userNameLabel">{user.first_name} {user.last_name}</label>
+                <label style={{marginRight: '30px'}}className="userNameLabel">{user.first_name} {user.last_name}</label>
                 <button className="btn btn-dark" onClick={logOut}>Logout</button>
             </span>
             )
