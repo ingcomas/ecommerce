@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import {Redirect} from 'react-router-dom'
 import Checkout from '../components/Checkout'
 import {createOrder} from '../redux/actions/orders-actions'
 
@@ -17,13 +18,15 @@ handleSubmit(e){
 render (){
     return (
         <div>
-            {/* aqui debe ir la lógica para mostrar o no el form del checkout segun si hay elemento en el carrito */}
-            {/* no debería mandarme a esta página si no hay elementos en el carrito */}
+            {this.props.items.length ?       
             <Checkout 
             handleSubmit={this.handleSubmit}
             items={this.props.items}
             user={this.props.user}
             />
+            : 
+            <Redirect to='/products' />
+            }
         </div>
     )
 }
@@ -31,7 +34,7 @@ render (){
 function mapStateToProps(state){
     return { 
         items: state.cart.cart,//es un arreglo con objetos [{product:{producto},quantity:valor},{}]
-        user: state.user
+        user: state.user,
     }
 }
 function mapDispatchToProps(disptach){

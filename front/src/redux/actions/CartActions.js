@@ -1,3 +1,4 @@
+import axios from 'axios';
 export function addCartToStore(product) {
     return {
         type: 'CART_ADD',
@@ -41,6 +42,7 @@ export const removeFromCart = (index) => (dispatch) => {
     dispatch(removeFromCartToStore(index))
 }
 export const addCartFromStorage = (cart) => (dispatch) => {
+    console.log('altocarro',cart)
     dispatch(addCartStorage(cart))
 }
 export const decProd = prod => dispatch => {
@@ -50,6 +52,17 @@ export const destroyCart = () => dispatch => {
     dispatch(nonCart())
 }
 
-export const showCart = () => dispatch => {
-    dispatch(llamarCarrito());
+export const saveCart = (cart, user) => dispatch => {
+    const cartForBD = 
+        cart.cart.map(elem=> ({ id: elem.product.id, quantity: elem.quantity}))
+    
+    axios.post('/api/cart', cartForBD)
+
+}
+export const setCartFromBD = () => dispatch => {
+    axios.get('/api/cart')
+    .then(res=>{
+        dispatch(addCartStorage({cart:res.data}))
+    })
+    .catch(e=>console.log('no hay carrito para este user'))
 }

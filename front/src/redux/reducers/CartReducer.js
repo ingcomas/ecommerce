@@ -17,7 +17,7 @@ export default function cart(state = initialState, action) {
         case 'CART_REMOVE':
             return Object.assign({},state,{cart:[...state.cart.slice(0, action.index), ...state.cart.slice(action.index+1)]});
         case 'CART_FROM_STORAGE':
-            return Object.assign({},state,action.cart);
+            return Object.assign({}, state, action.cart);
         case 'DECREASE_ONE':
             const resta = state.cart.findIndex(elem=>elem.product.id === action.product.id);
             return Object.assign({},state,{cart:[...state.cart.slice(0,resta),{

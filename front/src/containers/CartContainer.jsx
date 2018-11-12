@@ -7,7 +7,7 @@ import {Link} from 'react-router-dom';
 /*
 importamos archivos nuestros
 */
-import {removeFromCart, addToCart, decProd} from '../redux/actions/CartActions'
+import {removeFromCart, addToCart, decProd, saveCart} from '../redux/actions/CartActions'
 
 
 class CartContainer extends Component {
@@ -15,12 +15,15 @@ class CartContainer extends Component {
         super(props)
     }  
     componentWillReceiveProps(nextProps){
-            localStorage.setItem('cart', JSON.stringify(nextProps.cart)) 
-    }  
-    render(){        
+           
+                localStorage.setItem('cart', JSON.stringify(nextProps.cart)) 
+            
+    }
+    render(){      
+        console.log('props gato',this.props.cart.cart)  
         return(
             <div style={{borderRight: '5px solid black', backgroundColor: '#007bff', minHeight: '90vh'}}>
-                <table className='table col-xs-2 col-sm-2 cartWhite'>
+                <table className='cartWhite'>
                     <thead>
                     <tr>
                         <th>Quantity</th>
@@ -39,7 +42,10 @@ class CartContainer extends Component {
                         <td><i onClick={()=>this.props.removeFromCart(index)} className="fas fa-trash-alt delete-button"></i></td>
                         </tr>
                     ))}
-                        <tr><td colSpan="3" style={{textAlign:"center"}}><Link to='/cart/checkout' className="btn btn-success">Go to checkout</Link></td></tr>
+                        <tr>
+                            <td colSpan="3" style={{textAlign:"center"}}><Link to='/cart/checkout' className="btn btn-success">Go to checkout</Link></td>
+                            <td><button onClick={()=>this.props.saveCart(this.props.cart, this.props.user)} className="btn btn-info">Guardar carrito</button></td>
+                        </tr>
                     </tbody>   
                 </table>
           </div>
@@ -49,14 +55,17 @@ class CartContainer extends Component {
 }
 function mapStateToProps(state){
     return{
-            cart: state.cart      
+            cart: state.cart,
+            user: state.user      
     }
 };
 function mapDispatchToProps(dispatch){
     return{
         removeFromCart : (index) => dispatch(removeFromCart(index)),
         addCart : (product) => dispatch(addToCart(product)),
-        decOne : (product) => dispatch(decProd(product))
+        decOne : (product) => dispatch(decProd(product)),
+        saveCart : (cart, user) => dispatch(saveCart(cart, user))
+        
     }
 };
 export default connect(mapStateToProps,mapDispatchToProps)(CartContainer)
