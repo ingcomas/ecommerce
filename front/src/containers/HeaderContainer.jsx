@@ -18,6 +18,7 @@ class HeaderContainer extends React.Component{
                 <Header 
                     user={this.props.user}
                     logOut={this.logOut}
+                    showCart={this.props.showCart}
                 />
         )
     }

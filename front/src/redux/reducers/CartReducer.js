@@ -25,7 +25,9 @@ export default function cart(state = initialState, action) {
                 ...state.cart.slice(resta+1)
             ]});
         case 'DESTROY_CART':
-            return Object.assign({},state,{cart:[]})
+            return Object.assign({}, state, {cart:[]});
+        case 'LLAMAR_CARRITO':
+            return Object.assign({}, state, {valor: action.valor});
         default:
             return state;
     }

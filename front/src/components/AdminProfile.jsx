@@ -25,13 +25,13 @@ class AdminProfile extends React.Component{
     render(){
         return(
             <div className="container">
-                <h1 className="colorRojo">Bienvenido admin</h1>
+                <h1>Bienvenido admin</h1>
                 <ul>
-                    <h2 style={{color: 'white'}}>E-mails</h2>
+                    <h2>E-mails</h2>
                     {
                         this.props.allUsers && this.props.allUsers.map(user => {
                             return (
-                                <div key={user.id} style={{color:'white'}}>
+                                <div key={user.id}>
                                     <li>
                                         {user.first_name} | {user.email}
                                         {

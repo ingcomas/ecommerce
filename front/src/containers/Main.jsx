@@ -3,6 +3,7 @@ import { Link, Route, Switch, Redirect } from 'react-router-dom';
 import axios from 'axios'
 import {isLogged} from '../redux/actions/userActions'
 import {connect} from 'react-redux'
+import { showCart } from '../redux/actions/CartActions';
 
 //CONTAINERS
 import OrderContainer from './OrderContainer';
@@ -25,15 +26,21 @@ import AdminProfile from '../components/AdminProfile';
 class Main extends React.Component{
     constructor(props){
         super(props);
+        this.showCart = this.showCart.bind(this);
     }
     componentDidMount(){
-     this.props.isLogged()
-    //  console.log(sessionStorage.getItem('cart'))
+        this.props.isLogged()
+        document.addEventListener('keydown', function(e){
+            var algo = document.getElementById('algo');
+        })
+    }
+    showCart(e){
+        this.props.showCart();
     }
     render(){
         return (        
             <div className="container-fluid">
-                <HeaderContainer/>
+                <HeaderContainer showCart={this.showCart}/>
               
                 <div className="row picanteo-row">
                     <CartContainer />
@@ -78,7 +85,9 @@ class Main extends React.Component{
 }
 
 function mapStateToProps(state){
-    return{ user: state.user,
+    return{ 
+        user: state.user,
+        // valor: state.cart.valor
     }
 };
 
@@ -86,6 +95,9 @@ function mapDispatchToProps(dispatch){
     return{
         isLogged: function(){
             dispatch(isLogged())
+        },
+        showCart: function(){
+            dispatch(showCart());
         }
     }
 };

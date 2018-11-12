@@ -27,6 +27,13 @@ export function nonCart(){
         type : 'DESTROY_CART'
     }
 }
+export function llamarCarrito(){
+    return {
+        type : 'LLAMAR_CARRITO',
+        valor: true
+    }
+}
+
 export const addToCart = (product) => (dispatch) => {
     dispatch(addCartToStore(product))
 }
@@ -41,4 +48,8 @@ export const decProd = prod => dispatch => {
 }
 export const destroyCart = () => dispatch => {
     dispatch(nonCart())
+}
+
+export const showCart = () => dispatch => {
+    dispatch(llamarCarrito());
 }
